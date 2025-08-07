@@ -3,7 +3,7 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
 import { toast } from "sonner";
-import "../styles/Profile.css";
+import "../styles/profile.css";
 
 export default function Profile() {
   const { user } = useAuthStore();
