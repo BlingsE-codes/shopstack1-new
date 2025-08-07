@@ -1,0 +1,147 @@
+/* Base styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+
+ 
+
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100vh; /* Change from height to min-height */
+  background: linear-gradient(to right, #e6ecf4, #f7f9fb);
+  padding: 40px 20px; /* Add more padding for small screens */
+  box-sizing: border-box;
+}
+
+/* Form */
+.auth-form {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Heading */
+.auth-form h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #2d7be7;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Inputs and Selects */
+.auth-form input,
+.auth-form select {
+  padding: 14px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* Button */
+.auth-form button {
+  padding: 14px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: #357bd8;
+}
+
+/* Toggle links */
+.auth-toggle,
+.auth-form .toggle {
+  text-align: center;
+  font-size: 14px;
+  color: #4a90e2;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.auth-form .toggle:hover {
+  color: #2f3640;
+}
+.btn-home {
+  background-color: rgba(128, 128, 128, 0.473);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-style: italic;
+}
+.btn-home:hover {
+  background-color: rgba(128, 128, 128, 0.7);
+} 
+
+/* Welcome message */
+.welcome-page {
+  color: #357bd8;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+
+}
+@media (max-height: 700px) {
+  .auth-container {
+    align-items: flex-start;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.toggle-password-btn {
+  position:absolute;
+  right: 2px;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+

@@ -1,0 +1,240 @@
+.settings {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.settings h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.section input[type="text"],
+.section input[type="password"],
+.section input[type="file"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+.section input[type="text"]:focus,
+.section input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.section button {
+  padding: 0.6rem 1.2rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.section button:hover {
+  background-color: #0056b3;
+}
+
+.logo-preview img {
+  display: block;
+  max-width: 150px;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-row span {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.user-row button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.user-row button:hover {
+  background-color: #218838;
+}
+
+.user-row button:first-of-type {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.user-row button:first-of-type:hover {
+  background-color: #e0a800;
+}
+
+@media (max-width: 600px) {
+  .settings {
+    padding: 1.5rem;
+  }
+
+  .section button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .user-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-row button {
+    margin: 0.5rem 0 0 0;
+  }
+}
+
+
+
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.settings-section {
+  margin-bottom: 30px;
+}
+
+.settings-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.settings-section input[type="text"],
+.settings-section input[type="password"],
+.settings-section input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.settings-section input:focus {
+  border-color: #4f46e5;
+  outline: none;
+}
+
+.settings-section button {
+  padding: 10px 20px;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.3s;
+}
+
+.settings-section button:hover {
+  background: #4338ca;
+}
+
+.settings-section .cancel-btn {
+  background: #999;
+}
+
+.logo-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.user-list li div button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .user-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-list li div {
+    margin-top: 10px;
+  }
+}
