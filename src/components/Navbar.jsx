@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
 import "../styles/Navbar.css";
 import { useAuthStore } from "../store/auth-store";
-import shopstackLogo from "../assets/Shopstack-image.svg";
+import shopstackLogo from "../assets/Shopstack-Image.svg";
 
 export default function Navbar() {
   const { user, logout } = useAuthStore();
