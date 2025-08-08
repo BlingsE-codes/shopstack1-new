@@ -16,9 +16,10 @@
   align-items: center;
   align-content: center;
   min-height: 100vh; /* Change from height to min-height */
-  background: linear-gradient(to right, #e6ecf4, #f7f9fb);
+  /* background: linear-gradient(to right, #e6ecf4, #f7f9fb); */
   padding: 40px 20px; /* Add more padding for small screens */
   box-sizing: border-box;
+  background-color: #eef1f5;
 }
 
 /* Form */

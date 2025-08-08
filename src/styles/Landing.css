@@ -1,0 +1,181 @@
+/* ===== Global Styles ===== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #ffffff, #eaf4ff);
+  color: #1e2a38;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* ===== Container ===== */
+.landing-container {
+  text-align: center;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* ===== Header Section ===== */
+.landing-header {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #0077ff, #00c6ff);
+  color: white;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  animation: slideDown 1.2s ease-in-out;
+}
+
+.landing-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.landing-header p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.primary-btn,
+.secondary-btn,
+.get-started-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primary-btn {
+  background: white;
+  color: #0077ff;
+  margin-right: 1rem;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.get-started-btn {
+  background: #0077ff;
+  color: white;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.get-started-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 119, 255, 0.3);
+}
+
+/* ===== Features Section ===== */
+.features-section {
+  padding: 3rem 1rem;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.features-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 2rem;
+}
+
+.feature-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+/* ===== Video Section ===== */
+.video-demo-section {
+  padding: 3rem 1rem;
+  background: #f5faff;
+  animation: fadeInUp 1.4s ease-in-out;
+}
+
+.video-container {
+  max-width: 800px;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== Testimonials ===== */
+.testimonials-section {
+  padding: 3rem 1rem;
+  animation: fadeInUp 1.6s ease-in-out;
+}
+
+.testimonials-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.testimonial {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-style: italic;
+  position: relative;
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #0077ff;
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #0077ff, #00c6ff);
+  color: white;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  animation: fadeInUp 1.8s ease-in-out;
+}
+
+/* ===== Footer ===== */
+.landing-footer {
+  padding: 1rem;
+  background: #1e2a38;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}

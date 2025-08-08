@@ -38,6 +38,14 @@ export default function Shop() {
         >
           Expenses
         </NavLink>
+
+         <NavLink
+          to={`/shops/${id}/debtors`}
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Debtors
+        </NavLink>
+
         <NavLink
           to={`/shops/${id}/profile`}
           className={({ isActive }) => (isActive ? "active" : "")}

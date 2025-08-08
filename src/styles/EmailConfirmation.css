@@ -1,0 +1,51 @@
+.email-confirmation-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 6rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ddd;
+
+}
+
+.email-confirmation-container h2 {
+  margin-bottom: 1rem;
+}
+
+@media screen {
+    .email-confirmation-container{
+        padding: auto;
+    }
+}
+
+.envelop {
+  margin-bottom: 1rem;
+  font-size: large;
+  color: aqua;
+}
+
+
+.email-confirmation-container p {
+  margin-bottom: 1rem;
+  font-size: 16px;
+  color: rgb(103, 109, 109);
+}
+
+
+
+.email-confirmation-container button {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  color: #25538f;
+  border: none;
+  border-radius: 6px;
+}
+
+.email-confirmation-container button:hover{
+    color: #5f97e0;
+}
+.email-confirmation-wrapper{
+    background-color: #25538f;
+}

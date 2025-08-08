@@ -3,6 +3,7 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
 import { toast } from "sonner";
+import PlanBanner from "../components/PlanBanner.jsx";
 import "../styles/profile.css";
 
 export default function Profile() {
@@ -199,8 +200,10 @@ export default function Profile() {
           </>
         ) : (
           <button onClick={() => setEditing(true)}>Edit Profile</button>
+          
         )}
       </div>
+       <PlanBanner />
     </div>
   );
 }

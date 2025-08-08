@@ -55,7 +55,7 @@
 }
 
 .btn-auth {
-  background-color: #3b7dc46c;
+  background-color: #3b7dc4;
   color: white;
   padding: 8px 16px;
   border: none;
@@ -66,7 +66,7 @@
   font-weight: bold;
 }
 .btn-auth:hover{
-  background-color: rgb(248, 72, 95);
+  background-color: rgb(255, 0, 33);
 }
 
 /* Shop Profile Link */

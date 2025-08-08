@@ -1,0 +1,186 @@
+.subscribe-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.subscribe-container h1 {
+  margin-bottom: 20px;
+}
+
+.paystack-button {
+  background: #08c;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.paystack-button:hover {
+  background: #005999;
+}
+/* src/styles/Subscribe.css */
+
+/* Container */
+.subscribe-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+/* Trial Expired Banner */
+.trial-expired-banner {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid #bbdefb;
+  animation: slideDown 0.5s ease-out;
+}
+
+/* Heading */
+.subscribe-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: #0d47a1;
+}
+
+/* Paragraphs */
+.subscribe-container p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Paystack Button */
+.paystack-button {
+  background-color: #1976d2;
+  color: white !important;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.paystack-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-2px);
+}
+
+.paystack-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.subscribe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to bottom, #f8fbff, #eaf3ff);
+  min-height: 100vh;
+}
+
+.trial-expired-banner {
+  background: #ff4d4db6;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.subscribe-card {
+  background: white;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 64, 128, 0.1);
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.subscribe-card h1 {
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+.subscribe-card p {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.paystack-button {
+  background: #007bff;
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.paystack-button:hover {
+  background: #0056b3;
+}
+
+.secure-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

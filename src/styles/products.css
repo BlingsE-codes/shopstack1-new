@@ -253,7 +253,7 @@
 }
 
 .edit-btn {
-  background-color: #ffc107;
+  background-color: #ffc107 !important;
   border: none;
   color: black;
   padding: 5px 10px;
@@ -261,7 +261,7 @@
 }
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: #dc3545 !important;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -354,8 +354,8 @@ th, td {
 
 .product-info h2 {
   margin: 0;
-  font-size: 1.2rem;
-  color: #333;
+  font-size: 1.5rem;
+  color: #465074;
 }
 
 .product-info p {

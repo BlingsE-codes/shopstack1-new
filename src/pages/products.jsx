@@ -164,16 +164,12 @@ export default function Products() {
       <div className="products-page">
         <div className="products-header">
           <h1>Products</h1>
-          <p>Manage your shop's inventory</p>
+          <p>Manage your shop's products</p>
         </div>
         <div className="page-container">
           <div className="product-info">
             <h2>{shop.name || "My Shop"}</h2>
-            <p style={{ margin: 0, fontSize: "0.9rem", color: "#666" }}>
-              Manage your inventory here
-            </p>
           </div>
-
           {/* Total Daily Sales */}
           <div className="daily-sales">
             <h4>Total Sales Today:</h4>

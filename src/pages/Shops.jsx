@@ -6,6 +6,7 @@ import { useShopStore } from "../store/shop-store";
 import { supabase } from "../services/supabaseClient";
 import { toast } from "sonner";
 import { ShoppingCart, Settings,TruckElectric, UserRoundPen, Store , HandHelping, ChartNoAxesCombined } from "lucide-react";
+import Loading from "../components/Loading";
 
 
 
@@ -114,7 +115,7 @@ export default function Shops() {
   };
 
   if (loading) {
-    return <div className="loading">Loading your shops...</div>;
+    return <Loading/>;
   }
 
   if (shops.length === 0) {

@@ -16,7 +16,7 @@ export default function Signup() {
     password: "",
     confirmPassword: "",
   });
-  const [showPassword, setShowPassword] = useState(false); // ⬅️ New State
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -36,6 +36,7 @@ export default function Signup() {
     setLoading(true);
 
     const { data, error } = await supabase.auth.signUp({ email, password });
+
     if (error || !data?.user) {
       toast.error(error?.message || "Signup failed");
       setLoading(false);
@@ -44,17 +45,22 @@ export default function Signup() {
 
     const user = data.user;
 
+    // Set trial to start now + 45 days
+    const trialStart = new Date();
+    trialStart.setDate(trialStart.getDate() + 45);
+
     const { data: profileData, error: profileError } = await supabase
       .from("profiles")
       .insert({
         full_name: `${name} ${surname}`,
         date_of_birth: dob,
         auth_id: user.id,
+        is_paid: false,
+        plan: "trial",
+        trial_start: trialStart.toISOString(),
       })
       .select()
       .single();
-
-    signin(profileData);
 
     if (profileError || !profileData) {
       toast.error("Failed to create profile");
@@ -62,8 +68,11 @@ export default function Signup() {
       return;
     }
 
+    signin(profileData);
+
     toast.success("Account created successfully!");
-    navigate("/shops");
+    toast.success("Check your email for confirmation");
+    navigate("/confirm-email"); // ⬅️ Redirect to confirm page
     setLoading(false);
   };
 
@@ -73,10 +82,33 @@ export default function Signup() {
         <Link to="/" className="btn-home">Back To Login</Link>
         <h2>Create Shop Account</h2>
 
-        <input type="text" name="name" placeholder="First Name" onChange={handleChange} required />
-        <input type="text" name="surname" placeholder="Surname" onChange={handleChange} required />
-        <input type="date" name="dob" onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+        <input
+          type="text"
+          name="name"
+          placeholder="First Name"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="surname"
+          placeholder="Surname"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="date"
+          name="dob"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          required
+        />
 
         <div className="password-wrapper">
           <input

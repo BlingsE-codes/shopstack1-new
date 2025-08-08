@@ -1,0 +1,123 @@
+.debtors-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.debtors-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.debtor-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.debtor-form input {
+  /* flex: 1 1 200px; */
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.debtor-form button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.debtor-form button:hover {
+  background-color: #0056b3;
+}
+
+.debtor-list {
+  list-style: none;
+  padding: 0;
+}
+
+.debtor-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border-left: 6px solid #ff9800;
+  transition: all 0.2s ease-in-out;
+}
+
+.debtor-list li.paid {
+  opacity: 0.6;
+  text-decoration: line-through;
+  border-left-color: #4caf50;
+}
+
+.debtor-list strong {
+  color: #222;
+}
+
+.debtor-list em {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.debtor-actions button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.debtor-actions button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.debtor-actions button:first-child:hover {
+  background-color: #218838;
+}
+
+.debtor-actions button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.debtor-actions button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .debtor-form {
+    flex-direction: column;
+  }
+
+  .debtor-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .debtor-actions button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
