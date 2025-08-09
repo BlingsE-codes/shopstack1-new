@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/auth-store";
-import { PaystackButton } from "react-paystack";
+// import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 import { supabase } from "../services/supabaseClient";
 import "../styles/Subscribe.css";
 
@@ -12,38 +12,51 @@ const Subscribe = () => {
 
   const expired = location.search.includes("expired=true");
 
-  const publicKey = "pk_test_xxxxxxxx"; // Replace with your real key
-  const amount = 2000 * 100; // in Kobo (₦2000)
-  const email = user?.email || "example@example.com";
+  const config = {
+    public_key: "https://sandbox.flutterwave.com/pay/4z3yznqakv2y", // Replace with your Flutterwave public key
+    tx_ref: Date.now().toString(),
+    amount: 2000,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: user?.email || "example@example.com",
+      phonenumber: user?.phone || "08000000000",
+      name: user?.full_name || "ShopStack User",
+    },
+    customizations: {
+      title: "ShopStack Premium Subscription",
+      description: "Upgrade to ShopStack Premium",
+      logo: "https://yourdomain.com/logo.png", // Optional: your logo URL
+    },
+  };
 
-  const handleSuccess = async (reference) => {
-    console.log("Payment successful:", reference);
+  const handleFlutterwaveResponse = async (response) => {
+    if (response.status === "successful") {
+      // Close the modal
+      closePaymentModal();
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({ is_paid: true })
-      .eq("auth_id", user?.id);
+      // Update user payment status in Supabase
+      const { error } = await supabase
+        .from("profiles")
+        .update({ is_paid: true })
+        .eq("auth_id", user?.id);
 
-    if (!error) {
-      alert("Payment successful! Redirecting...");
-      navigate("/dashboard");
+      if (!error) {
+        alert("Payment successful! Redirecting...");
+        navigate("/dashboard");
+      } else {
+        alert("Payment was successful, but your account update failed.");
+        console.error(error);
+      }
     } else {
-      alert("Payment was successful, but your account update failed.");
-      console.error(error);
+      alert("Payment was not successful. Please try again.");
     }
   };
 
-  const handleClose = () => {
-    alert("Payment window closed.");
-  };
-
-  const componentProps = {
-    email,
-    amount,
-    publicKey,
-    text: "Upgrade Now (₦2000/month)",
-    onSuccess: handleSuccess,
-    onClose: handleClose,
+  const fwConfig = {
+    ...config,
+    callback: handleFlutterwaveResponse,
+    onClose: () => alert("Payment window closed."),
   };
 
   return (
@@ -57,11 +70,13 @@ const Subscribe = () => {
 
       <div className="subscribe-card">
         <h1>Upgrade to ShopStack Premium</h1>
-        <p>Enjoy unlimited access for just <strong>₦2000/month</strong>.</p>
+        <p>
+          Enjoy unlimited access for just <strong>₦2000/month</strong>.
+        </p>
 
-        <PaystackButton className="paystack-button" {...componentProps} />
+        <FlutterWaveButton className="flutterwave-button" {...fwConfig} />
 
-        <p className="secure-note">🔒 Payments are processed securely via Paystack</p>
+        <p className="secure-note">🔒 Payments are processed securely via Flutterwave</p>
       </div>
     </div>
   );
