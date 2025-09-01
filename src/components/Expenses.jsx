@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "../services/supabaseClient";
 import { toast } from "sonner";
-import "../styles/Expenses.css";
+import "../styles/expenses-temp.css";
 import { useShopStore } from "../store/shop-store";
 import { useAuthStore } from "../store/auth-store";
 
