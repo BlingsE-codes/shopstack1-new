@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/auth-store";
-// import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 import { supabase } from "../services/supabaseClient";
 
-import { FlutterWaveButton } from 'flutterwave-react-v3';
+
+
 
 import "../styles/Subscribe.css";
 
@@ -16,7 +16,7 @@ const Subscribe = () => {
   const expired = location.search.includes("expired=true");
 
   const config = {
-    public_key: "https://sandbox.flutterwave.com/pay/4z3yznqakv2y", // Replace with your Flutterwave public key
+    // public_key: "https://sandbox.flutterwave.com/pay/4z3yznqakv2y",
     tx_ref: Date.now().toString(),
     amount: 2000,
     currency: "NGN",
@@ -33,7 +33,7 @@ const Subscribe = () => {
     },
   };
 
-  const handleFlutterwaveResponse = async (response) => {
+  const handletlutterwavieeResponse = async (response) => {
     if (response.status === "successful") {
       // Close the modal
       // closePaymentModal();
@@ -56,10 +56,10 @@ const Subscribe = () => {
     }
   };
 
-  const fwConfig = {
+  const uwConfig = {
     ...config,
     text: "Subscribe",
-    callback: handleFlutterwaveResponse,
+   callback: handletlutterwavieeResponse,
     onClose: () => alert("Payment window closed."),
   };
 
@@ -78,9 +78,9 @@ const Subscribe = () => {
           Enjoy unlimited access for just <strong>₦2000/month</strong>.
         </p>
 
-        <FlutterWaveButton className="flutterwave-button" {...fwConfig} />
+        {/* <FlutterWaveButton className="flutterwave-button"8*/} {uwConfig} 
 
-        <p className="secure-note">🔒 Payments are processed securely via Flutterwave</p>
+        {/* <p className="secure-note">🔒 Payments are processed securely via Flutterwave</p> */}
       </div>
     </div>
   );

@@ -306,11 +306,9 @@ const GlobeIcon = () => (
     <section className="hero">
   <div className="container">
     <div className="hero-content">
-      <h1>Revolutionize Your Retail Business</h1>
+      <h1>The Smarter Way to Manage Your Business</h1>
       <p>
-        ShopStack is the modern POS and inventory system designed to help small
-        businesses streamline operations, boost sales, and manage inventory
-        efficiently.
+       ShopStack is the modern point-of-sale and inventory management system that helps small businesses simplify operations, increase sales, and track inventory effectively.
       </p>
       <div className="hero-buttons">
         <button

@@ -347,8 +347,9 @@ ul {
 }
 
 .dashboard-subtitle {
-  font-size: 1rem;
-  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3ec249;
   margin-top: 4px;
 }
 
