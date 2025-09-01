@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
-import "../styles/Navbar.css";
+// import "../styles/Navbar.css";
+import "../styles/Landing.css";
 import { Menu, X } from "lucide-react"; 
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
@@ -444,7 +445,7 @@ const GlobeIcon = () => (
           <div className="cta-content">
             <h2>Ready to Transform Your Business?</h2>
             <p>Start your free 30-days trial today. No credit card required.</p>
-            <button className="btn btn-primary btn-large">Get Started Now</button>
+            <button onClick={() => navigate("/signup")} className="btn btn-primary btn-large">Get Started Now</button>
           </div>
         </div>
       </section>
