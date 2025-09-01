@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
-import "../styles/Profile.css";
+import "../styles/profile.css";
 import * as XLSX from "xlsx";
 import { useShopStore } from "../store/shop-store";
 import { 
