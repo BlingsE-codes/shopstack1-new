@@ -1,51 +1,93 @@
-// src/components/SalesChart.jsx
-import { Line } from "react-chartjs-2";
-import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
+// components/SalesChart.js (with toggle and dual datasets)
+import { Bar, Line } from 'react-chartjs-2';
+import "../styles/dashboard.css";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-export default function SalesChart({ labels, values }) {
+// Register ChartJS components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+
+
+const SalesChart = ({ 
+  salesLabels, 
+  salesValues, 
+  profitLabels, 
+  profitValues, 
+  chartType = 'bar' 
+}) => {
+  const labels = salesLabels || profitLabels || [];
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false, // IMPORTANT for custom heights
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Daily Sales & Profit Overview' },
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            return `${context.dataset.label}: ₦${context.raw.toLocaleString()}`;
+          },
+        },
+      },
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'Amount (₦)' } },
+      x: { title: { display: true, text: 'Date' } },
+    },
+  };
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Sales',
+        data: salesValues || [],
+        backgroundColor: chartType === 'bar' ? '#007bff' : 'transparent',
+        borderColor: '#0069d9',
+        borderWidth: 2,
+        tension: 0.1,
+      },
+      {
+        label: 'Profit',
+        data: profitValues || [],
+        backgroundColor: chartType === 'bar' ? '#e67a00' : 'transparent',
+        borderColor: '#cc6d00',
+        borderWidth: 2,
+        tension: 0.1,
+      },
+    ],
+  };
+
   return (
     <div className="chart-container">
-      <Line
-        data={{
-          labels,
-          datasets: [
-            {
-              label: "",
-              data: values,
-              fill: true,
-              backgroundColor: "rgba(52,152,219,0.1)",
-              borderColor: "#3498db",
-              tension: 0.4,
-            },
-          ],
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: "top",
-              labels: {
-                color: "#333",
-                font: { size: 14, weight: "bold" },
-              },
-            },
-          },
-          scales: {
-            x: {
-              ticks: { color: "#555" },
-              grid: { display: false },
-            },
-            y: {
-              beginAtZero: true,
-              ticks: { color: "#555" },
-              grid: { borderDash: [5, 5] },
-            },
-          },
-        }}
-      />
+      {chartType === 'bar' ? (
+        <Bar options={options} data={data} />
+      ) : (
+        <Line options={options} data={data} />
+      )}
     </div>
   );
-}
+};
 
+
+export default SalesChart;

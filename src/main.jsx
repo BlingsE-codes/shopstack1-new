@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Router>
         <App />
       </Router>
-      <Toaster richColors/>
+      <Toaster richColors />
     </QueryClientProvider>
   </React.StrictMode>
 );

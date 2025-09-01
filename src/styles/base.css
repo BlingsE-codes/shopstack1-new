@@ -1,0 +1,97 @@
+/* styles/base.css */
+.app-base {
+  
+  
+}
+html, body, #root {
+  height: 100%;      /* make them stretch full screen */
+  margin: 0;
+  padding: 0;
+  background-color: #F7F7F8; /* your color */
+  min-height: 100vh;
+}
+
+
+/* Body scroll */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto; /* enable vertical scrolling */
+}
+
+/* Custom scrollbar for the whole page */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f2f6;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(172, 170, 170);
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgb(172, 170, 160);
+}
+
+
+
+
+/* In your base.css or index.css */
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===========================
+   Dashboard Table (Unified Style)
+   Applies to Products, Sales, Debtors, etc.
+   =========================== */
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse; /* ✅ borders align perfectly */
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  overflow: hidden; /* keeps radius clean */
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: 0.75rem 1rem;
+
+  font-size: 0.9rem;
+  border: 1px solid #e5e7eb; /* ✅ full grid (vertical + horizontal lines) */
+  text-align: center;       /* ✅ center text horizontally */
+  vertical-align: middle;   /* ✅ center text vertically */
+}
+
+.dashboard-table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.dashboard-table td {
+  color: #555;
+}
+
+.dashboard-table tr:hover td {
+  background: #f3f4f6; /* ✅ subtle hover effect */
+}
+
+/* Wrapper for scrollable tables */
+.table-container {
+  width: 100%;
+  overflow-x: auto;   /* horizontal scroll if table is too wide */
+
+ /* optional: limit table height */
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}

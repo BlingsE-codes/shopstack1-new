@@ -9,6 +9,23 @@
  
 
 }
+.shopstack-logo h4{
+  color: #333;
+  
+}
+
+.shopstack-logo{
+  font-size: 45px !important;
+}
+
+.btn-home h2{
+  font-size: 20px !important;
+}
+
+.btn-home{
+  background-color: #e67a00 !important;
+  color: #eef1f5 !important;
+}
 
 .auth-container {
   display: flex;
@@ -40,9 +57,16 @@
 .auth-form h1 {
   font-size: 26px;
   font-weight: 600;
-  color: #2d7be7;
+  color: linear-gradient(135deg, #17a2b8, #00c6ff);;
   text-align: center;
   margin-bottom: 10px;
+}
+.auth-form h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 /* Inputs and Selects */
@@ -64,7 +88,7 @@
 /* Button */
 .auth-form button {
   padding: 14px;
-  background-color: #4a90e2;
+  background-color: #17a2b8;
   color: white;
   border: none;
   font-weight: 600;
@@ -74,7 +98,7 @@
 }
 
 .auth-form button:hover {
-  background-color: #357bd8;
+  background-color: #117483;
 }
 
 /* Toggle links */
@@ -111,7 +135,7 @@
 
 /* Welcome message */
 .welcome-page {
-  color: #357bd8;
+  color: linear-gradient(135deg, #17a2b8, #00c6ff) !important;
   font-size: 28px;
   font-weight: 600;
   text-align: center;
@@ -145,4 +169,47 @@
   font-size: 14px;
   margin-bottom: 9px;
 }
+.toggle{
+  cursor: pointer;
+  color: #04080c !important;
+  font-weight: 400;
+}
+.toggle:hover {
+  text-decoration: underline;
+}
+
+/* ====== Password Input with Eye Toggle ====== */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* padding-right for icon space */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  transition: color 0.2s ease-in-out;
+}
+
+.password-toggle:hover {
+  color: #333;
+}
+.auth-form input[type="text"] {
+  text-transform: capitalize;
+}
+
+
 

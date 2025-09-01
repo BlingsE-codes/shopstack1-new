@@ -3,18 +3,34 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import "../styles/Auth.css"; // Use same style as login/signup
+import "../styles/Auth.css";
+
+const shopTypes = [
+  "Barbing Salon",
+  "Hair Dresser",
+  "Tailor",
+  "Clothing Store",
+  "Grocery Store",
+  "Pharmacy",
+  "Electronics",
+  "Food Vendor",
+  "Bakery",
+  "Car Repair",
+  "POS Agent",
+  "Car Dealer",
+];
 
 export default function CreateShop() {
   const { user } = useAuthStore();
   const [shopName, setShopName] = useState("");
   const [shopAddress, setShopAddress] = useState("");
+  const [shopType, setShopType] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!shopName || !shopAddress) {
+    if (!shopName || !shopAddress || !shopType) {
       toast.error("Please fill in all fields");
       return;
     }
@@ -23,6 +39,7 @@ export default function CreateShop() {
       name: shopName,
       address: shopAddress,
       owner_id: user.id,
+      type: shopType,
     });
 
     if (error) {
@@ -33,8 +50,8 @@ export default function CreateShop() {
     toast.success("Shop created successfully! 🚀");
     setShopName("");
     setShopAddress("");
+    setShopType("");
 
-    // Navigate after a short delay
     setTimeout(() => navigate("/shops"), 1000);
   };
 
@@ -60,6 +77,20 @@ export default function CreateShop() {
           onChange={(e) => setShopAddress(e.target.value)}
           required
         />
+
+        <select
+          name="shop-type"
+          value={shopType}
+          onChange={(e) => setShopType(e.target.value)}
+          required
+        >
+          <option value="">Select Shop Type</option>
+          {shopTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
 
         <button type="submit">Create Shop</button>
       </form>

@@ -1,32 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Raleway:wght@600;700&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+}
+
 .page-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
 }
+/* index.css or App.css */
+/* body {
+  margin: 0;
+  padding: 0;
+  background-color: #7FFFD4; /* change this to your color 
+  font-family: Arial, sans-serif;
+} */
 
-
-
+/* .app-base {
+  background-color:#7FFFD4;
+  min-height: 100vh;
+}
+  */
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
 }
-
-
-
-
-
-
-      
 
 .dashboard {
   padding: 20px;
@@ -48,7 +67,7 @@ html, body, #root {
   padding: 20px;
   border-left: 5px solid #3498db;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .card.sales {
@@ -98,10 +117,10 @@ html, body, #root {
   background: white;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
 }
-
+/* 
 .summary-cards {
   display: flex;
   gap: 20px;
@@ -123,22 +142,19 @@ html, body, #root {
 .summary-cards .card h4 {
   margin-bottom: 10px;
 }
-                                  
+                                   */
 
+/* SALES.CSS */
 
-                                     /* SALES.CSS */
-
-  /* margin: 40px auto;
+/* margin: 40px auto;
   padding: 60px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f9f9f9;
   width: 100%;
   max-width: 100%; */
- 
 
-
-
+/* 
 .sales-form select,
 .sales-form input,
 .sales-form button {
@@ -157,7 +173,7 @@ html, body, #root {
 
 .sales-form button:hover {
   background-color: #0056b3;
-}
+} */
 
 /* .sales-summary {
   margin: 10px 0;
@@ -170,7 +186,6 @@ html, body, #root {
 .sales-table {
   width: 100%;
   border-collapse: collapse;
- 
 }
 
 .sales-table th,
@@ -179,7 +194,7 @@ html, body, #root {
   padding: 10px;
   text-align: center;
 }
-
+/* 
 .sales-table th {
   background-color: #007bff;
   color: white;
@@ -187,12 +202,12 @@ html, body, #root {
 
 .sales-table tr:nth-child(even) {
   background-color: #f2f2f2;
-}
-                     
-                                  /* SALES CARTS */
+} */
+
+/* SALES CARTS */
 
 /* SalesHistory.css */
-
+/* 
 .sales-history {
   max-width: 1000px;
   margin: 30px auto;
@@ -214,8 +229,8 @@ html, body, #root {
   margin-bottom: 20px;
   font-size: 15px;
   background: white;
-}
-
+} */
+/* 
 .sales-table thead {
   background-color: #007acc;
   color: white;
@@ -241,7 +256,7 @@ html, body, #root {
   font-size: 16px;
   color: #333;
 }
-/* Add to Sales.css */
+/* Add to Sales.css 
  
 .sales-form {
   width: 900px;
@@ -334,11 +349,11 @@ html, body, #root {
 
 .sales-form .cancel-btn:hover {
   background-color: #aaa;
-}
+} */
 
 /* Chart Container */
 
-.sales-chart {
+/* .sales-chart {
   max-width: 1000px;
   margin: 30px auto;
   padding: 20px;
@@ -415,15 +430,15 @@ color: rgb(231, 228, 228);
   .filter-controls button {
     width: 100%;
   }
-}
-                                     /* EXPENSES CSS */
-
+} */
+/* EXPENSES CSS */
+/* 
 .expenses-page {
   padding: 1.5rem;
   background: #f7f8fc;
   font-family: "Segoe UI", sans-serif;
-}
-
+} */
+/* 
 .expenses-form {
   display: flex;
   flex-wrap: wrap;
@@ -460,8 +475,8 @@ color: rgb(231, 228, 228);
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
-}
-
+} */
+/* 
 .filter-controls {
   display: flex;
   flex-wrap: wrap;
@@ -495,10 +510,9 @@ color: rgb(231, 228, 228);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 0.5rem;
   overflow: hidden;
-}
+} */
 
-
-
+/* 
 .expenses-table tr:hover {
   background-color: #f9f9f9;
 }
@@ -515,11 +529,9 @@ color: rgb(231, 228, 228);
 
 .expenses-table button:hover {
   background-color: #c9302c;
-}
+} */
 
-
-
-
+/* 
 .shopstackwelcome{
   color: white;
   margin-left: 0;
@@ -548,13 +560,13 @@ color: rgb(231, 228, 228);
   border: none;
   cursor: pointer;
 }
-/* admin.css */
+/* admin.css *
 .admin-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* full screen height */
-  background-color: #f8f9fa; /* light gray background */
+  height: 100vh; /* full screen height *
+  background-color: #f8f9fa; /* light gray background 
 }
 
 .admin-card {
@@ -620,7 +632,7 @@ color: rgb(231, 228, 228);
   color: #007bff;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+} */
 
 /* If you're using an image logo instead: */
 /*
@@ -633,23 +645,36 @@ color: rgb(231, 228, 228);
 
 /* index.css or App.css */
 /* === App Container Layout === */
-.app-container {
+/* .app-container {
   display: flex;
   min-height: 100vh;
   height: 100vh;
   overflow: hidden;
-}
-
+} */
 
 /* === Main Content Area === */
-.main-content {
+/* .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: auto;
   
+} */
+
+.summary-card {
+  background: #cc6600;
+  cursor: default;
 }
 
+.summary-card strong {
+  font-size: 1.1rem;
+  color: white;
+}
+
+.summary-card:hover {
+  background: #f09b3a;
+  cursor: default;
+}
 
 /* === Responsive: Hide Sidebar on Mobile === */
 @media (max-width: 768px) {
@@ -662,9 +687,82 @@ color: rgb(231, 228, 228);
   }
 }
 
+.navbar-brand {
+  /* flex: 1; */
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+  text-decoration: none;
+}
+
+.shopstack-logo b {
+  color: #ff8a00;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: auto;
+}
+.chart-card span{
+  color: #1a1a1b;
+}
+.chart-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.chart-header {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  height: 90px;
+  
+}
+.chart-toggle button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.chart-toggle button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.chart-toggle button:hover:not(.active) {
+  background: #f8f9fa;
+}
+
+.margin {
+  font-weight: 600;
+  color: #1a1a1b;
+  margin-bottom: 15px;
+  display: block;
+  font-size: 1.1rem;
+}
+.chart-toggle button {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: #333 !important;
+}
+
+/* Sidebar.css */
 
 /* Report.css */
-
+/* 
 .report-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -757,10 +855,10 @@ color: rgb(231, 228, 228);
     padding: 0.5rem;
     font-size: 0.85rem;
   }
-}
+} */
 
 /* Report.css */
-
+/* 
 .report-container {
   padding: 2rem;
   background-color: #f9f9f9;
@@ -813,8 +911,8 @@ color: rgb(231, 228, 228);
   margin-bottom: 1rem;
   font-size: 1.2rem;
   color: #333;
-}
-
+} */
+/* 
 .report-table {
   background-color: #fff;
   padding: 1rem;
@@ -876,9 +974,9 @@ color: rgb(231, 228, 228);
   border: 1px solid #ccc;
   margin-bottom: 0.8rem;
 }
+ */
 
-
-
+/* 
 .signout-btn {
   padding: 0.6rem 1rem;
   background-color: #dc3545;
@@ -896,9 +994,9 @@ color: rgb(231, 228, 228);
   margin-top: 1rem;
   font-size: 0.95rem;
   color: #007bff;
-}
+} */
 /* Settings.css */
-
+/* 
 :root {
   --bg-light: #858181;
   --bg-dark: #1e1e1e;
@@ -1027,10 +1125,10 @@ body.dark-mode .settings-section {
 
 .settings-section .danger-zone button:hover {
   background-color: #c82333;
-}
+} */
 /* Settings.css */
 
-body {
+/* body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f9fc;
   margin: 0;
@@ -1078,8 +1176,8 @@ h2, h3, h4 {
 .settings-section:first-of-type {
   border-top: none;
   padding-top: 0;
-}
-
+} */
+/* 
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -1163,7 +1261,7 @@ input:focus {
 }
 
 
-/* Mobile hidden by default */
+/* Mobile hidden by default 
 
   .sidebar.open {
     display: block;
@@ -1172,7 +1270,7 @@ input:focus {
     transition: transform 0.3s ease-in-out;
   }
 
-  /* Sidebar base style */
+  /* Sidebar base style 
 .sidebar {
   width: 20px;
   background-color: #1f2937;
@@ -1185,14 +1283,14 @@ input:focus {
   background-color: #1f2937;
   color: white;
   font-size: 1rem;
-  padding: 1rem 0.5rem 0.5rem 0.5rem; /* ⬅ top padding added */
-  height: calc(100vh - 0.5rem); /* adjust height if margin added */
+  padding: 1rem 0.5rem 0.5rem 0.5rem; /* ⬅ top padding added 
+  height: calc(100vh - 0.5rem); /* adjust height if margin added 
   position: relative;
   box-sizing: border-box;
 }
 
 
-/* Mobile: sidebar hidden unless open */
+/* Mobile: sidebar hidden unless open 
 @media (max-width: 768px) {
   .sidebar {
     display: none;
@@ -1208,29 +1306,27 @@ input:focus {
     display: block;
   }
 }
-  
+   */
 
 /* newside */
-.sidebar {
-  width: 100px; /* Smaller width */
-  background-color: #1f2937; /* dark background */
+/* .sidebar {
+  width: 100px; /* Smaller width 
+  background-color: #1f2937; /* dark background 
   color: white;
-  font-size: 0.75rem; /* smaller text */
+  font-size: 0.75rem; /* smaller tex
   padding: 0.5rem;
   height: 100vh;
   position: relative;
 }
 
-/* Sidebar header (e.g. "Welcome, Admin") */
+/* Sidebar header (e.g. "Welcome, Admin") 
 .sidebar-header h2 {
   font-size: 0.85rem;
   margin-bottom: 1rem;
   line-height: 1.2;
-}
+} */
 
-
-
-
+/* 
 .menu-icon {
   display: none;
   background: none;
@@ -1245,7 +1341,7 @@ input:focus {
   }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments
 @media (max-width: 768px) {
   .sidebar {
     width: 80px;
@@ -1256,7 +1352,7 @@ input:focus {
     font-size: 0.75rem;
   }
 
-/* 1. Force full-page containment */
+
 body, html {
   margin: 0;
   padding: 0;
@@ -1269,16 +1365,16 @@ body, html {
   box-sizing: border-box;
 }
 
-/* 2. Scrollable table wrapper */
+
 .table-container {
   width: 100%;
   overflow-x: auto;
-}
+} */
 
 /* 3. Wide table triggers scroll */
-.product-table {
+/* .product-table {
   width: 100%;
-  min-width: 900px; /* or more, based on how many columns you have */
+  min-width: 900px; /* or more, based on how many columns you have 
   border-collapse: collapse;
 }
 
@@ -1288,10 +1384,10 @@ body, html {
   text-align: left;
   white-space: nowrap;
   border-bottom: 1px solid #ddd;
-}
+} */
 
 /* 4. Limit input width */
-.qty-input,
+/* .qty-input,
 .product-table input[type="number"] {
   max-width: 70px;
 }
@@ -1300,7 +1396,7 @@ body, html {
   background-color: #ffe5e5;
 }
 
-/* 5. Form and controls */
+/* 5. Form and controls 
 .product-form,
 .search-export {
   display: flex;
@@ -1322,14 +1418,10 @@ body, html {
 }
 
 
-
-
-
-
-
+ */
 
 /* Profile.css */
-.profile-container {
+/* .profile-container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
@@ -1382,7 +1474,7 @@ body, html {
   }
 }
 
-/* Settings.css */
+/* 
 .settings-container {
   max-width: 640px;
   margin: 40px auto;
@@ -1408,8 +1500,8 @@ body, html {
   margin-bottom: 6px;
   font-weight: 600;
   color: #444;
-}
-
+} */
+/* 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="file"] {
@@ -1496,7 +1588,7 @@ body, html {
   background-color: #ccc;
   cursor: not-allowed;
 }
-/* Dashboard.css */
+/* Dashboard.css 
 .dashboard {
   padding: 32px;
   max-width: 960px;
@@ -1566,8 +1658,8 @@ body, html {
   margin-bottom: 8px;
   border-bottom: 1px solid #eee;
   padding-bottom: 6px;
-}
-/* Products.css */
+} */
+/* Products.css
 .products-container {
   padding: 30px;
   max-width: 1000px;
@@ -1582,8 +1674,8 @@ body, html {
 
 .table-wrapper {
   overflow-x: auto;
-}
-
+} */
+/* 
 .products-table {
   width: 100%;
   border-collapse: collapse;
@@ -1592,15 +1684,15 @@ body, html {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   overflow: hidden;
-}
-
+} */
+/* 
 .products-table th,
 .products-table td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ecf0f1;
-}
-
+} */
+/* 
 .products-table th {
   background-color: #f8f9fa;
   font-weight: bold;
@@ -1609,8 +1701,8 @@ body, html {
 
 .products-table tr:hover {
   background-color: #f0f8ff;
-}
-.settings-container {
+} */
+/* .settings-container {
   max-width: 500px;
   margin: 0 auto;
   padding: 1rem;
@@ -1618,8 +1710,8 @@ body, html {
 
 .input-group {
   margin-bottom: 1rem;
-}
-
+} */
+/* 
 input[type="text"],
 input[type="file"],
 input[disabled] {
@@ -1639,10 +1731,9 @@ input[disabled] {
 
 .btn.delete {
   background-color: red;
-}
+} */
 
-
-/* profile.css */
+/* 
 .profile-container {
   max-width: 600px;
   margin: 40px auto;
@@ -1716,7 +1807,7 @@ button[disabled] {
   font-size: 16px;
 }
 
-/* Responsive */
+
 @media (max-width: 480px) {
   .profile-container {
     margin: 20px;
@@ -1731,7 +1822,7 @@ button[disabled] {
     font-size: 15px;
   }
 }
-/* profile.css */
+
 
 .profile-container {
   max-width: 600px;
@@ -1786,8 +1877,8 @@ button[disabled] {
   border-radius: 6px;
   color: #555;
   font-size: 14px;
-}
-
+} */
+/* 
 .detail-row input {
   padding: 10px;
   font-size: 15px;
@@ -1874,3 +1965,4 @@ button:hover {
   object-fit: cover;
   border: 2px solid #ccc;
 } 
+} */

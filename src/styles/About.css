@@ -1,0 +1,68 @@
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  line-height: 1.7;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #007bff; /* Primary Blue */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-left: 5px solid #e67a00; /* Orange Accent */
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.about-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.15);
+}
+
+.about-section h2 {
+  color: #17a2b8; /* Teal Secondary */
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.about-section p {
+  font-size: 1rem;
+  color: #444;
+}
+
+.about-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-section ul li {
+  background: #fff;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.about-section.contact a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.about-section.contact a:hover {
+  color: #e67a00; /* Hover with orange */
+}

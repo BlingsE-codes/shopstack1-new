@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import "../styles/Auth.css";
 import { useAuthStore } from "../store/auth-store";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Signup() {
   const { signin } = useAuthStore();
@@ -11,22 +12,31 @@ export default function Signup() {
   const [form, setForm] = useState({
     name: "",
     surname: "",
-    dob: "",
+    date_of_birth: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+
+    // Only capitalize name + surname, leave passwords as-is
+    const newValue =
+      name === "name" || name === "surname"
+        ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+        : value;
+
+    setForm((prev) => ({ ...prev, [name]: newValue }));
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { name, surname, dob, email, password, confirmPassword } = form;
+    const { name, surname, date_of_birth, email, password, confirmPassword } = form;
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -35,51 +45,33 @@ export default function Signup() {
 
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: `${name} ${surname}`,
+          date_of_birth: date_of_birth, // must be YYYY-MM-DD
+        },
+      },
+    });
+
+    setLoading(false);
 
     if (error || !data?.user) {
       toast.error(error?.message || "Signup failed");
-      setLoading(false);
       return;
     }
-
-    const user = data.user;
-
-    // Set trial to start now + 45 days
-    const trialStart = new Date();
-    trialStart.setDate(trialStart.getDate() + 45);
-
-    const { data: profileData, error: profileError } = await supabase
-      .from("profiles")
-      .insert({
-        full_name: `${name} ${surname}`,
-        date_of_birth: dob,
-        auth_id: user.id,
-        is_paid: false,
-        plan: "trial",
-        trial_start: trialStart.toISOString(),
-      })
-      .select()
-      .single();
-
-    if (profileError || !profileData) {
-      toast.error("Failed to create profile");
-      setLoading(false);
-      return;
-    }
-
-    signin(profileData);
 
     toast.success("Account created successfully!");
     toast.success("Check your email for confirmation");
-    navigate("/confirm-email"); // ⬅️ Redirect to confirm page
-    setLoading(false);
+    navigate("/confirm-email");
   };
 
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSignup}>
-        <Link to="/" className="btn-home">Back To Login</Link>
+        <Link to="/" className="btn-home">Back To Home</Link>
         <h2>Create Shop Account</h2>
 
         <input
@@ -98,7 +90,7 @@ export default function Signup() {
         />
         <input
           type="date"
-          name="dob"
+          name="date_of_birth"
           onChange={handleChange}
           required
         />
@@ -118,23 +110,28 @@ export default function Signup() {
             onChange={handleChange}
             required
           />
-          <button
-            type="button"
-            className="toggle-password-btn"
+          <span
+            className="password-toggle"
             onClick={() => setShowPassword((prev) => !prev)}
           >
-            {showPassword ? "Hide" : "Show"}
-          </button>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
 
         <div className="password-wrapper">
           <input
-            type={showPassword ? "text" : "password"}
+            type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             onChange={handleChange}
             required
           />
+          <span
+            className="password-toggle"
+            onClick={() => setShowConfirmPassword((prev) => !prev)}
+          >
+            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
 
         <button type="submit" disabled={loading}>

@@ -1,19 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../services/supabaseClient";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import { toast } from "sonner";
 import "../styles/Auth.css";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import loginImage from "../assets/login.svg";
 
 export default function Login() {
   const { signin, user: authUser } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // ⬅️ New State
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { shop } = useShopStore();
+
+  // ✅ Load saved email on mount
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("savedEmail");
+    if (savedEmail) {
+      setEmail(savedEmail);
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +31,7 @@ export default function Login() {
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      password,
+      password, // session will be stored securely by Supabase
     });
 
     if (error) {
@@ -48,8 +58,11 @@ export default function Login() {
       return;
     }
 
+    // ✅ Save email for next login
+    localStorage.setItem("savedEmail", email);
+
     signin(profileData[0]);
-    toast.success(`Welcome back 👋`);
+    toast.success("Welcome back 👋");
     navigate("/");
     setLoading(false);
   };
@@ -60,8 +73,19 @@ export default function Login() {
 
   return (
     <div className="auth-container">
+      {/* Left illustration */}
+      <div className="auth-illustration">
+        <img src={loginImage} alt="Login illustration" />
+      </div>
+
+      {/* Right form */}
       <form className="auth-form" onSubmit={handleLogin}>
-        <h1>Welcome to ShopStack</h1>
+        <h1 to="/" className="navbar-brand">
+          <h1 className="shopstack-logo">
+            Shop<b>Stack</b>
+          </h1>
+        </h1>
+
         <p className="auth-subtitle">Login to your account</p>
 
         <input
@@ -80,13 +104,12 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button
-            type="button"
-            className="toggle-password-btn"
+          <span
+            className="password-toggle"
             onClick={() => setShowPassword((prev) => !prev)}
           >
-            {showPassword ? "Hide" : "Show"}
-          </button>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
 
         <button type="submit" disabled={loading}>

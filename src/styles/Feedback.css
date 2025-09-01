@@ -1,0 +1,76 @@
+.feedback-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h1 {
+  text-align: center;
+  color: #e67a00; /* Orange heading */
+  border-bottom: 3px solid #007bff; /* Blue underline */
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.intro-text {
+  text-align: center;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.feedback-form label {
+  display: block;
+  margin-bottom: 15px;
+  color: #007bff; /* Blue labels */
+  font-weight: 500;
+}
+
+.feedback-form input,
+.feedback-form select,
+.feedback-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #17a2b8; /* Teal borders */
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form select:focus,
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: #e67a00; /* Orange focus */
+  box-shadow: 0 0 6px rgba(230, 122, 0, 0.5);
+}
+
+.feedback-form button {
+  background: #007bff; /* Blue button */
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background: #e67a00; /* Orange hover */
+}
+
+.thank-you {
+  text-align: center;
+  color: #17a2b8; /* Teal thank you text */
+}
+
+.thank-you h2 {
+  color: #007bff;
+}

@@ -7,8 +7,8 @@ import { useAuthStore } from "../store/auth-store";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-
-
+import ProfitPieChart from "../components/ProfitPieChart";
+import { useMemo } from "react";
 
 const timeframes = {
   daily: 1,
@@ -19,10 +19,13 @@ const timeframes = {
 export default function Dashboard() {
   const { shop } = useShopStore();
   const { user } = useAuthStore();
+  const [sales, setSales] = useState([]);
 
   const [chartLabels, setChartLabels] = useState([]);
   const [chartValues, setChartValues] = useState([]);
-  const [filter, setFilter] = useState("daily");
+  const [profitLabels, setProfitLabels] = useState([]);
+  const [profitValues, setProfitValues] = useState([]);
+  const [filter, setFilter] = useState("weekly");
   const [expenses, setExpenses] = useState([]);
   const [lowStock, setLowStock] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
@@ -31,6 +34,9 @@ export default function Dashboard() {
   const [realProfits, setRealProfits] = useState(0);
   const [showSalesChart, setShowSalesChart] = useState(true);
   const [showProfitChart, setShowProfitChart] = useState(true);
+  const [debtorFilter, setDebtorFilter] = useState("weekly"); // daily, weekly, monthly
+  const [debtorsList, setDebtorsList] = useState([]);
+  const [chartType, setChartType] = useState("bar");
 
   const [realProfitStats, setRealProfitStats] = useState({
     daily: 0,
@@ -39,7 +45,7 @@ export default function Dashboard() {
     yearly: 0,
   });
 
-   const [debtorStats, setDebtorStats] = useState({
+  const [debtorStats, setDebtorStats] = useState({
     daily: 0,
     weekly: 0,
     monthly: 0,
@@ -51,7 +57,7 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
 
-  // 🚨 ADDED: Check if user has an active subscription or is still in trial
+  // Check if user has an active subscription or is still in trial
   useEffect(() => {
     const checkTrialStatus = async () => {
       if (!user?.id) return;
@@ -66,7 +72,7 @@ export default function Dashboard() {
 
       const now = dayjs();
       const trialStart = dayjs(profile.trial_start);
-      const trialExpired = now.diff(trialStart, "day") >= 7; // Assuming 7-day trial
+      const trialExpired = now.diff(trialStart, "day") >= 30; // Assuming 7-day trial
 
       if (!profile.is_paid && trialExpired) {
         navigate("/subscribe");
@@ -84,6 +90,7 @@ export default function Dashboard() {
     fetchExpenses();
   }, [filter, shop.id]);
 
+  // Fetch dashboard stats and calculate both sales and profit
   const fetchDashboardStats = async () => {
     let fromDate, toDate;
     const today = new Date();
@@ -103,9 +110,9 @@ export default function Dashboard() {
       toDate = today.toISOString().split("T")[0];
     }
 
-    const { data: sales, error } = await supabase
+    const { data: salesData, error } = await supabase
       .from("sales")
-      .select("amount, created_at")
+      .select("amount, created_at, product_id, quantity, products(cost_price)")
       .eq("shop_id", shop.id)
       .gte("created_at", `${fromDate}T00:00:00`)
       .lte("created_at", `${toDate}T23:59:59`);
@@ -115,18 +122,37 @@ export default function Dashboard() {
       return;
     }
 
-    const grouped = {};
-    sales?.forEach((sale) => {
+    setSales(salesData);
+
+    // Group sales by date and calculate profit for each day
+    const dailySales = {};
+    const dailyProfit = {};
+    
+    salesData?.forEach((sale) => {
       const dateKey = new Date(sale.created_at).toLocaleDateString();
-      if (!grouped[dateKey]) grouped[dateKey] = 0;
-      grouped[dateKey] += sale.amount;
+      
+      // Initialize if not exists
+      if (!dailySales[dateKey]) dailySales[dateKey] = 0;
+      if (!dailyProfit[dateKey]) dailyProfit[dateKey] = 0;
+      
+      // Add to sales total
+      dailySales[dateKey] += sale.amount;
+      
+      // Calculate profit (sales amount - cost)
+      const costPrice = sale.products?.cost_price || 0;
+      const profit = sale.amount - (costPrice * sale.quantity);
+      dailyProfit[dateKey] += profit;
     });
-
-    const labels = Object.keys(grouped).sort();
-    const values = labels.map((label) => grouped[label]);
-
-    setChartLabels(labels);
-    setChartValues(values);
+    
+    // Sort dates and create arrays for the chart
+    const sortedDates = Object.keys(dailySales).sort();
+    const salesDataValues = sortedDates.map(date => dailySales[date]);
+    const profitDataValues = sortedDates.map(date => dailyProfit[date]);
+    
+    setChartLabels(sortedDates);
+    setChartValues(salesDataValues);
+    setProfitLabels(sortedDates);
+    setProfitValues(profitDataValues);
   };
 
   const fetchExpenses = async () => {
@@ -142,7 +168,10 @@ export default function Dashboard() {
     }
 
     setExpenses(data);
-    const totalAmount = data.reduce((acc, e) => acc + parseFloat(e.amount || 0), 0);
+    const totalAmount = data.reduce(
+      (acc, e) => acc + parseFloat(e.amount || 0),
+      0
+    );
     setTotal(totalAmount.toFixed(2));
     setLoading(false);
   };
@@ -150,14 +179,14 @@ export default function Dashboard() {
   const fetchLowStockItems = async () => {
     const { data, error } = await supabase
       .from("products")
-      .select("name, quantity")
+      .select("id, name, form, quantity")
       .eq("shop_id", shop.id)
       .lt("quantity", 5);
 
-    if (data) {
-      setLowStock(data);
-    } else {
+    if (error) {
       console.error("Failed to fetch low stock items:", error);
+    } else {
+      setLowStock(data);
     }
   };
 
@@ -217,16 +246,22 @@ export default function Dashboard() {
       sales?.forEach((sale) => {
         const product = productMap.get(sale.product_id);
         if (product) {
-          const realProfitPerItem = sale.amount - (product.cost_price * sale.quantity);
+          const realProfitPerItem =
+            sale.amount - product.cost_price * sale.quantity;
           totalRealProfit += realProfitPerItem;
         }
       });
 
       const filteredExpenses = expenses.filter((expense) => {
-        const expDate = new Date(expense.created_at).toISOString().split("T")[0];
+        const expDate = new Date(expense.created_at)
+          .toISOString()
+          .split("T")[0];
         return expDate >= fromDate && expDate <= toDate;
       });
-      const expensesSum = filteredExpenses.reduce((acc, e) => acc + parseFloat(e.amount || 0), 0);
+      const expensesSum = filteredExpenses.reduce(
+        (acc, e) => acc + parseFloat(e.amount || 0),
+        0
+      );
 
       const finalProfit = totalRealProfit - expensesSum;
       setRealProfits(finalProfit.toFixed(2));
@@ -272,16 +307,22 @@ export default function Dashboard() {
         sales?.forEach((sale) => {
           const product = productMap.get(sale.product_id);
           if (product) {
-            const realProfitPerItem = sale.amount - (product.cost_price * sale.quantity);
+            const realProfitPerItem =
+              sale.amount - product.cost_price * sale.quantity;
             totalRealProfit += realProfitPerItem;
           }
         });
 
         const filteredExpenses = expenses.filter((expense) => {
-          const expDate = new Date(expense.created_at).toISOString().split("T")[0];
+          const expDate = new Date(expense.created_at)
+            .toISOString()
+            .split("T")[0];
           return expDate >= fromISO && expDate <= toISO;
         });
-        const expensesSum = filteredExpenses.reduce((acc, e) => acc + parseFloat(e.amount || 0), 0);
+        const expensesSum = filteredExpenses.reduce(
+          (acc, e) => acc + parseFloat(e.amount || 0),
+          0
+        );
 
         const finalProfit = totalRealProfit - expensesSum;
         results[key] = finalProfit.toFixed(2);
@@ -301,27 +342,41 @@ export default function Dashboard() {
   }, [shop.id, products, filter, expenses]);
 
   const fetchTopProducts = async () => {
-    const today = new Date().toISOString().split("T")[0];
+    try {
+      const { data, error } = await supabase
+        .from("sales")
+        .select(
+          `
+        product_id,
+        quantity,
+        products (
+          name,
+          form
+        )
+      `
+        )
+        .eq("shop_id", shop.id);
 
-    const { data, error } = await supabase
-      .from("sales")
-      .select("quantity, products(name)")
-      .eq("shop_id", shop.id)
-      .gte("created_at", `${today}T00:00:00`)
-      .lte("created_at", `${today}T23:59:59`);
+      if (error) throw error;
 
-    if (data) {
-      const grouped = {};
-      data.forEach(({ products, quantity }) => {
-        const productName = products?.name || "Unknown";
-        if (!grouped[productName]) grouped[productName] = 0;
-        grouped[productName] += quantity;
+      // group totals by product_id
+      const salesMap = {};
+      data.forEach((sale) => {
+        const id = sale.product_id;
+        if (!salesMap[id]) {
+          salesMap[id] = {
+            name: sale.products?.name || "Unknown",
+            form: sale.products?.form || "",
+            total: 0,
+          };
+        }
+        salesMap[id].total += sale.quantity;
       });
 
-      const sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1]);
-      setTopProducts(sorted.slice(0, 5));
-    } else {
-      console.error("Failed to fetch top products:", error);
+      const sorted = Object.values(salesMap).sort((a, b) => b.total - a.total);
+      setTopProducts(sorted.slice(0, 5)); // top 5
+    } catch (err) {
+      console.error("Error fetching top products:", err.message);
     }
   };
 
@@ -351,7 +406,10 @@ export default function Dashboard() {
           continue;
         }
 
-        const totalAmount = data.reduce((sum, d) => sum + parseFloat(d.amount || 0), 0);
+        const totalAmount = data.reduce(
+          (sum, d) => sum + parseFloat(d.amount || 0),
+          0
+        );
         results[key] = totalAmount.toFixed(2);
       }
 
@@ -361,37 +419,137 @@ export default function Dashboard() {
     fetchDebtorsStats();
   }, [shop.id]);
 
+  useEffect(() => {
+    fetchDebtorsList(debtorFilter);
+  }, [debtorFilter, shop.id]);
+
+  const fetchDebtorsList = async (filter) => {
+    if (!shop.id) return;
+
+    const today = new Date();
+    let fromDate;
+
+    if (filter === "daily") {
+      fromDate = new Date(today);
+    } else if (filter === "weekly") {
+      fromDate = new Date(today);
+      fromDate.setDate(fromDate.getDate() - 6);
+    } else if (filter === "monthly") {
+      fromDate = new Date(today);
+      fromDate.setDate(fromDate.getDate() - 29);
+    }
+
+    const fromISO = fromDate.toISOString().split("T")[0];
+    const toISO = today.toISOString().split("T")[0];
+
+    const { data, error } = await supabase
+      .from("debtors")
+      .select("id, customer_name, amount, due_date, created_at")
+      .eq("shop_id", shop.id)
+      .gte("created_at", `${fromISO}T00:00:00`)
+      .lte("created_at", `${toISO}T23:59:59`)
+      .order("due_date", { ascending: true });
+
+    if (error) {
+      console.error(`Failed to fetch ${filter} debtors:`, error.message);
+      setDebtorsList([]);
+      return;
+    }
+
+    setDebtorsList(data || []);
+  };
+
+  const { labels, values } = useMemo(() => {
+    const last7Days = [...Array(7)].map((_, i) =>
+      dayjs()
+        .subtract(6 - i, "day")
+        .format("MMM D")
+    );
+
+    const profitByDate = {};
+    last7Days.forEach((date) => (profitByDate[date] = 0));
+
+    sales.forEach((s) => {
+      const day = dayjs(s.created_at).format("MMM D");
+      if (profitByDate[day] !== undefined) {
+        const costPrice = s.products?.cost_price ?? 0;
+        const profit = (s.amount ?? 0) - costPrice * (s.quantity ?? 1);
+        profitByDate[day] += profit;
+      }
+    });
+
+    return {
+      labels: last7Days,
+      values: last7Days.map((d) => profitByDate[d]),
+    };
+  }, [sales]);
 
   return (
     <div>
       <div className="dashboard-page">
-       
-        <div className="dashboard-info">
-          {shop.logo_url && <img src={shop.logo_url} alt="Shop Logo" className="shop-logo" />}
-          <h2>{shop.name || "Shop"}</h2>
-          <p>Welcome to your dashboard!</p>
-        </div>
+      <div className="head-text">
+      <h1 className="dashboard-title">📊 Dashboard</h1>
+      <p className="dashboard-subtitle">
+        Welcome back, {user?.full_name || "User"} 👋
+      </p>
+    </div>
 
-        <div className="filters">
+        <div className="charts-row">
+          {showSalesChart && (
+            <div className="chart-card">
+              <div className="chart-header">
+                <span className="margin">Sales & Profit Overview (₦)</span>
+                <div className="chart-toggle">
+                  <button 
+                    onClick={() => setChartType('bar')} 
+                    className={chartType === 'bar' ? 'active' : ''}
+                  >
+                    Bar Chart
+                  </button>
+                  <button 
+                    onClick={() => setChartType('line')} 
+                    className={chartType === 'line' ? 'active' : ''}
+                  >
+                    Line Chart
+                  </button>
+                </div>
+              </div>
+              <div style={{ height: "400px" }}>
+                <SalesChart
+                  salesLabels={chartLabels}
+                  salesValues={chartValues}
+                  profitLabels={profitLabels}
+                  profitValues={profitValues}
+                  chartType={chartType}
+                />
+              </div>
+
+               <div className="filters">
           {["daily", "weekly", "monthly"].map((key) => (
-            <button key={key} onClick={() => setFilter(key)} className={filter === key ? "active" : ""}>
+            <button
+              key={key}
+              onClick={() => setFilter(key)}
+              className={filter === key ? "active" : ""}
+            >
               {key[0].toUpperCase() + key.slice(1)}
             </button>
           ))}
         </div>
 
-        <div className="chart-toggles">
-          <button onClick={() => setShowSalesChart((prev) => !prev)}>
-            {showSalesChart ? "Hide Sales Chart" : "Show Sales Chart"}
-          </button>
-          <button onClick={() => setShowProfitChart((prev) => !prev)}>
-            {showProfitChart ? "Hide Profit Histogram" : "Show Profit Histogram"}
-          </button>
+            </div>
+
+            
+          )}
+
+          {showProfitChart && (
+            <div className="chart-card">
+              <span className="margin">Profit Distribution (Last 7 Days)</span>
+              <div style={{ height: "500px" }}>
+                <ProfitPieChart labels={labels} values={values} />
+              </div>
+            </div>
+          )}
         </div>
-        <span className="margin">Sales Margin (₦)</span>
-        {showSalesChart && <SalesChart labels={chartLabels} values={chartValues} chartType="line" />}<br></br>
-        <span className="margin">Profit Margin (₦)</span>
-        {showProfitChart && <SalesChart labels={realProfitLabels} values={realProfitValues} chartType="bar" />}
 
         <div className="summary-cards">
           <div className="card sales">
@@ -423,49 +581,85 @@ export default function Dashboard() {
             <h4>Yearly Profit</h4>
             <p>₦{parseFloat(realProfitStats.yearly).toLocaleString()}</p>
           </div>
-
-          <div className="debtors-cards">
-        <div className="card debtors">
-          <h4>Daily Debtors</h4>
-          <p>₦{parseFloat(debtorStats.daily).toLocaleString()}</p>
         </div>
 
-        <div className="card debtors">
-          <h4>Weekly Debtors</h4>
-          <p>₦{parseFloat(debtorStats.weekly).toLocaleString()}</p>
-        </div>
+      {lowStock.length > 0 && (
+  <div className="dashboard-card low-stock-card">
+    <h4 className="card-title">
+      ⚠️ Low Stock Items
+    </h4>
+    <ul className="card-list">
+      {lowStock.map((item) => (
+        <li key={item.id} className="list-item warning">
+          <span className="item-name">{item.name}</span>
+          <span className="item-details">
+            {item.quantity} {item.form} left
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
 
-        <div className="card debtors">
-          <h4>Monthly Debtors</h4>
-          <p>₦{parseFloat(debtorStats.monthly).toLocaleString()}</p>
+{topProducts.length > 0 && (
+  <div className="dashboard-card top-products-card">
+    <h4 className="card-title">
+      🔥 Top 5 Selling Products
+    </h4>
+    <ul className="card-list">
+      {topProducts.map((p, i) => (
+        <li key={i} className="list-item success">
+          <span className="item-name">{p.name}</span>
+          <span className="item-details">
+            {p.total} {p.form} sold
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+<div className="debtor-filter-buttons1">
+  {["daily", "weekly", "monthly"].map((key) => (
+    <button
+      key={key}
+      onClick={() => setDebtorFilter(key)}
+      className={`debtor-btn1 ${debtorFilter === key ? "active" : ""}`}
+    >
+      {key[0].toUpperCase() + key.slice(1)}
+    </button>
+  ))}
+</div>
+
+
+        <div className="debtors-table-section">
+          <h5>
+            {debtorFilter[0].toUpperCase() + debtorFilter.slice(1)} Debtor
+            Details
+          </h5>
+          {debtorsList.length === 0 ? (
+            <p>No debtors for {debtorFilter}.</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Amount (₦)</th>
+                  <th>Time Due</th>
+                </tr>
+              </thead>
+              <tbody>
+                {debtorsList.map((debtor) => (
+                  <tr key={debtor.id}>
+                    <td>{debtor.customer_name}</td>
+                    <td>₦{parseFloat(debtor.amount).toLocaleString()}</td>
+                    <td>{debtor.due_date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
-        </div>
-
-        {lowStock.length > 0 && (
-          <div className="low-stock-section">
-            <h4>⚠️ Low Stock Items</h4>
-            <ul>
-              {lowStock.map((item) => (
-                <li key={item.name}>{item.name} has almost finished! — only {item.quantity}  left</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {topProducts.length > 0 && (
-          <div className="top-products-section">
-            <h4>🔥 Top Selling Products Today</h4>
-            <ul>
-              {topProducts.map(([name, qty]) => (
-                <li key={name}> We sold {qty} {name} today, and it's the highest selling item for now</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      
     </div>
   );
 }

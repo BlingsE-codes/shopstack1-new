@@ -1,0 +1,164 @@
+.shops-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shops-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.shops-header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.shops-header .subtitle {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.shops-actions {
+  margin-bottom: 20px;
+}
+
+.shops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.shop-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
+}
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.shop-header h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  position: relative;
+}
+
+.shop-header h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 50%;
+  height: 3px;
+  background-color: #e67a00; /* brand orange underline */
+  border-radius: 2px;
+}
+
+.shop-details {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.shop-details p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.shop-features {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: #17a2b8;
+}
+
+.shop-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #e67a00 !important;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.btn-primary:hover {
+  background-color: #bf5d00 !important;
+}
+
+.btn-secondary {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+}
+
+/* Empty State */
+.shops-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.shops-empty-state h2 {
+  margin-top: 15px;
+  color: #333;
+}
+
+.shops-empty-state p {
+  color: #666;
+  margin: 10px 0 20px;
+}

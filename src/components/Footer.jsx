@@ -11,16 +11,8 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer-top">
-        <div className="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/sales">Sales</a></li>
-            <li><a href="/inventory">Inventory</a></li>
-            <li><a href="/settings">Settings</a></li>
-          </ul>
-        </div>
+  
+      <div className="footer-bottom">
 
         <div className="footer-section">
           <h4>Contact Us</h4>
@@ -35,19 +27,20 @@ export default function Footer() {
           <p>Email: charlichal2@gmail.com</p>
         </div>
 
-        <div className="footer-section">
+
+        <p>&copy; {year} ShopStack. All rights reserved.</p>
+
+          <div className="footer-section">
           <h4>System Status</h4>
           <p className="status-online">Online</p>
           <p>Version 1.0.2</p>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <p>&copy; {year} ShopStack. All rights reserved.</p>
         <button className="scroll-top" onClick={scrollToTop}>
           <ChevronUp size={20} />
         </button>
-      </div>
+   
     </footer>
   );
 }

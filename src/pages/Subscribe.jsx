@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/auth-store";
 // import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 import { supabase } from "../services/supabaseClient";
+
+import { FlutterWaveButton } from 'flutterwave-react-v3';
+
 import "../styles/Subscribe.css";
 
 const Subscribe = () => {
@@ -33,7 +36,7 @@ const Subscribe = () => {
   const handleFlutterwaveResponse = async (response) => {
     if (response.status === "successful") {
       // Close the modal
-      closePaymentModal();
+      // closePaymentModal();
 
       // Update user payment status in Supabase
       const { error } = await supabase
@@ -55,6 +58,7 @@ const Subscribe = () => {
 
   const fwConfig = {
     ...config,
+    text: "Subscribe",
     callback: handleFlutterwaveResponse,
     onClose: () => alert("Payment window closed."),
   };
@@ -64,7 +68,7 @@ const Subscribe = () => {
       {expired && (
         <div className="trial-expired-banner">
           <h2>⏳ Trial Expired</h2>
-          <p>Your 45-day free trial has ended. Upgrade now to continue using ShopStack.</p>
+          <p>Your 30-day free trial has ended. Upgrade now to continue using ShopStack.</p>
         </div>
       )}
 

@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { supabase } from "./services/supabaseClient";
 import Navbar from "./components/Navbar";
 import { useAuthStore } from "./store/auth-store";
-import Loading from "./components/Loading"
+import Loading from "./components/Loading";
 
 export default function ProtectedRoute({ children }) {
   const { user } = useAuthStore();
@@ -17,53 +17,71 @@ export default function ProtectedRoute({ children }) {
         return;
       }
 
-      // Fetch user's trial start date & payment status
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("created_at, is_paid")
-        .eq("auth_id", user.id)
-        .single();
+      try {
+        // fetch trial info from profiles table
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("created_at, is_paid")
+          .eq("auth_id", user.id) // ✅ ensure consistent column
+          .single();
 
-      if (error) {
-        console.error(error);
+        if (error || !data) {
+          console.log(data);
+          console.log(user);
+          
+          console.error("Profile fetch error:", error);
+          setStatus({ loading: false, expired: false });
+          return;
+        }
+
+        const trialEnd = new Date(data.created_at);
+        console.log(trialEnd)
+        trialEnd.setDate(trialEnd.getDate() + 30); // -day trial
+        console.log(trialEnd)
+        const now = new Date();
+
+        const expired = now > trialEnd && !data.is_paid;
+        console.log("check here", now > trialEnd);
+        console.log("Fetched profile:", data);
+        console.log("Trial ends on:", trialEnd.toISOString());
+        console.log("Expired:", expired);
+
+        setStatus({ loading: false, expired });
+        console.log(status);
+      } catch (err) {
+        console.error("Unexpected error checking trial:", err);
         setStatus({ loading: false, expired: false });
-        return;
       }
-
-      const trialEnd = new Date(data.created_at);
-      trialEnd.setDate(trialEnd.getDate() + 45); // 45-day trial
-      const now = new Date();
-
-      const expired = now > trialEnd && !data.is_paid;
-
-      setStatus({ loading: false, expired });
     };
 
     checkTrial();
   }, [user]);
 
-  // if (status.loading) return <Loading/>;
-
-  // Not logged in → go to login
-  if (!user) {
-    return <Navigate to="/login" replace />;
+  // 🔄 show loader while verifying status
+  if (status.loading) {
+    return <Loading />;
   }
 
-  // Trial expired and unpaid → force to subscribe page
-  if (status.expired && location.pathname !== "/subscribe") {
+  // 🚪 Not logged in → go to login
+  else if (!user) {
+    return <Navigate to="/landing" replace />;
+  }
+
+  // ⛔ Trial expired and unpaid → redirect to subscribe page
+  else if (status.expired && location.pathname !== "/subscribe") {
     return (
       <Navigate
-        to="/subscribe?expired=true"
+        to="/subscribe"
         state={{ expired: true }}
         replace
       />
     );
   }
 
-  // Show app content
+  // ✅ Otherwise, render app with Navbar
   return (
     <div>
-      <Navbar />
+      <Navbar /> 
       {children}
     </div>
   );

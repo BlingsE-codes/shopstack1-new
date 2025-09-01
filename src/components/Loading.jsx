@@ -4,8 +4,14 @@ import "../styles/Loading.css";
 export default function Loading() {
   return (
     <div className="loading-container">
-      <div className="breathing-circle"></div>
-      <p className="loading-text">Loading ShopStack...</p>
+      <div className="loading-content">
+        <div className="dots-container">
+          <div className="dot dot-11"></div>
+          <div className="dot dot-22"></div>
+          <div className="dot dot-33"></div>
+        </div>
+        <p className="loading-text">Loading ShopStack...</p>
+      </div>
     </div>
   );
 }

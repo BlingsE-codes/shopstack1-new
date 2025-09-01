@@ -5,7 +5,8 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  background-color: #f5f6fa;
+  /* background-color: #f5f6fa; */
+  background-color: #f9fafb;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -108,6 +109,41 @@
   border-left: 4px solid #f28500;
 }
 
+.debtor-filter-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.debtor-filter-buttons button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4ea7e2, #3498db);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.debtor-filter-buttons button:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  box-shadow: 0 6px 20px rgba(37, 117, 252, 0.6);
+  transform: scale(1.05);
+}
+
+.debtor-filter-buttons button.active {
+  background: linear-gradient(135deg, #8b5026, #bba3ae);
+  box-shadow: 0 6px 20px rgba(238, 234, 236, 0.7);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+
 
 .card.profits {
   border-left: 5px solid #2ecc71;
@@ -139,7 +175,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .shop-logo {
   width: 60px;
@@ -176,7 +212,7 @@
   background: white;
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -223,30 +259,111 @@
 ul {
   padding-left: 20px;
 }
-li {
+/* li {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(248, 94, 94);
+ font-family:Verdana, Geneva, Tahoma, sans-serif
+} */
+
+/* Dashboard.css */
+
+.charts-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
 }
+
+/* On mobile: stack vertically & center */
+@media (max-width: 768px) {
+  .charts-row {
+    flex-direction: column;
+    align-items: center; /* centers horizontally */
+    justify-content: center; /* centers vertically */
+  }
+
+  .chart-card {
+    width: 90%; /* prevent oversized chart on small screens */
+    max-width: 400px;
+  }
+}
+
 
 .dashboard-page {
   padding: 24px;
-  max-width: 900px;
-  margin: auto;
-  background-color: #fff;
+  max-width: 1200px;
+  margin: 0;
+  /* background-color: #1f2937fa; */
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   font-family: "Segoe UI", sans-serif;
+  /* margin-top: 38px */
 }
 
 
 .dashboard-info {
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
-  align-items: flex-end; 
-  margin-top: 1rem; 
-  margin-right: 2rem; 
-  text-align: right;
+  align-items: center; 
+  margin-top: 0.7rem; 
+  /* margin-right: 2rem;  */
+  text-align: center;
+}
+
+.dashboard-info h2{
+  color: black;
+  font-size: 25px;
+}
+.dashboard-info p{
+   color: rgb(53, 50, 50);
+   font-size: 17px;
+   margin-top: 0px;
+}
+
+.dashboard-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+.head-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.head-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.head-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .shop-info h2 {
@@ -266,6 +383,10 @@ li {
   font-weight: bold;
 }
 
+.dashboard-page span{
+  color: white;
+}
+
 .chart-toggles {
   display: flex;
   gap: 10px;
@@ -274,7 +395,7 @@ li {
 
 .chart-toggles button {
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #17a2b8;
   border: none;
   color: white;
   cursor: pointer;
@@ -282,6 +403,352 @@ li {
 }
 
 .chart-toggles button:hover {
-  background-color: #0056b3;
+  background-color: #128192;
 }
+
+.top-products-section {
+  background-color: #fff8e1; /* Light warm background */
+  border: 1px solid #ffecb3;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.top-products-section h4 {
+  margin-bottom: 12px;
+  color: #ff9800; /* Orange-ish */
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.top-products-section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.top-products-section ul li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #159604;
+}
+/* 
+.debtors-table-section{
+  background-color: white;
+  padding: 1rem;
+  font-weight: bold;
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 15px 0 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.debtors-table-section thead{
+  background-color: #17a2b8;
+  border-radius: 6px;
+} */
   
+/* 
+.charts-row {
+  display: flex;
+  gap: 20px;       
+  margin: 20px 0;
+}
+
+.chart-card {
+  flex: 1;          
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+} */
+
+
+
+/* ===========================
+   Debtors Table Section (Grid Style)
+   =========================== */
+.debtors-table-section {
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 1rem;
+}
+
+.debtors-table-section h5 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.debtors-table-section table {
+  width: 100%;
+  border-collapse: collapse; /* ✅ ensures borders align perfectly */
+  
+}
+
+.debtors-table-section th,
+.debtors-table-section td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.9rem;
+  border: 1px solid #e5e7eb; /* ✅ adds both vertical + horizontal lines */
+  
+}
+
+.debtors-table-section th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  overflow-y: visible !important; /* stop forcing scrollbar */
+  max-height: none !important;
+
+}
+
+.debtors-table-section tr:hover td {
+  background: #f3f4f6; /* ✅ hover highlight */
+}
+
+.debtors-table-section td {
+  color: #555;
+}
+
+
+/* Base (desktop) */
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 580px; /* Increased to accommodate taller charts */
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-card {
+    min-height: 500px;
+  }
+}
+
+
+
+
+
+.chart-card h2{
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Small phones */
+@media (max-width: 767px) {
+  .charts-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .chart-card canvas {
+    max-height: 300px;
+  }
+}
+
+/* Tablets (iPad Pro, iPad Air, etc.) */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .charts-row {
+    flex-direction: column; /* stack instead of side by side */
+    align-items: center;
+  }
+
+  .chart-card {
+    width: 100%;
+    max-width: 480px; /* bigger than phone, smaller than desktop */
+  }
+
+  .chart-card canvas {
+    max-height: 360px; /* slightly larger pie */
+  }
+}
+
+/* Reusable card */
+.dashboard-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+  
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #e67a00 0%, #ff9800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ 
+}
+.card-list span{
+  color: rgb(105, 98, 98);
+}
+.card-list .list-item {
+  text-transform: capitalize;
+}
+
+
+/* List styles */
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  
+}
+
+.list-item:last-child {
+  margin-bottom: 0;
+}
+
+/* State-based colors */
+.list-item.warning {
+  background: rgba(230, 122, 0, 0.08);
+  color: #e67a00;
+}
+
+.list-item.warning:hover {
+  background: rgba(230, 122, 0, 0.15);
+}
+
+.list-item.success {
+  background: rgba(40, 167, 69, 0.08);
+  color: #28a745;
+}
+
+.list-item.success:hover {
+  background: rgba(40, 167, 69, 0.15);
+}
+
+/* Item structure */
+.item-name {
+  font-weight: 600;
+  
+}
+
+.item-details {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  
+}
+
+/* Default chart container */
+.chart-container {
+  width: 100%;
+  height: 350px; /* desktop/tablet default */
+}
+
+/* On small screens (mobile) */
+@media (max-width: 480px) {
+  .chart-container {
+    height: 500px; /* increase height only on mobile */
+  }
+}
+
+/* SalesChart.css */
+.chart-container {
+  height: 400px; /* default for desktop */
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 550px; /* taller chart for tablets & mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    height: 600px; /* extra height for very small screens */
+  }
+}
+.debtor-filter-buttons1 {
+  display: flex;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.debtor-btn1 {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 2px solid #17a2b8 ;
+  background: transparent;
+  color: #17a2b8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.debtor-btn1:hover {
+  background: #17a2b8;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(230, 122, 0, 0.3);
+}
+
+.debtor-btn1.active {
+  background: #17a2b8;
+  color: #fff;
+  border-color: #17a2b8;
+  box-shadow: 0 4px 10px rgba(230, 122, 0, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

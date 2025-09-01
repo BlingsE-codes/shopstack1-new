@@ -82,8 +82,15 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.paystack-button:hover {
-  background-color: #1565c0;
+.flutterwave-button{
+  background-color: rgb(7, 104, 7);
+  padding-left: 1.5rem;
+  color: white;
+  font-size: 14px;
+}
+
+.flutterwave-button:hover {
+  background-color: rgb(5, 128, 5);;
   transform: translateY(-2px);
 }
 
