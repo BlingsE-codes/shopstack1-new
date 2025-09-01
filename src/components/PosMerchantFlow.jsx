@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCashRegister, FaUsers, FaCreditCard, FaWallet, FaChartLine, FaExclamationTriangle, FaStore } from "react-icons/fa";
-import "../styles/PosMerchantFlow.css";
+import "../styles/posmerchantflow.css";
 
 export default function PosMerchantFlow() {
   const steps = [

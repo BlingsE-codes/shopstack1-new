@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
-import "../styles/EmailConfirmation.css";
+import "../styles/emailconfirmation.css";
 
 export default function EmailConfirmation() {
   const navigate = useNavigate();

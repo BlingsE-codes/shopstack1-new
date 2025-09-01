@@ -1,4 +1,4 @@
-import "../styles/Terms.css";
+import "../styles/terms.css";
 import { useEffect } from "react";
 
 export default function Terms() {

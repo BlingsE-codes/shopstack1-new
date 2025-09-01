@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { toast } from "sonner";
-import "../styles/Settings.css";
+import "../styles/settings.css";
 
 export default function Settings() {
   const { user } = useAuthStore();

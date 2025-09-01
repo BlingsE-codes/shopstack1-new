@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabaseClient";
-import "../styles/Dashboard.css";
+import "../styles/dashboard.css";
 import { useShopStore } from "../store/shop-store";
 import SalesChart from "../components/SalesChart";
 import { useAuthStore } from "../store/auth-store";

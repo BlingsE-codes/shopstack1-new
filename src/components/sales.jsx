@@ -3,7 +3,7 @@ import { supabase } from "../services/supabaseClient";
 import { useShopStore } from "../store/shop-store";
 import { toast } from "sonner";
 import dayjs from "dayjs";
-import "../styles/Sales.css";
+import "../styles/sales.css";
 import BarcodeScanner from "../components/BarcodeScanner";
 import { offlineDB } from "../services/offlineDB";
 import { NetworkStatus } from "../utils/networkStatus";

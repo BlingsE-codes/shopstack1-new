@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { useShopStore } from "../store/shop-store";
 import { useState, useEffect, useRef  } from "react";
-import "../styles/Sidebar.css";
+import "../styles/sidebar.css";
 
 
 export default function Shop() {

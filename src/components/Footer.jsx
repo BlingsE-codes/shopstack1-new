@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
-import "../styles/Footer.css";
+import "../styles/footer.css";
 
 export default function Footer() {
   const [year, setYear] = useState(new Date().getFullYear());

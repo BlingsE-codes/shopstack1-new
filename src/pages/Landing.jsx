@@ -5,7 +5,7 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
 // import "../styles/Navbar.css";
-import "../styles/Landing.css";
+import "../styles/landing.css";
 import { Menu, X } from "lucide-react"; 
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";

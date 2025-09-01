@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Pricing.css';
+import '../styles/pricing.css';
 
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState('monthly');

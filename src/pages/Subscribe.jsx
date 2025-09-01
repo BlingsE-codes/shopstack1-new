@@ -6,7 +6,7 @@ import { supabase } from "../services/supabaseClient";
 
 
 
-import "../styles/Subscribe.css";
+import "../styles/subscribe.css";
 
 const Subscribe = () => {
   const { user } = useAuthStore();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabaseClient";
-import "../styles/Debtors.css";
+import "../styles/debtors.css";
 import { useShopStore } from "../store/shop-store";
 import { toast } from "sonner";
 

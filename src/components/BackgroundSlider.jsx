@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/BackgroundSlider.css";
+import "../styles/backgroundSlider.css";
 
 const images = [
   "/images/bg1.jpg",

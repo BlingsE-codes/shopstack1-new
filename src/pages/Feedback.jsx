@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/Feedback.css";
+import "../styles/feedback.css";
 
 export default function Feedback() {
   const [form, setForm] = useState({ name: "", email: "", rating: "", message: "" });

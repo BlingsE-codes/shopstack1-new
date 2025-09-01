@@ -9,7 +9,7 @@ import Barcode from "react-barcode";
 import { NetworkStatus } from "../utils/networkStatus";
 import { offlineDB } from "../services/offlineDB";
 import CsvImporter from '../components/CsvImporter';
-import "../styles/Products.css";
+import "../styles/products.css";
 
 export default function Products() {
   const { shop } = useShopStore();

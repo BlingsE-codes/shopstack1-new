@@ -3,7 +3,7 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import "../styles/Auth.css";
+import "../styles/auth.css";
 
 const shopTypes = [
   "Barbing Salon",

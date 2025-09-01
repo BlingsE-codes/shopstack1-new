@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
-import "../styles/Navbar.css";
+import "../styles/navbar.css";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
 import { User, Power } from "lucide-react";

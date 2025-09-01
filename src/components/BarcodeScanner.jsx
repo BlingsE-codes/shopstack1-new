@@ -1,6 +1,6 @@
 import React from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
-import "../styles/BarcodeScanner.css";
+import "../styles/barcodeScanner.css";
 
 export default function BarcodeScanner({ onDetected, onClose }) {
   return (
