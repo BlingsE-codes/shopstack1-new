@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/howitworks.css";
+import "../styles/hhowitworks.css";
 import { useEffect } from "react";
 import { FaUserPlus, FaStore, FaBoxOpen, FaCashRegister, FaMoneyBillWave, FaUsers, FaUserEdit } from "react-icons/fa";
 
