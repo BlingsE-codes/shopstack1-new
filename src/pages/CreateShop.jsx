@@ -3,21 +3,19 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import "../styles/auth.css";
+import "../styles/createshop.css";
 
 const shopTypes = [
-  "Barbing Salon",
-  "Hair Dresser",
-  "Tailor",
-  "Clothing Store",
+  "Retail Store",
   "Grocery Store",
-  "Pharmacy",
-  "Electronics",
-  "Food Vendor",
-  "Bakery",
-  "Car Repair",
   "POS Agent",
-  "Car Dealer",
+  "Supermarket",
+  "Warehouse",
+  "Wholesaler",
+  "E-commerce",
+  "Service Provider",
+  "Logistics",
+  "Other",
 ];
 
 export default function CreateShop() {
@@ -35,12 +33,16 @@ export default function CreateShop() {
       return;
     }
 
-    const { data, error } = await supabase.from("shops").insert({
-      name: shopName,
-      address: shopAddress,
-      owner_id: user.id,
-      type: shopType,
-    });
+    const { data, error } = await supabase
+      .from("shops")
+      .insert({
+        name: shopName,
+        address: shopAddress,
+        owner_id: user.id,
+        type: shopType,
+      })
+      .select()
+      .single(); // fetch inserted shop back
 
     if (error) {
       toast.error("Failed to create shop: " + error.message);
@@ -52,7 +54,14 @@ export default function CreateShop() {
     setShopAddress("");
     setShopType("");
 
-    setTimeout(() => navigate("/shops"), 1000);
+    // Route based on shop type
+    setTimeout(() => {
+      if (data?.type === "POS Agent") {
+        navigate(`/Pospage`); // 👉 go to your new POS page
+      } else {
+        navigate("/shops"); // 👉 fallback to old existing page
+      }
+    }, 1000);
   };
 
   return (

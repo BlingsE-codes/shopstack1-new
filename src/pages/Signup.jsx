@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import "../styles/auth.css";
 import { useAuthStore } from "../store/auth-store";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaArrowLeft, FaUser, FaEnvelope, FaLock, FaCalendarAlt } from "react-icons/fa";
 
 export default function Signup() {
   const { signin } = useAuthStore();
@@ -70,74 +70,138 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
-      <form className="auth-form" onSubmit={handleSignup}>
-        <Link to="/" className="btn-home">Back To Home</Link>
-        <h2>Create Shop Account</h2>
-
-        <input
-          type="text"
-          name="name"
-          placeholder="First Name"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="surname"
-          placeholder="Surname"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="date"
-          name="date_of_birth"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          required
-        />
-
-        <div className="password-wrapper">
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
-          <span
-            className="password-toggle"
-            onClick={() => setShowPassword((prev) => !prev)}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
+      <div className="auth-card">
+        <Link to="/" className="back-button">
+          <FaArrowLeft /> Back to Home
+        </Link>
+        
+        <div className="auth-header">
+          <div className="auth-icon">
+            <FaUser />
+          </div>
+          <h2>Create Your Account</h2>
+          <p>Join thousands of shop owners using our POS system</p>
         </div>
 
-        <div className="password-wrapper">
-          <input
-            type={showConfirmPassword ? "text" : "password"}
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            required
-          />
-          <span
-            className="password-toggle"
-            onClick={() => setShowConfirmPassword((prev) => !prev)}
-          >
-            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </div>
+        <form className="auth-form" onSubmit={handleSignup}>
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="name">First Name</label>
+              <div className="input-wrapper">
+                <FaUser className="input-icon" />
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your first name"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className="input-group">
+              <label htmlFor="surname">Surname</label>
+              <div className="input-wrapper">
+                <FaUser className="input-icon" />
+                <input
+                  id="surname"
+                  type="text"
+                  name="surname"
+                  placeholder="Enter your surname"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating account..." : "Sign Up"}
-        </button>
-      </form>
+          <div className="input-group">
+            <label htmlFor="date_of_birth">Date of Birth</label>
+            <div className="input-wrapper">
+              <FaCalendarAlt className="input-icon" />
+              <input
+                id="date_of_birth"
+                type="date"
+                name="date_of_birth"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <div className="input-wrapper">
+              <FaEnvelope className="input-icon" />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <div className="input-wrapper">
+              <FaLock className="input-icon" />
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Create a password"
+                onChange={handleChange}
+                required
+              />
+              <span
+                className="password-toggle"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="input-wrapper">
+              <FaLock className="input-icon" />
+              <input
+                id="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                onChange={handleChange}
+                required
+              />
+              <span
+                className="password-toggle"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" className="auth-button" disabled={loading}>
+            {loading ? (
+              <div className="spinner"></div>
+            ) : (
+              "Create Account"
+            )}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p>
+            Already have an account? <Link to="/login">Sign in</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

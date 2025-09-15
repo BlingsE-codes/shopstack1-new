@@ -12,6 +12,7 @@ export default function Sales() {
   const { shop } = useShopStore();
   const [sales, setSales] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [form, setForm] = useState({ product_id: "", quantity: 1 });
   const [loading, setLoading] = useState(false);
   const [totalDailySales, setTotalDailySales] = useState(0);
@@ -31,6 +32,9 @@ export default function Sales() {
     const saved = localStorage.getItem('autoPrintReceipt');
     return saved ? JSON.parse(saved) : false;
   });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const searchRef = useRef(null);
 
   // Create ref for cart section
   const cartSectionRef = useRef(null);
@@ -57,9 +61,19 @@ export default function Sales() {
       checkPendingSales();
     });
     
+    // Close search dropdown when clicking outside
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowSearchResults(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    
     return () => {
       NetworkStatus.removeOnlineListener(handleOnline);
       NetworkStatus.removeOfflineListener(handleOffline);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -79,10 +93,24 @@ export default function Sales() {
     }
   }, [quantityInput]);
 
+  // Filter products based on search query
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredProducts(products);
+    } else {
+      const query = searchQuery.toLowerCase().trim();
+      const filtered = products.filter(product => 
+        product.name.toLowerCase().includes(query) ||
+        product.name.toLowerCase().replace(/\s+/g, '').includes(query.replace(/\s+/g, '')) ||
+        calculateSimilarity(product.name.toLowerCase(), query) > 0.6
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchQuery, products]);
+
   // Auto-scroll to cart when items are added
   useEffect(() => {
     if (cart.length > 0 && cartSectionRef.current) {
-      // Use setTimeout to ensure the DOM has updated
       setTimeout(() => {
         cartSectionRef.current.scrollIntoView({ 
           behavior: 'smooth', 
@@ -91,6 +119,58 @@ export default function Sales() {
       }, 100);
     }
   }, [cart]);
+
+  // Calculate similarity between two strings (0 to 1)
+  const calculateSimilarity = (str1, str2) => {
+    const longer = str1.length > str2.length ? str1 : str2;
+    const shorter = str1.length > str2.length ? str2 : str1;
+    
+    if (longer.length === 0) return 1.0;
+    
+    // Check for exact match
+    if (longer === shorter) return 1.0;
+    
+    // Check for contains
+    if (longer.includes(shorter)) return 0.8;
+    
+    // Simple Levenshtein distance-based similarity
+    const distance = levenshteinDistance(longer, shorter);
+    return 1 - (distance / longer.length);
+  };
+
+  // Levenshtein distance implementation
+  const levenshteinDistance = (str1, str2) => {
+    const track = Array(str2.length + 1).fill(null).map(() =>
+      Array(str1.length + 1).fill(null));
+    for (let i = 0; i <= str1.length; i += 1) {
+      track[0][i] = i;
+    }
+    for (let j = 0; j <= str2.length; j += 1) {
+      track[j][0] = j;
+    }
+    for (let j = 1; j <= str2.length; j += 1) {
+      for (let i = 1; i <= str1.length; i += 1) {
+        const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+        track[j][i] = Math.min(
+          track[j][i - 1] + 1, // deletion
+          track[j - 1][i] + 1, // insertion
+          track[j - 1][i - 1] + indicator, // substitution
+        );
+      }
+    }
+    return track[str2.length][str1.length];
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setShowSearchResults(true);
+  };
+
+  const handleProductSelect = (product) => {
+    setForm({ ...form, product_id: product.id });
+    setSearchQuery(product.name);
+    setShowSearchResults(false);
+  };
 
   const handleAutoPrintChange = (e) => {
     const isChecked = e.target.checked;
@@ -220,6 +300,7 @@ export default function Sales() {
       }
       
       setProducts(data || []);
+      setFilteredProducts(data || []);
     } catch (error) {
       console.error("Error in fetchProducts:", error);
     }
@@ -296,7 +377,6 @@ export default function Sales() {
     if (product.quantity < totalRequestedQty) {
       toast.error(
        `Insufficient stock. You can't add that number of ${product.name} in cart, only ${product.quantity} ${product.form} left in stock.`
-
       );
       return;
     }
@@ -318,6 +398,7 @@ export default function Sales() {
     ]);
 
     setForm({ product_id: "", quantity: 1 });
+    setSearchQuery("");
     setQuantityInput("1");
   };
 
@@ -503,6 +584,7 @@ export default function Sales() {
     }
     
     setForm({ product_id: data.id, quantity: 1 });
+    setSearchQuery(data.name);
     toast.success(`Scanned product: ${data.name}`);
   };
 
@@ -786,26 +868,43 @@ Thank you for your purchase!`;
         </div>
       </div>
 
-   
       {/* Quick Sale Form */}
       <div className="quick-sale-form">
         <h2>Quick Sale</h2>
         <div className="form-grid">
-          <div className="form-group">
+          <div className="form-group" ref={searchRef}>
             <label>Select Product</label>
-            <select
-              name="product_id"
-              value={form.product_id}
-              onChange={(e) => setForm({ ...form, product_id: e.target.value })}
-            >
-              <option value="">Select Product</option>
-              {products.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name.replace(/\b\w/g, (char) => char.toUpperCase())} - ₦
-                  {parseFloat(p.selling_price).toLocaleString()} - Stock: {p.quantity}({p.form || "unit"})
-                </option>
-              ))}
-            </select>
+            <div className="searchable-select">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={() => setShowSearchResults(true)}
+                placeholder="Search products by name..."
+                className="product-search-input"
+              />
+              {showSearchResults && filteredProducts.length > 0 && (
+                <div className="search-results-dropdown">
+                  {filteredProducts.map((product) => (
+                    <div
+                      key={product.id}
+                      className="search-result-item"
+                      onClick={() => handleProductSelect(product)}
+                    >
+                      <div className="product-name">{product.name}</div>
+                      <div className="product-details">
+                        ₦{parseFloat(product.selling_price).toLocaleString()} • {product.quantity} in stock • {product.form || "unit"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showSearchResults && filteredProducts.length === 0 && searchQuery && (
+                <div className="search-results-dropdown">
+                  <div className="no-results">No products found</div>
+                </div>
+              )}
+            </div>
           </div>
           <div className="form-group">
             <label>Quantity</label>
@@ -903,6 +1002,7 @@ Thank you for your purchase!`;
           </div>
         )}
       </div>
+
       {/* Stats Overview */}
       <div className="stats-overview">
         <div className="stat-card">
@@ -937,8 +1037,6 @@ Thank you for your purchase!`;
           </button>
         )}
       </div>
-
-
 
       {/* Sales History */}
       <div className="sales-history-section">

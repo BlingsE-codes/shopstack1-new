@@ -1,17 +1,94 @@
-.auth-form{
-  align-content: center;
-  justify-content: center;
+/* styles/createshop.css */
+
+.auth-container {
+  min-height: 100vh;
   display: flex;
-  position: relative;
-  margin-top: 4rem;
-
-
-  
+  align-items: center;
+  justify-content: center;
+  background: #ffffff ;/* light neutral background */
+  padding: 2rem;
 }
+
+.auth-form {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
 .auth-form h2 {
-  font-size: 24px;
-  font-weight: 600;
   text-align: center;
-  margin-bottom: 10px;
-  color: #2f3640;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  border-color: #2563eb; /* blue focus */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.auth-form button {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.auth-form button:hover {
+  background: #1e40af;
+}
+
+/* Placeholder & option text */
+.auth-form input::placeholder,
+.auth-form select {
+  color: #6b7280;
+  font-size: 0.74rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .auth-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-form h2 {
+    font-size: 1.4rem;
+  }
+}
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  text-transform: capitalize; /* 👈 force capitalization */
 }

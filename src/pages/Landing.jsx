@@ -1,13 +1,9 @@
-// Landing.jsx
 import React, { useState, useEffect } from 'react';
-
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
-
 import "../styles/landing.css";
-
-import { Menu, X } from "lucide-react"; 
+import { Menu, X, ChevronUp, Play, TrendingUp, AlertCircle, BarChart3, Store, ShoppingCart, Printer, Cloud, Shield, Globe } from "lucide-react"; 
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
 import {
@@ -24,15 +20,6 @@ import {
   Legend
 } from "recharts"
 
-
-
-
-import HowItWorks from './HowItWorks';
-
-
-
-
-
 const Landing = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -40,29 +27,27 @@ const Landing = () => {
   const navigate = useNavigate();
   const { id } = useParams();
  
-const pieData = [
-  { name: "Sales", value: 400 },
-  { name: "Expenses", value: 200 },
-  { name: "Debtors", value: 150 },
-];
+  const pieData = [
+    { name: "Sales", value: 400 },
+    { name: "Expenses", value: 200 },
+    { name: "Debtors", value: 150 },
+  ];
 
-const barData = [
-  { name: "Mon", sales: 400, expenses: 200 },
-  { name: "Tue", sales: 300, expenses: 100 },
-  { name: "Wed", sales: 500, expenses: 250 },
-  { name: "Thu", sales: 600, expenses: 300 },
-  { name: "Fri", sales: 700, expenses: 400 },
-];
+  const barData = [
+    { name: "Mon", sales: 400, expenses: 200 },
+    { name: "Tue", sales: 300, expenses: 100 },
+    { name: "Wed", sales: 500, expenses: 250 },
+    { name: "Thu", sales: 600, expenses: 300 },
+    { name: "Fri", sales: 700, expenses: 400 },
+  ];
 
-const COLORS = ["#e67a00", "#007bff", "#17a2b8"];
-
+  const COLORS = ["#4f46e5", "#f97316", "#0ea5e9"];
 
   useEffect(() => {
     if (user) {
       navigate("/shops"); // redirect to dashboard if logged in
     }
   }, [user, navigate]);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,155 +57,44 @@ const COLORS = ["#e67a00", "#007bff", "#17a2b8"];
   }, []);
 
   useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
+    window.scrollTo(0, 0);
+  }, []);
 
-
-  // Simple SVG icons to replace react-icons
-  const TrendingIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-      <polyline points="17 6 23 6 23 12"></polyline>
-    </svg>
-  );
-
-  
   const getInitials = (name) => {
-  if (!name) return "";
-  return name
-    .split(" ")              // split by space
-    .map((n) => n[0])        // take first letter
-    .join("")                // join letters
-    .toUpperCase();          // make uppercase
-};
-
-const NairaIcon = ({ size = 24 }) => (
-  <span
-    style={{
-      fontSize: `${size}px`,
-      fontWeight: "bold",
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      lineHeight: 1,
-    }}
-  >
-    ₦
-  </span>
-);
-
-
-
-  const AlertIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-      <line x1="12" y1="9" x2="12" y2="13"></line>
-      <line x1="12" y1="17" x2="12" y2="17"></line>
-    </svg>
-  );
-
-  const PrinterIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M6 9V2h12v7" />
-    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-    <rect x="6" y="14" width="12" height="8" rx="2" ry="2" />
-  </svg>
-);
-
-const CloudIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M20 17.58A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 4 16.25" />
-    <path d="M16 16h6v6h-6z" />
-  </svg>
-);
-
-const ShieldIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-  </svg>
-);
-
-const GlobeIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 0 20" />
-    <path d="M12 2a15.3 15.3 0 0 0 0 20" />
-  </svg>
-);
-
-
-  const ChartIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="18" y1="20" x2="18" y2="10"></line>
-      <line x1="12" y1="20" x2="12" y2="4"></line>
-      <line x1="6" y1="20" x2="6" y2="14"></line>
-    </svg>
-  );
-
-  const StoreIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-      <polyline points="9 22 9 12 15 12 15 22"></polyline>
-    </svg>
-  );
-
-  const CartIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="9" cy="21" r="1"></circle>
-      <circle cx="20" cy="21" r="1"></circle>
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-    </svg>
-  );
-
-  const MenuIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  );
-
-  const CloseIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  );
-
-  const PlayIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <polygon points="5 3 19 12 5 21 5 3"></polygon>
-    </svg>
-  );
-
-  const CheckIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <polyline points="20 6 9 17 4 12"></polyline>
-    </svg>
-  );
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!name) return "";
+    return name
+      .split(" ")              // split by space
+      .map((n) => n[0])        // take first letter
+      .join("")                // join letters
+      .toUpperCase();          // make uppercase
   };
 
-  const ChevronUp = ({ size = 20 }) => (
-    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-      <polyline points="15 12 10 7 5 12" />
-    </svg>
+  const NairaIcon = ({ size = 24 }) => (
+    <span
+      style={{
+        fontSize: `${size}px`,
+        fontWeight: "bold",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        lineHeight: 1,
+      }}
+    >
+      ₦
+    </span>
   );
 
   const features = [
-    { icon: <TrendingIcon />, title: 'Sales Tracking', desc: 'Real-time sales monitoring with advanced analytics' },
+    { icon: <TrendingUp size={20} />, title: 'Sales Tracking', desc: 'Real-time sales monitoring with advanced analytics' },
     { icon: <NairaIcon />, title: 'Expense Management', desc: 'Track and categorize all business expenses' },
-    { icon: <AlertIcon />, title: 'Stock Alerts', desc: 'Automated notifications for low inventory levels' },
-    { icon: <ChartIcon />, title: 'Advanced Analytics', desc: 'Customizable dashboards with detailed reports' },
-    { icon: <StoreIcon />, title: 'Multi-Shop Support', desc: 'Manage multiple locations from a single dashboard' },
-    { icon: <CartIcon />, title: 'Mobile POS', desc: 'Process sales from anywhere with our mobile app' },
-    { icon: <PrinterIcon />, title: 'Unlimited Receipt Printing', desc: 'Print or share branded receipts instantly' },
-    { icon: <CloudIcon />, title: 'Cloud Backup', desc: 'Your data is always safe and synced in the cloud' },
-    { icon: <ShieldIcon />, title: 'Secure Login', desc: 'Protected with encryption and session tokens' },
-    { icon: <GlobeIcon />, title: 'Offline Mode', desc: 'Keep selling even without internet access' },
+    { icon: <AlertCircle size={20} />, title: 'Stock Alerts', desc: 'Automated notifications for low inventory levels' },
+    { icon: <BarChart3 size={20} />, title: 'Advanced Analytics', desc: 'Customizable dashboards with detailed reports' },
+    { icon: <Store size={20} />, title: 'Multi-Shop Support', desc: 'Manage multiple locations from a single dashboard' },
+    { icon: <ShoppingCart size={20} />, title: 'Mobile POS', desc: 'Process sales from anywhere with our mobile app' },
+    { icon: <Printer size={20} />, title: 'Unlimited Receipt Printing', desc: 'Print or share branded receipts instantly' },
+    { icon: <Cloud size={20} />, title: 'Cloud Backup', desc: 'Your data is always safe and synced in the cloud' },
+    { icon: <Shield size={20} />, title: 'Secure Login', desc: 'Protected with encryption and session tokens' },
+    { icon: <Globe size={20} />, title: 'Offline Mode', desc: 'Keep selling even without internet access' },
   ];
 
   const steps = [
@@ -240,144 +114,179 @@ const GlobeIcon = () => (
     { name: 'Ibrahim Musa', role: 'Wholesale Distributor', content: 'The secure login and multi-shop support help me manage my warehouses and shops with confidence.' }
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="shopstack-landing">
+    <div className="shopstack-landing1">
       {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            {/* <div className="logo">ShopStack</div> */}
-             <Link to="/" className="navbar-brand">
-    <h1 className="shopstack-logo">
-      Shop<b>Stack</b>
-    </h1>
-  </Link>
+      <header className="header1">
+        <div className="container1">
+          <div className="nav1">
+            <Link to="/" className="navbar-brand1">
+              <h1 className="shopstack-logo1">
+                Shop<span>Stack</span>
+              </h1>
+            </Link>
 
+            <div className={`nav-links1 ${isMenuOpen ? 'active' : ''}`}>
+              <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
+              <a href="#how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</a>
+              <a href="#testimonials" onClick={() => setIsMenuOpen(false)}>Testimonials</a>
+              <Link to="pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
 
+              <div className="navbar-dropdown1">
+                <span className="dropdown-text1">More ▾</span>
+                <div className="dropdown-content1">
+                  <div className="dropdown-arrow1"></div>
+                  <Link to="/about">About</Link>
+                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/feedback">Feedbacks & Reviews</Link>
+                  <Link to="/pos-merchant-flow">How POS Merchants Work</Link>
+                  <Link to="/terms">Terms & Conditions</Link>
+                </div>
+              </div>
 
-            
-
-
-
-<div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-  <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
-  <a href="#how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</a>
-  <a href="#testimonials" onClick={() => setIsMenuOpen(false)}>Testimonials</a>
-  <Link to="pricing" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-
-     <div className="navbar-dropdown">
-        <span className="dropdown-text">More ▾</span>
-        <div className="dropdown-content">
-          <div className="dropdown-arrow"></div>
-          {/* <a href="/About">About Us</a> */}
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact Us</Link>
-          <Link to="/feedback">Feedbacks & Reviews</Link>
-          <Link to="/pos-merchant-flow">How POS Merchants Work</Link>
-          {/* <a href="contact">Contact Us</a> */}
-          {/* <a href="terms">Terms & Conditions</a> */}
-          <Link to="/terms">Terms & Conditions</Link>
-        </div>
-      </div>
-
-               <button onClick={() => navigate("/login")} className="btn-auth-landing">Login</button>
-              {/* <a href="/login" className='btn btn-outline'>Login</a> */}
-                {/* <Link to="login" className="btn-auth">
-                    Login
-                  </Link> */}
-
-              <button onClick={() => navigate("/signup")} className="btn btn-primary">Get Started</button>
-
-                <Link to={`/shops/${id}/profile`} className="navbar-avatar">
-                    <h4 className="initials-avatar">{getInitials(user?.full_name)}</h4>
+              {user ? (
+                <Link to={`/shops/${id}/profile`} className="navbar-avatar1">
+                  <div className="initials-avatar1">{getInitials(user?.full_name)}</div>
                 </Link>
-              
-{/* 
-              <button className="btn btn-primary">Get Started</button> */}
-              {/* <a href="/signup" className='btn btn-outline'>Get Started</a> */}
-
+              ) : (
+                <>
+                  <button onClick={() => navigate("/login")} className="btn-auth-landing1">Login</button>
+                  <button onClick={() => navigate("/signup")} className="btn btn-primary1">Get Started</button>
+                </>
+              )}
             </div>
-            <button className="mobile-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            
+            <button className="mobile-toggle1" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-    <section className="hero">
-  <div className="container">
-    <div className="hero-content">
-      <h1>The Smarter Way to Manage Your Business</h1>
-      <p>
-       ShopStack is the modern point-of-sale and inventory management system that helps small businesses simplify operations, increase sales, and track inventory effectively.
-      </p>
-      <div className="hero-buttons">
-        <button
-          onClick={() => navigate("/signup")}
-          className="btn btn-primary btn-large"
-        >
-          Get Started Free
-        </button>
-        <button className="btn btn-secondary btn-large">
-          <PlayIcon /> Watch Demo
-        </button>
-      </div>
-    </div>
-
-    {/* Dashboard Preview */}
-    <div className="hero-visual">
-      <div className="dashboard-preview">
-        <div className="browser-window">
-          <div className="browser-controls">
-            <div className="control-dot red"></div>
-            <div className="control-dot yellow"></div>
-            <div className="control-dot green"></div>
-          </div>
-          <div className="browser-content">
-            <div className="dashboard-grid">
-              {/* Stat Cards */}
-              <div className="stat-card sales">Total Sales: ₦140,500</div>
-               <div className="stat-card sales">Total Profit: ₦28,300</div>
-              <div className="stat-card expenses">Total Expenses: ₦12,000</div>
-              <div className="stat-card debtors">Debtors: ₦14,200</div>
-
-              {/* Bar Chart */}
-              <div className="chart-area">
-                <h3>Sales vs Expenses</h3>
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart data={barData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="sales" fill="#007bff" />
-                    <Bar dataKey="expenses" fill="#e67a00" />
-                  </BarChart>
-                </ResponsiveContainer>
+      <section className="hero1">
+        <div className="container1">
+          <div className="hero-content1">
+            <h1>Simplify Your Business Operations with ShopStack</h1>
+            <p>
+              The all-in-one platform for inventory management, sales tracking, and business analytics designed specifically for Nigerian businesses.
+            </p>
+            <div className="hero-buttons1">
+              <button
+                onClick={() => navigate("/signup")}
+                className="btn btn-primary1 btn-large"
+              >
+                Get Started Free
+              </button>
+              <button className="btn btn-secondary1 btn-large">
+                <Play size={18} /> Watch Demo
+              </button>
+            </div>
+            <div className="hero-stats1">
+              <div className="stat1">
+                <span className="stat-number1">500+</span>
+                <span className="stat-label1">Active Businesses</span>
               </div>
+              <div className="stat1">
+                <span className="stat-number1">₦2.5B+</span>
+                <span className="stat-label1">Monthly Transactions</span>
+              </div>
+              <div className="stat1">
+                <span className="stat-number1">98%</span>
+                <span className="stat-label1">Customer Satisfaction</span>
+              </div>
+            </div>
+          </div>
 
+          {/* Dashboard Preview */}
+          <div className="hero-visual1">
+            <div className="dashboard-preview1">
+              <div className="browser-window1">
+                <div className="browser-controls1">
+                  <div className="control-dot1 red"></div>
+                  <div className="control-dot1 yellow"></div>
+                  <div className="control-dot1 green"></div>
+                </div>
+                <div className="browser-content1">
+                  <div className="dashboard-grid1">
+                    <div className="stat-card sales1">
+                      <span className="stat-label1">Total Sales</span>
+                      <span className="stat-value1">₦140,500</span>
+                    </div>
+                    <div className="stat-card profit1">
+                      <span className="stat-label1">Total Profit</span>
+                      <span className="stat-value1">₦28,300</span>
+                    </div>
+                    <div className="stat-card expenses1">
+                      <span className="stat-label1">Total Expenses</span>
+                      <span className="stat-value1">₦12,000</span>
+                    </div>
+                    <div className="stat-card debtors1">
+                      <span className="stat-label1">Debtors</span>
+                      <span className="stat-value1">₦14,200</span>
+                    </div>
+
+                    <div className="chart-area1">
+                      <h3>Sales vs Expenses</h3>
+                      <ResponsiveContainer width="100%" height={220}>
+                        <BarChart data={barData}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                          <XAxis dataKey="name" stroke="#64748b" />
+                          <YAxis stroke="#64748b" />
+                          <Tooltip />
+                          <Legend />
+                          <Bar dataKey="sales" fill="#4f46e5" radius={[4, 4, 0, 0]} />
+                          <Bar dataKey="expenses" fill="#f97316" radius={[4, 4, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+
+                    <div className="pie-chart-area1">
+                      <h3>Revenue Distribution</h3>
+                      <ResponsiveContainer width="100%" height={220}>
+                        <PieChart>
+                          <Pie
+                            data={pieData}
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={60}
+                            outerRadius={80}
+                            fill="#8884d8"
+                            paddingAngle={5}
+                            dataKey="value"
+                            label
+                          >
+                            {pieData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                          </Pie>
+                          <Tooltip />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* Features Section */}
       <section id="features" className="features">
-        <div className="container">
-          <div className="landing-section-header">
-            <h2>Powerful Features for Your Business</h2>
-            <p>Everything you need to manage your retail operations efficiently</p>
+        <div className="container1">
+          <div className="landing-section-header1">
+            <h2>Everything You Need to Run Your Business</h2>
+            <p>Powerful tools designed specifically for Nigerian retailers and small businesses</p>
           </div>
-          <div className="features-grid">
+          <div className="features-grid1">
             {features.map((feature, index) => (
-              <div key={index} className="feature-card">
-                <div className="feature-icon">{feature.icon}</div>
+              <div key={index} className="feature-card1">
+                <div className="feature-icon1">{feature.icon}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.desc}</p>
               </div>
@@ -387,51 +296,52 @@ const GlobeIcon = () => (
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="how-it-works">
-        <div className="container">
-          <div className="landing-section-header">
-            <h2>How ShopStack Works</h2>
-            <p>Get set up and running in just few simple steps</p>
+      <section id="how-it-works" className="how-it-works1">
+        <div className="container1">
+          <div className="landing-section-header1">
+            <h2>Get Started in 3 Simple Steps</h2>
+            <p>Start managing your business more effectively in minutes</p>
           </div>
-          <div className="steps">
+          <div className="steps1">
             {steps.map((step, index) => (
-              <div key={index} className="step">
-                <div className="step-number">{step.number}</div>
+              <div key={index} className="step1">
+                <div className="step-number1">{step.number}</div>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
-                 
               </div>
-              
             ))}
           </div>
-          <Link to="howitworks" className='Learn-more'>Learn More</Link>
+          <div className="steps-cta1">
+            <Link to="howitworks" className="btn btn-outline1">Learn More</Link>
+          </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="testimonials">
-        <div className="container">
-          <div className="landing-section-header">
-            <h2>What Our Customers Say</h2>
-            <p>Join thousands of satisfied business owners using ShopStack</p>
+      <section id="testimonials" className="testimonials1">
+        <div className="container1">
+          <div className="landing-section-header1">
+            <h2>Trusted by Nigerian Business Owners</h2>
+            <p>See what our customers are saying about ShopStack</p>
           </div>
-          <div className="testimonial-slider">
+          <div className="testimonial-slider1">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className={`testimonial ${index === activeTestimonial ? 'active' : ''}`}>
-                <div className="testimonial-content">
-                  <p>"{testimonial.content}"</p>
-                  <div className="testimonial-author">
+              <div key={index} className={`testimonial1 ${index === activeTestimonial ? 'active' : ''}`}>
+                <div className="testimonial-content1">
+                  <div className="testimonial-quote1">"</div>
+                  <p>{testimonial.content}</p>
+                  <div className="testimonial-author1">
                     <h4>{testimonial.name}</h4>
                     <span>{testimonial.role}</span>
                   </div>
                 </div>
               </div>
             ))}
-            <div className="testimonial-dots">
+            <div className="testimonial-dots1">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  className={`dot ${index === activeTestimonial ? 'active' : ''}`}
+                  className={`dot1 ${index === activeTestimonial ? 'active' : ''}`}
                   onClick={() => setActiveTestimonial(index)}
                 ></button>
               ))}
@@ -441,58 +351,56 @@ const GlobeIcon = () => (
       </section>
 
       {/* CTA Section */}
-      <section className="cta">
-        <div className="container">
-          <div className="cta-content">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Start your free 30-days trial today. No credit card required.</p>
+      <section className="cta1">
+        <div className="container1">
+          <div className="cta-content1">
+            <h2>Start Your Free 30-Day Trial Today</h2>
+            <p>No credit card required. Get set up in minutes.</p>
             <button onClick={() => navigate("/signup")} className="btn btn-primary btn-large">Get Started Now</button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
+      <footer className="footer1">
+        <div className="container1">
+          <div className="footer-content1">
+            <div className="footer-section1">
               <h3>ShopStack</h3>
-              <p>The modern POS and inventory system for small businesses.</p>
-                <p>&copy; 2023 ShopStack. All rights reserved.</p>
+              <p>Simplifying business management for Nigerian retailers and SMEs.</p>
+              <p>&copy; {new Date().getFullYear()} ShopStack. All rights reserved.</p>
             </div>
-            <div className="footer-section">
+
+            <div className="footer-section1">
               <h4>Product</h4>
-              <a href="features">Features</a>
-              <a href="pricing">Pricing</a>
-              <a href="testimonials">Testimonials</a>
+              <a href="#features">Features</a>
+              <a href="/pricing">Pricing</a>
+              <a href="#testimonials">Testimonials</a>
             </div>
-            <div className="footer-section">
+            
+            <div className="footer-section1">
               <h4>Resources</h4>
               <a href="#">Documentation</a>
               <a href="#">Blog</a>
               <a href="#">Support</a>
             </div>
-            <div className="footer-section">
+            
+            <div className="footer-section1">
               <h4>Company</h4>
-              <a href="#">About Us</a>
-              <a href="#">Contact</a>
+              <a href="/about">About Us</a>
+              <a href="/contact">Contact</a>
               <a href="#">Careers</a>
             </div>
           </div>
-          <div className="footer-bottom">
           
-               <div className="footer-section">
-                      <h4>System Status</h4>
-                      <p className="status-online">Online</p>
-                      <p>Version 1.0.2</p>
-                    </div>
-                  </div>
-            
-                    <button className="scroll-top" onClick={scrollToTop}>
-                      <ChevronUp size={20} />
-                    </button>
-               
+          <div className="footer-bottom1">
+            <p>Made with ❤️ for Nigerian businesses</p>
           </div>
+          
+          <button className="scroll-top1" onClick={scrollToTop}>
+            <ChevronUp size={20} />
+          </button>
+        </div>
       </footer>
     </div>
   );

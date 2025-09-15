@@ -1,10 +1,16 @@
+// src/App.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/auth-store";
+import ScrollToTop from "./components/ScrollToTop";
 
 import HowItWorks from "./pages/HowItWorks";
 import Feedback from "./pages/Feedback";
 import ModernReceipt from "./components/ModernReceipt";
 import PosMerchantFlow from "./components/PosMerchantFlow";
+import PosSidebar from "./components/PosSidebar";
+import Pospage from "./pages/Pospage";
+import PosBillsPage from "./pages/PosBillsPage";
+import PosReportPage from "./pages/PosReportPage";
 
 import ProtectedRoute from "./ProtectedRoute";
 import Shop from "./pages/Shop";
@@ -26,24 +32,33 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Terms from "./pages/Terms";
 import Pricing from "./pages/Pricing";
+import PosDashboard from "./components/PosDashboard";
+import PosTransactions from "./pages/PosTransactions";
+import PosAirtimePage from "./pages/PosAirtimePage";
 
 import "./styles/base.css";
 import "./index.css";
 
 export default function App() {
-  const { user, profileComplete } = useAuthStore(); 
-  // 🔑 Make sure your store tracks if profile is complete or not
+  const { user, profileComplete } = useAuthStore();
 
   return (
     <div className="app-base">
+      <ScrollToTop />
       <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <div style={{ flex: 1 }}>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Landing />} />
             <Route path="/subscribe" element={<Subscribe />} />
-            <Route path="/login" element={user ? <Navigate to="/shops" /> : <Login />} />
-            <Route path="/signup" element={user ? <Navigate to="/shops" /> : <Signup />} />
+            <Route
+              path="/login"
+              element={user ? <Navigate to="/shops" /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              element={user ? <Navigate to="/shops" /> : <Signup />}
+            />
             <Route path="/confirm-email" element={<EmailConfirmation />} />
 
             {/* First-time user flow → Profile first */}
@@ -73,6 +88,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+
             <Route
               path="/shops/:id"
               element={
@@ -87,6 +103,8 @@ export default function App() {
               <Route path="expenses" element={<Expenses />} />
               <Route path="profile" element={<Profile />} />
               <Route path="debtors" element={<Debtors />} />
+              {/* Add POS route under the shop */}
+              <Route path="pos" element={<Pospage />} />
             </Route>
 
             {/* Static Pages */}
@@ -98,8 +116,18 @@ export default function App() {
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/modern-receipt" element={<ModernReceipt />} />
             <Route path="/pos-merchant-flow" element={<PosMerchantFlow />} />
+            <Route path="/pos-dashboard" element={<PosDashboard />} />
 
-            {/* Catch-all → Landing */}
+            {/* Updated Pospage routes with shopId parameter */}
+            <Route path="/pospage/:shopId" element={<Pospage><PosDashboard/></Pospage>} />
+            <Route path="/transactions/:shopId" element={<Pospage><PosTransactions /></Pospage>} />
+            <Route path="/posairtimepage/:shopId" element={<Pospage><PosAirtimePage /></Pospage>} />
+            <Route path="/posbillspage/:shopId" element={<Pospage><PosBillsPage /></Pospage>} />
+            <Route path="/posreportpage/:shopId" element={<Pospage><PosReportPage /></Pospage>} />
+            
+            <Route path="/pos-sidebar" element={<PosSidebar />} />
+
+            {/* Catch all */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>

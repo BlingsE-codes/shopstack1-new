@@ -3,13 +3,13 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
+/* 
 .shops-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-}
+} */
 
 .shops-header h1 {
   font-size: 1.8rem;
@@ -162,3 +162,221 @@
   color: #666;
   margin: 10px 0 20px;
 }
+
+
+/* Add to shops.css */
+.shop-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pos-badge {
+  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shop-type {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.shop-features {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.shop-features svg {
+  color: #6c757d;
+  transition: color 0.3s;
+}
+
+.shop-features svg:hover {
+  color: #4361ee;
+}
+
+.shop-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-primary, .btn-secondary, .btn-danger {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #e9ecef;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+}
+
+.btn-danger {
+  background: #fff5f5;
+  color: #e53e3e;
+  border: 1px solid #fed7d7;
+}
+
+.btn-danger:hover {
+  background: #fed7d7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .shops-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .shop-actions {
+    flex-direction: column;
+  }
+  
+  .top-shop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .shops-actions {
+    width: 100%;
+  }
+  
+  .shops-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.output-text {
+  text-transform: capitalize;
+}
+
+.shop-title span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+}
+
+.pos-badge {
+  background: #f0f9ff;
+  color: #0284c7;
+}
+
+.retail-badge {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.grocery-badge {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.supermarket-badge {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.warehouse-badge {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.wholesaler-badge {
+  background: #fdf4ff;
+  color: #a21caf;
+}
+
+.ecommerce-badge {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.service-badge {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.logistics-badge {
+  background: #f0fdfa;
+  color: #0d9488;
+}
+
+.other-badge {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.shops-header {
+  margin-bottom: 1rem;
+}
+
+.shops-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.shops-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.add-shop-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.25rem 0 0;
+}
+
+

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { supabase } from "../services/supabaseClient";
 import "../styles/dashboard.css";
 import { useShopStore } from "../store/shop-store";
@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import ProfitPieChart from "../components/ProfitPieChart";
-import { useMemo } from "react";
+import { motion } from "framer-motion";
 
 const timeframes = {
   daily: 1,
@@ -20,7 +20,6 @@ export default function Dashboard() {
   const { shop } = useShopStore();
   const { user } = useAuthStore();
   const [sales, setSales] = useState([]);
-
   const [chartLabels, setChartLabels] = useState([]);
   const [chartValues, setChartValues] = useState([]);
   const [profitLabels, setProfitLabels] = useState([]);
@@ -34,9 +33,10 @@ export default function Dashboard() {
   const [realProfits, setRealProfits] = useState(0);
   const [showSalesChart, setShowSalesChart] = useState(true);
   const [showProfitChart, setShowProfitChart] = useState(true);
-  const [debtorFilter, setDebtorFilter] = useState("weekly"); // daily, weekly, monthly
+  const [debtorFilter, setDebtorFilter] = useState("weekly");
   const [debtorsList, setDebtorsList] = useState([]);
   const [chartType, setChartType] = useState("bar");
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const [realProfitStats, setRealProfitStats] = useState({
     daily: 0,
@@ -57,6 +57,28 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
 
+  // Update time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString([], { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
   // Check if user has an active subscription or is still in trial
   useEffect(() => {
     const checkTrialStatus = async () => {
@@ -72,7 +94,7 @@ export default function Dashboard() {
 
       const now = dayjs();
       const trialStart = dayjs(profile.trial_start);
-      const trialExpired = now.diff(trialStart, "day") >= 30; // Assuming 7-day trial
+      const trialExpired = now.diff(trialStart, "day") >= 30;
 
       if (!profile.is_paid && trialExpired) {
         navigate("/subscribe");
@@ -487,13 +509,8 @@ export default function Dashboard() {
   return (
     <div>
       <div className="dashboard-page">
-      <div className="head-text">
-      <h1 className="dashboard-title">📊 Dashboard</h1>
-      <p className="dashboard-subtitle">
-        Welcome back, {user?.full_name || "User"} 👋
-      </p>
-    </div>
-
+        {/* Modern Header Implementation */}
+     
         <div className="charts-row">
           {showSalesChart && (
             <div className="chart-card">
@@ -524,21 +541,18 @@ export default function Dashboard() {
                 />
               </div>
 
-               <div className="filters">
-          {["daily", "weekly", "monthly"].map((key) => (
-            <button
-              key={key}
-              onClick={() => setFilter(key)}
-              className={filter === key ? "active" : ""}
-            >
-              {key[0].toUpperCase() + key.slice(1)}
-            </button>
-          ))}
-        </div>
-
+              <div className="filters">
+                {["daily", "weekly", "monthly"].map((key) => (
+                  <button
+                    key={key}
+                    onClick={() => setFilter(key)}
+                    className={filter === key ? "active" : ""}
+                  >
+                    {key[0].toUpperCase() + key.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
-
-            
           )}
 
           {showProfitChart && (
@@ -583,53 +597,53 @@ export default function Dashboard() {
           </div>
         </div>
 
-      {lowStock.length > 0 && (
-  <div className="dashboard-card low-stock-card">
-    <h4 className="card-title">
-      ⚠️ Low Stock Items
-    </h4>
-    <ul className="card-list">
-      {lowStock.map((item) => (
-        <li key={item.id} className="list-item warning">
-          <span className="item-name">{item.name}</span>
-          <span className="item-details">
-            {item.quantity} {item.form} left
-          </span>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
+        {lowStock.length > 0 && (
+          <div className="dashboard-card low-stock-card">
+            <h4 className="card-title">
+              ⚠️ Low Stock Items
+            </h4>
+            <ul className="card-list">
+              {lowStock.map((item) => (
+                <li key={item.id} className="list-item warning">
+                  <span className="item-name">{item.name}</span>
+                  <span className="item-details">
+                    {item.quantity} {item.form} left
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-{topProducts.length > 0 && (
-  <div className="dashboard-card top-products-card">
-    <h4 className="card-title">
-      🔥 Top 5 Selling Products
-    </h4>
-    <ul className="card-list">
-      {topProducts.map((p, i) => (
-        <li key={i} className="list-item success">
-          <span className="item-name">{p.name}</span>
-          <span className="item-details">
-            {p.total} {p.form} sold
-          </span>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-<div className="debtor-filter-buttons1">
-  {["daily", "weekly", "monthly"].map((key) => (
-    <button
-      key={key}
-      onClick={() => setDebtorFilter(key)}
-      className={`debtor-btn1 ${debtorFilter === key ? "active" : ""}`}
-    >
-      {key[0].toUpperCase() + key.slice(1)}
-    </button>
-  ))}
-</div>
-
+        {topProducts.length > 0 && (
+          <div className="dashboard-card top-products-card">
+            <h4 className="card-title">
+              🔥 Top 5 Selling Products
+            </h4>
+            <ul className="card-list">
+              {topProducts.map((p, i) => (
+                <li key={i} className="list-item success">
+                  <span className="item-name">{p.name}</span>
+                  <span className="item-details">
+                    {p.total} {p.form} sold
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        <div className="debtor-filter-buttons1">
+          {["daily", "weekly", "monthly"].map((key) => (
+            <button
+              key={key}
+              onClick={() => setDebtorFilter(key)}
+              className={`debtor-btn1 ${debtorFilter === key ? "active" : ""}`}
+            >
+              {key[0].toUpperCase() + key.slice(1)}
+            </button>
+          ))}
+        </div>
 
         <div className="debtors-table-section">
           <h5>

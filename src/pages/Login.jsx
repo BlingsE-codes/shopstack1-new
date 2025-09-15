@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { supabase } from "../services/supabaseClient";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import { toast } from "sonner";
-import "../styles/auth.css";
+import "../styles/login.css";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
-import loginImage from "../assets/login.svg";
+import { FaEye, FaEyeSlash, FaArrowLeft, FaEnvelope, FaLock, FaStore } from "react-icons/fa";
 
 export default function Login() {
   const { signin, user: authUser } = useAuthStore();
@@ -72,57 +71,75 @@ export default function Login() {
   }
 
   return (
-    <div className="auth-container">
-      {/* Left illustration */}
-      <div className="auth-illustration">
-        <img src={loginImage} alt="Login illustration" />
-      </div>
-
-      {/* Right form */}
-      <form className="auth-form" onSubmit={handleLogin}>
-        <h1 to="/" className="navbar-brand">
-          <h1 className="shopstack-logo">
-            Shop<b>Stack</b>
-          </h1>
-        </h1>
-
-        <p className="auth-subtitle">Login to your account</p>
-
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <div className="password-wrapper">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <span
-            className="password-toggle"
-            onClick={() => setShowPassword((prev) => !prev)}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
+    <div className="login-container">
+      <div className="login-card">
+        <Link to="/" className="back-button">
+          <FaArrowLeft /> Back to Home
+        </Link>
+        
+        <div className="login-header">
+          <div className="logo">
+            <FaStore className="logo-icon" />
+            <span>Shop<b>Stack</b></span>
+          </div>
+          <h2>Welcome Back</h2>
+          <p>Sign in to your account to continue</p>
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
+        <form className="login-form" onSubmit={handleLogin}>
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <div className="input-wrapper">
+              <FaEnvelope className="input-icon" />
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          </div>
 
-        <p className="auth-toggle">
-          Don’t have an account?{" "}
-          <Link to="/signup" className="toggle">
-            Sign up here
-          </Link>
-        </p>
-      </form>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <div className="input-wrapper">
+              <FaLock className="input-icon" />
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span
+                className="password-toggle"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? (
+              <div className="spinner"></div>
+            ) : (
+              "Login to Account"
+            )}
+          </button>
+        </form>
+
+        <div className="login-footer">
+          <p>
+            Don't have an account? <Link to="/signup">Sign up here</Link>
+          </p>
+        </div>
+      </div>
+
+     
     </div>
   );
 }

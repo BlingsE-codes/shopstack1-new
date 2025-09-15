@@ -1,0 +1,733 @@
+/* styles/posbillspage.css */
+
+/* Main Wrapper */
+.bills-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  padding: 20px;
+}
+
+.bills-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.bills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header-left h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.header-left p {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Buttons */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #64748b;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Grid Layout */
+.bills-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.quick-billers {
+  grid-column: span 6;
+}
+
+.commission-guide {
+  grid-column: span 3;
+}
+
+.recent-payments {
+  grid-column: span 6;
+}
+
+.quick-amounts {
+  grid-column: span 3;
+}
+
+/* Cards */
+.bills-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+}
+
+.bills-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+}
+
+/* Billers Grid */
+.billers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.biller-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.biller-btn:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.biller-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.biller-info {
+  flex: 1;
+}
+
+.biller-name {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.biller-desc {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Biller-specific colors */
+.biller-btn.electricity .biller-icon {
+  color: #f59e0b;
+  background: #fef3c7;
+}
+
+.biller-btn.cable_tv .biller-icon {
+  color: #8b5cf6;
+  background: #f3e8ff;
+}
+
+.biller-btn.internet .biller-icon {
+  color: #06b6d4;
+  background: #cffafe;
+}
+
+.biller-btn.water .biller-icon {
+  color: #0ea5e9;
+  background: #e0f2fe;
+}
+
+.biller-btn.education .biller-icon {
+  color: #10b981;
+  background: #d1fae5;
+}
+
+.biller-btn.rent .biller-icon {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* Commission Guide */
+.commission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commission-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.commission-item:last-child {
+  border-bottom: none;
+}
+
+.biller-label {
+  font-weight: 500;
+  color: #475569;
+  text-transform: capitalize;
+}
+
+.commission-details {
+  font-size: 14px;
+}
+
+.commission-amount {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Recent Payments */
+.payments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.payments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.payment-item:hover {
+  background: #f1f5f9;
+  transform: translateX(4px);
+}
+
+.payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: #0ea5e9;
+}
+
+.payment-details {
+  flex: 1;
+}
+
+.payment-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.payment-amount {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.payment-biller {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0c4a6e;
+  text-transform: capitalize;
+}
+
+.payment-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.payment-customer {
+  font-weight: 500;
+}
+
+.payment-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.payment-status .success {
+  color: #10b981;
+}
+
+.payment-status .error {
+  color: #ef4444;
+}
+
+.no-payments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.no-payments p {
+  margin: 16px 0 4px 0;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.no-payments small {
+  font-size: 12px;
+}
+
+/* Quick Amounts */
+.amounts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.amount-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 16px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.amount-btn:hover {
+  background: #e0f2fe;
+  color: #0c4a6e;
+  border-color: #bae6fd;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0 24px;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.modal-content form {
+  padding: 0 24px 24px 24px;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Transaction Summary */
+.transaction-summary {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 24px 0;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.summary-item:last-child {
+  margin-bottom: 0;
+}
+
+.summary-item.commission {
+  font-weight: 600;
+  color: #10b981;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .bills-grid {
+    grid-template-columns: repeat(9, 1fr);
+  }
+  
+  .quick-billers {
+    grid-column: span 6;
+  }
+  
+  .commission-guide {
+    grid-column: span 3;
+  }
+  
+  .recent-payments {
+    grid-column: span 9;
+  }
+  
+  .quick-amounts {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .bills-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .quick-billers {
+    grid-column: span 6;
+  }
+  
+  .commission-guide {
+    grid-column: span 3;
+  }
+  
+  .recent-payments {
+    grid-column: span 6;
+  }
+  
+  .quick-amounts {
+    grid-column: span 3;
+  }
+  
+  .billers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .bills-wrapper {
+    padding: 16px;
+  }
+  
+  .bills-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .bills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .quick-billers,
+  .commission-guide,
+  .recent-payments,
+  .quick-amounts {
+    grid-column: span 1;
+  }
+  
+  .amounts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .modal-content {
+    margin: 0;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .modal-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .amounts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* styles/posbillspage.css */
+
+/* ... (keep all existing styles) */
+
+/* Payment Fees */
+.payment-fees {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.payment-charges, .payment-commission {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #e0f2fe;
+  color: #0c4a6e;
+  border-color: #bae6fd;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Charges info in commission guide */
+.charges-info {
+  background: #fef3c7;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.charges-info .biller-label {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.charges-info .commission-amount {
+  background: #f59e0b;
+  color: white;
+}
+
+/* Transaction summary styles */
+.summary-item.charges {
+  color: #ef4444;
+}
+
+.summary-item.total {
+  font-weight: 700;
+  color: #1e293b;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pagination-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .payment-fees {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

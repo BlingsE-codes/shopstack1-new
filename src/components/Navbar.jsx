@@ -13,7 +13,7 @@ export default function Navbar() {
   const { id } = useParams();
   const { shop } = useShopStore();
 
-  // Custom Home Icon (to match your colors)
+
   const HomeIcon = ({ color = "#007bff", size = 24 }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -58,9 +58,10 @@ export default function Navbar() {
  };
 return (
     <div className="navbar">
+      <div className="navbart">
       <div className="navbar-right">
         {/* Home */}
-        <Link to="/" className="navbar-icon" title="Home">
+        <Link to="/" className="navbar-icon" title="Shops">
           <HomeIcon color="#e67a00" size={26} />
         </Link>
 
@@ -76,6 +77,7 @@ return (
         <button className="navbar-icon logout-btn" onClick={handleLogout} title="Logout">
           <Power size={22} stroke="#17a2b8" />
         </button>
+      </div>
       </div>
     </div>
   );

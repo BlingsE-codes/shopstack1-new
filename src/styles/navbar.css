@@ -4,8 +4,17 @@
   align-items: center;
   padding: 10px 20px;
   background: #fff;
-  border-bottom: 2px solid #e67a00;
+  border-bottom: 2px solid #1449ac;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbart{
+  display: inline;
+  gap: 16px;
+ 
+  background-color: #f6f8fa;
+  border-radius: 8px;
+  padding-right: 0.5rem;
+
 }
 
 .navbar-right {

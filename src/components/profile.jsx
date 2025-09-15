@@ -3,6 +3,7 @@ import { supabase } from "../services/supabaseClient";
 import { useAuthStore } from "../store/auth-store";
 import "../styles/profile.css";
 import * as XLSX from "xlsx";
+import Loading from "../components/Loading";
 import { useShopStore } from "../store/shop-store";
 import { 
   FaArrowLeft, FaEdit, FaKey, FaBuilding, FaDatabase, 
@@ -356,13 +357,13 @@ const handleDataExport = async () => {
     setIsEditing(false);
     toast.info("Changes discarded");
   };
-
-  if (loading) return (
-    <div className="profile-loading">
-      <div className="loading-spinner"></div>
-      <p>Loading profile...</p>
-    </div>
-  );
+  if (loading) return <Loading />;
+  // if (loading) return (
+  //   <div className="profile-loading">
+  //     <div className="loading-spinner"></div>
+  //     <p>Loading profile...</p>
+  //   </div>
+  // );
 
   return (
     <div className="profile-container">
@@ -509,10 +510,10 @@ const handleDataExport = async () => {
               />
             </div>
             <div className="profile-info">
-              <h2>{profile?.full_name || "Shop Owner"}</h2>
+              <h2 className="output-text">{profile?.full_name || "Shop Owner"}</h2>
               <p className="role">Owner</p>
               <div className="shop-badge">
-                <FaStore /> {shopInfo?.name || "ShopStack POS"}
+                <FaStore /> <span className="output-text">{shopInfo?.name || "ShopStack POS"}</span> 
               </div>
             </div>
           </div>
@@ -542,15 +543,15 @@ const handleDataExport = async () => {
             <h3>Shop Details</h3>
             <div className="detail-item">
               <FaMapMarkerAlt /> 
-              <span>{shopInfo?.address || "No address provided"}</span>
+              <span className="output-text">{shopInfo?.address || "No address provided"}</span>
             </div>
             <div className="detail-item">
               <FaPhone /> 
               <span>{shopInfo?.phone || "No phone number"}</span>
             </div>
-            <div className="shop-id">
+            {/* <div className="shop-id">
               SHOP ID: #{shopInfo?.id || "N/A"}
-            </div>
+            </div> */}
           </div>
         </div>
 

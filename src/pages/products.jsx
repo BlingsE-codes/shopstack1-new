@@ -36,7 +36,11 @@ export default function Products() {
   const [scannerOpen, setScannerOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
   const [pendingSyncCount, setPendingSyncCount] = useState(0);
+  const [scanningStatus, setScanningStatus] = useState("idle"); // 'idle', 'scanning', 'success', 'error'
+  const [cameraPermission, setCameraPermission] = useState(null); // 'granted', 'denied', 'prompt'
+  const [torchOn, setTorchOn] = useState(false);
   const formRef = useRef(null);
+  const scannerRef = useRef(null);
   const limit = 10;
 
   useEffect(() => {
@@ -64,6 +68,33 @@ export default function Products() {
       NetworkStatus.removeOfflineListener(handleOffline);
     };
   }, []);
+
+  // Check camera permissions when scanner opens
+  useEffect(() => {
+    if (scannerOpen) {
+      checkCameraPermissions();
+    }
+  }, [scannerOpen]);
+
+  const checkCameraPermissions = async () => {
+    try {
+      // Modern browsers support the Permissions API
+      if (navigator.permissions && navigator.permissions.query) {
+        const permissionStatus = await navigator.permissions.query({ name: 'camera' });
+        setCameraPermission(permissionStatus.state);
+        
+        permissionStatus.onchange = () => {
+          setCameraPermission(permissionStatus.state);
+        };
+      } else {
+        // Fallback for browsers that don't support Permissions API
+        setCameraPermission('prompt');
+      }
+    } catch (error) {
+      console.error("Error checking camera permissions:", error);
+      setCameraPermission('prompt');
+    }
+  };
 
   const checkPendingProductUpdates = async () => {
     try {
@@ -331,10 +362,26 @@ export default function Products() {
       p.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleBarcodeDetected = (code) => {
-    setForm({ ...form, barcode: code });
-    setScannerOpen(false);
-    toast.success("Barcode scanned: " + code);
+  const handleBarcodeDetected = (error, result) => {
+    if (error) {
+      console.error("Barcode scan error:", error);
+      setScanningStatus("error");
+      toast.error("Scanning failed: " + error.message);
+      return;
+    }
+    
+    if (result && result.text) {
+      const code = result.text;
+      setForm((prev) => ({ ...prev, barcode: code }));
+      setScanningStatus("success");
+      toast.success("Barcode scanned: " + code);
+      
+      // Close scanner after successful scan
+      setTimeout(() => {
+        setScannerOpen(false);
+        setScanningStatus("idle");
+      }, 1500);
+    }
   };
 
   const printBarcode = (barcodeValue, productName) => {
@@ -365,14 +412,23 @@ export default function Products() {
     printWindow.document.close();
   };
 
+  // Function to manually trigger a scan retry
+  const retryScan = () => {
+    setScanningStatus("scanning");
+    // Additional logic to reset the scanner if needed
+  };
+
+  // Toggle torch (simulated in this example)
+  const toggleTorch = () => {
+    setTorchOn(!torchOn);
+    toast.info(torchOn ? "Torch deactivated" : "Torch activated");
+  };
+
   return (
     <div className="products-page">
-      {/* Header Section */}
-
-      
       {/* Quick Add Form */}
       <div className="quick-add-form" ref={formRef}>
-         <h1>Product Management</h1>
+        <h1>Product Management</h1>
         <h2>{editingId ? "Edit Product" : "Add New Product"}</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-grid">
@@ -407,48 +463,47 @@ export default function Products() {
                 placeholder="Enter quantity"
               />
             </div>
-<div className="form-group">
-  <label>Unit</label>
-  <input
-    type="text"
-    name="form"
-    value={form.form}
-    onChange={handleChange}
-    list="unit-options"
-    className="unit-select"
-    placeholder="Select or type unit"
-  />
-  <datalist id="unit-options">
-    <option value="Bag(s)" />
-    <option value="Carton(s)" />
-    <option value="Unit(s)" />
-    <option value="Sachet(s)" />
-    <option value="Pack(s)" />
-    <option value="Crate(s)" />
-    <option value="Piece(s)" />
-    <option value="Litre(s)" />
-    <option value="Box(es)" />
-    <option value="Kilogram(s)" />
-    <option value="Gram(s)" />
-    <option value="Bottle(s)" />
-    <option value="Cup(s)" />
-    <option value="Pair(s)" />
-    <option value="Can(s)" />
-    <option value="Roll(s)" />
-  </datalist>
-</div>
+            <div className="form-group">
+              <label>Unit</label>
+              <input
+                type="text"
+                name="form"
+                value={form.form}
+                onChange={handleChange}
+                list="unit-options"
+                className="unit-select"
+                placeholder="Select or type unit"
+              />
+              <datalist id="unit-options">
+                <option value="Bag(s)" />
+                <option value="Carton(s)" />
+                <option value="Unit(s)" />
+                <option value="Sachet(s)" />
+                <option value="Pack(s)" />
+                <option value="Crate(s)" />
+                <option value="Piece(s)" />
+                <option value="Litre(s)" />
+                <option value="Box(es)" />
+                <option value="Kilogram(s)" />
+                <option value="Gram(s)" />
+                <option value="Bottle(s)" />
+                <option value="Cup(s)" />
+                <option value="Pair(s)" />
+                <option value="Can(s)" />
+                <option value="Roll(s)" />
+              </datalist>
+            </div>
 
-<div className="form-group">
-  <label>Cost Price (₦)</label>
-  <input
-    type="text"
-    name="cost_price"
-    value={form.cost_price}
-    onChange={handleChange}
-    placeholder="0.00"
-  />
-</div>
-
+            <div className="form-group">
+              <label>Cost Price (₦)</label>
+              <input
+                type="text"
+                name="cost_price"
+                value={form.cost_price}
+                onChange={handleChange}
+                placeholder="0.00"
+              />
+            </div>
 
             <div className="form-group">
               <label>Selling Price (₦)</label>
@@ -525,9 +580,6 @@ export default function Products() {
       </div>
 
       <div className="products-header">
-       
-
-        
         <div className="header-actions">
           <div className="search-box">
             <i className="search-icon">🔍</i>
@@ -552,9 +604,6 @@ export default function Products() {
           )}
         </div>
       </div>
-
-
-      
 
       {/* Stats Overview */}
       <div className="stats-overview">
@@ -707,21 +756,81 @@ export default function Products() {
               <h3>Scan Barcode</h3>
               <button 
                 className="close-btn"
-                onClick={() => setScannerOpen(false)}
+                onClick={() => {
+                  setScannerOpen(false);
+                  setScanningStatus("idle");
+                }}
               >
                 &times;
               </button>
             </div>
-            <BarcodeScannerComponent
-              width={400}
-              height={300}
-              onUpdate={(err, result) => {
-                if (result) {
-                  handleBarcodeDetected(result.text);
-                }
-              }}
-            />
-            <p className="scanner-help">Position barcode in front of camera</p>
+            
+            {/* Camera permission status */}
+            {cameraPermission === 'denied' && (
+              <div className="camera-permission-denied">
+                <p>Camera access is denied. Please enable camera permissions in your browser settings.</p>
+              </div>
+            )}
+            
+            {/* Scanner status feedback */}
+            {scanningStatus === "error" && (
+              <div className="scanner-error">
+                <p>Scanning failed. Please try again.</p>
+                <button onClick={retryScan} className="retry-btn">
+                  Retry
+                </button>
+              </div>
+            )}
+            
+            {scanningStatus === "success" && (
+              <div className="scanner-success">
+                <p>Barcode successfully scanned!</p>
+              </div>
+            )}
+            
+            {/* Scanner component with visual guidance */}
+            <div className={`scanner-view ${scanningStatus !== 'idle' ? 'scanner-hidden' : ''}`}>
+              <div className="scanner-guide">
+                <div className="focus-box">
+                  <div className="focus-text">Align barcode within this box</div>
+                </div>
+                <div className="scan-line"></div>
+              </div>
+              <BarcodeScannerComponent
+                ref={scannerRef}
+                width={400}
+                height={300}
+                onUpdate={handleBarcodeDetected}
+                facingMode="environment" // Use back camera by default
+              />
+            </div>
+            
+            <div className="scanner-controls">
+              <button 
+                onClick={toggleTorch} 
+                className="secondary-btn"
+              >
+                {torchOn ? 'Turn Torch Off' : 'Turn Torch On'}
+              </button>
+            </div>
+            
+            <p className="scanner-help">
+              {scanningStatus === "idle" 
+                ? "Position barcode in front of camera" 
+                : scanningStatus === "scanning" 
+                ? "Scanning..." 
+                : ""}
+            </p>
+            
+            <div className="troubleshooting-tips">
+              <h4>Scanning Tips:</h4>
+              <ul>
+                <li>Ensure good lighting</li>
+                <li>Hold the barcode steady within the viewfinder</li>
+                <li>Keep the barcode flat and avoid reflections</li>
+                <li>Try moving closer or further if not scanning</li>
+              </ul>
+            </div>
           </div>
         </div>
       )}

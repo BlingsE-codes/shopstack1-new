@@ -1,8 +1,5 @@
 /* styles/base.css */
-.app-base {
-  
-  
-}
+
 html, body, #root {
   height: 100%;      /* make them stretch full screen */
   margin: 0;

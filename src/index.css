@@ -1,16 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Raleway:wght@600;700&display=swap");
 
-body {
-  font-family: "Inter", sans-serif;
-}
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-}
 
 .page-container {
   max-width: 1200px;
@@ -120,6 +110,10 @@ body,
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
 }
+
+
+
+
 /* 
 .summary-cards {
   display: flex;
@@ -698,6 +692,25 @@ color: rgb(231, 228, 228);
 
 .shopstack-logo b {
   color: #ff8a00;
+}
+
+.shopstack-logo {
+  font-size: 2rem; /* default for desktop */
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .shopstack-logo h1{
+    font-size: 0.7rem; /* smaller on tablets & phones */
+  }
+}
+
+@media (max-width: 480px) {
+  .shopstack-logo h1{
+    font-size: 0.6rem; /* even smaller on small phones */
+  }
 }
 
 .chart-card {

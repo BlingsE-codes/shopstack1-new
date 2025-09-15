@@ -1,0 +1,139 @@
+/* possidebar.css */
+/* Mobile Header */
+.posmobile-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1e3a8a;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+}
+
+@media (min-width: 1024px) {
+  .posmobile-header {
+    display: none;
+  }
+}
+
+.posmenu-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.posmobile-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Sidebar Overlay for Mobile */
+.possidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* Sidebar - FIXED FOR DESKTOP */
+.possidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: #1e293b;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Desktop Styles - Sidebar always visible and properly positioned */
+@media (min-width: 1024px) {
+  .possidebar {
+    left: 0 !important;
+    position: fixed;
+    transform: translateX(0) !important;
+  }
+  
+  /* Ensure main content doesn't overlap with sidebar */
+  .dashboard-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+}
+
+/* Mobile open state */
+.possidebar.open {
+  left: 0;
+  transform: translateX(0);
+}
+
+/* Sidebar Header */
+.possidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #374151;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.possidebar-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0;
+}
+
+/* Navigation */
+.possidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.possidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #d1d5db;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  margin: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.possidebar-nav a:hover {
+  background-color: #374151;
+  color: white;
+}
+
+.possidebar-nav a.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.possidebar-nav a svg {
+  margin-right: 0.75rem;
+  width: 20px;
+  height: 20px;
+}
+
+/* Ensure body doesn't scroll when sidebar is open on mobile */
+body.sidebar-open {
+  overflow: hidden;
+}

@@ -1224,3 +1224,91 @@ select:focus {
     }
   }
 }
+/* Add these styles to your sales.css file */
+
+.searchable-select {
+  position: relative;
+  width: 100%;
+}
+
+.product-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.product-search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+.search-result-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: #f8fafc;
+}
+
+.product-name {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.product-details {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.no-results {
+  padding: 16px;
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .search-results-dropdown {
+    max-height: 200px;
+  }
+  
+  .search-result-item {
+    padding: 10px 12px;
+  }
+  
+  .product-name {
+    font-size: 14px;
+  }
+  
+  .product-details {
+    font-size: 12px;
+  }
+}
