@@ -32,7 +32,7 @@ import {
 import SalesChart from "../components/charts/possaleschart";
 import CustomerAnalyticsChart from "../components/charts/CustomerAnalyticsChart";
 
-export default function ReportsPage() {
+export default function PosReportsPage() {
   const { shop } = useShopStore();
   const shopId = shop?.id;
   const shopName = shop?.name || "Unknown Shop";

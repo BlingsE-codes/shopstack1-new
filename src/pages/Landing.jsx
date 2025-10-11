@@ -730,19 +730,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {user?.is_paid === false && (
-        <div className="subscription-expired-alert">
-          <h4>Your subscription has expired</h4>
-          <p>Renew now to continue using all features</p>
-          <button
-            className="renewal-cta-button"
-            onClick={() => navigate("/subscribe?renewal=true")}
-          >
-            Renew Subscription
-          </button>
-        </div>
-      )}
-
+     
       {/* Footer */}
       <footer className="footer">
         <div className="container">
