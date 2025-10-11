@@ -109,7 +109,7 @@
 }
 
 /* Buttons */
-.btn-primary {
+.rep-btn-primary {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -125,7 +125,7 @@
   height: fit-content;
 }
 
-.btn-primary:hover {
+.rep-btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }

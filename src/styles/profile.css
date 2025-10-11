@@ -545,12 +545,12 @@ label, .form-group input::placeholder {
   border: none;
 }
 
-.btn-primary {
+.profile-btn-primary {
   background: var(--primary);
   color: white;
 }
 
-.btn-primary:hover {
+.profile-btn-primary:hover {
   background: #0056b3;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);

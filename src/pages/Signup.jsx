@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import "../styles/auth.css";
 import { useAuthStore } from "../store/auth-store";
-import { FaEye, FaEyeSlash, FaArrowLeft, FaUser, FaEnvelope, FaLock, FaCalendarAlt } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaArrowLeft, FaUser, FaEnvelope, FaLock, FaCalendarAlt, FaStore, FaSignInAlt } from "react-icons/fa";
 
 export default function Signup() {
   const { signin } = useAuthStore();
@@ -70,14 +70,20 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
+      <div className="auth-background">
+        <div className="auth-background-shape"></div>
+        <div className="auth-background-shape"></div>
+      </div>
+      
       <div className="auth-card">
         <Link to="/" className="back-button">
           <FaArrowLeft /> Back to Home
         </Link>
         
         <div className="auth-header">
-          <div className="auth-icon">
-            <FaUser />
+          <div className="logo">
+            <FaStore className="logo-icon" />
+            <span>Shop<b>Stack</b></span>
           </div>
           <h2>Create Your Account</h2>
           <p>Join thousands of shop owners using our POS system</p>
@@ -86,14 +92,13 @@ export default function Signup() {
         <form className="auth-form" onSubmit={handleSignup}>
           <div className="form-row">
             <div className="input-group">
-              <label htmlFor="name">First Name</label>
               <div className="input-wrapper">
                 <FaUser className="input-icon" />
                 <input
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="Enter your first name"
+                  placeholder="First name"
                   onChange={handleChange}
                   required
                 />
@@ -101,14 +106,13 @@ export default function Signup() {
             </div>
             
             <div className="input-group">
-              <label htmlFor="surname">Surname</label>
               <div className="input-wrapper">
                 <FaUser className="input-icon" />
                 <input
                   id="surname"
                   type="text"
                   name="surname"
-                  placeholder="Enter your surname"
+                  placeholder="Surname"
                   onChange={handleChange}
                   required
                 />
@@ -117,7 +121,6 @@ export default function Signup() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="date_of_birth">Date of Birth</label>
             <div className="input-wrapper">
               <FaCalendarAlt className="input-icon" />
               <input
@@ -131,14 +134,13 @@ export default function Signup() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="email">Email Address</label>
             <div className="input-wrapper">
               <FaEnvelope className="input-icon" />
               <input
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Enter your email"
+                placeholder="Email address"
                 onChange={handleChange}
                 required
               />
@@ -146,14 +148,13 @@ export default function Signup() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="password">Password</label>
             <div className="input-wrapper">
               <FaLock className="input-icon" />
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Create a password"
+                placeholder="Create password"
                 onChange={handleChange}
                 required
               />
@@ -167,14 +168,13 @@ export default function Signup() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
             <div className="input-wrapper">
               <FaLock className="input-icon" />
               <input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
-                placeholder="Confirm your password"
+                placeholder="Confirm password"
                 onChange={handleChange}
                 required
               />
@@ -191,7 +191,10 @@ export default function Signup() {
             {loading ? (
               <div className="spinner"></div>
             ) : (
-              "Create Account"
+              <>
+                <FaSignInAlt className="button-icon" />
+                Create Account
+              </>
             )}
           </button>
         </form>

@@ -37,7 +37,7 @@
   font-size: 0.95rem;
 }
 
-.btn-primary {
+.airtime-btn-primary {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -52,12 +52,12 @@
   box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
 }
 
-.btn-primary:hover {
+.airtime-btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
-.btn-primary:active {
+.airtime-btn-primary:active {
   transform: translateY(0);
 }
 
@@ -713,7 +713,7 @@
     flex-direction: column;
   }
   
-  .btn-primary,
+  .airtime-btn-primary,
   .btn-secondary {
     width: 100%;
     justify-content: center;

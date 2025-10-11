@@ -1,52 +1,244 @@
-.navbar {
+/* navbar.css - Mobile-First Navbar Styles */
+
+/* Base Navbar Styles */
+.landlord-navbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: #fff;
-  border-bottom: 2px solid #1449ac;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.navbart{
-  display: inline;
-  gap: 16px;
- 
-  background-color: #f6f8fa;
-  border-radius: 8px;
-  padding-right: 0.5rem;
-
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 60px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.navbar-right {
+/* ShopStack Logo Styling */
+.shop-shopstack-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  cursor: default;
+  word-spacing: -2px;
+  flex-shrink: 0;
+}
+
+.logo-shop {
+  color: #e67a00;
+}
+
+.logo-stack {
+  color: #4361ee;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+/* Navigation buttons container */
+.landlord-navbar-right {
   display: flex;
-  gap: 18px;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.navbar-icon {
+/* Navigation buttons */
+.landlord-nav-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9f9f9;
-  padding: 8px;
-  border-radius: 50%;
-  transition: transform 0.2s ease, background 0.2s;
-}
-
-.navbar-icon:hover {
-  background: #f1f1f1;
-  transform: scale(1.1);
-}
-
-.initials-avatar {
-  margin-left: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #007bff;
-}
-
-.logout-btn {
+  background: none;
   border: none;
-  background: transparent;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
   cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.landlord-nav-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.landlord-user-avatar-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.landlord-logout-btn:hover {
+  background-color: #fee2e2;
+}
+
+/* Mobile First Styles */
+@media screen and (min-width: 767px) {
+ 
+  .shop-shopstack-logo {
+    font-size: 1.6rem;
+    margin-left: 2.5rem;
+  }
+}
+
+/* Mobile First Styles */
+@media screen and (max-width: 767px) {
+  .landlord-navbar {
+    padding: 0.5rem 0.75rem;
+    min-height: 56px;
+  }
+  
+  .shop-shopstack-logo {
+    font-size: 1.3rem;
+    margin-right: 0.5rem;
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.25rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.375rem;
+  }
+  
+  .landlord-user-avatar-small {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.75rem;
+  }
+  
+  /* Adjust icon sizes for mobile */
+  .landlord-nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 380px) {
+  .landlord-navbar {
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .shop-shopstack-logo {
+    font-size: 1.1rem;
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.15rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.3rem;
+  }
+  
+  .landlord-user-avatar-small {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .landlord-nav-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .landlord-navbar {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.75rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .landlord-navbar {
+    padding: 0.75rem 2rem;
+  }
+  
+  .landlord-navbar-right {
+    gap: 1rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Dark mode support */
+body.dark-mode .landlord-navbar {
+  background-color: #1f2937;
+  border-bottom-color: #374151;
+}
+
+body.dark-mode .landlord-nav-btn {
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-nav-btn:hover {
+  background-color: #374151;
+}
+
+body.dark-mode .landlord-user-avatar-small {
+  background-color: #2563eb;
+}
+
+body.dark-mode .landlord-logout-btn:hover {
+  background-color: #7f1d1d;
+}
+
+/* Focus states for accessibility */
+.landlord-nav-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High DPI screen adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .landlord-navbar {
+    border-bottom-width: 0.5px;
+  }
+}
+
+/* Optional: Add a hover effect for interactivity */
+.shop-shopstack-logo:hover .logo-shop {
+  color: #cf6e00;
+}
+
+.shop-shopstack-logo:hover .logo-stack {
+  color: #3a56d4;
+}
+
+/* Prevent horizontal scrolling on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure navbar doesn't cause horizontal scroll */
+nav.shops-navbar {
+  max-width: 100%;
+  overflow: hidden;
 }

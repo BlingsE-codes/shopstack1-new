@@ -59,13 +59,15 @@ html, body {
 }
 
 .sidebar-info h2 {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 6px 0;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: capitalize; 
+
 }
 
 .sidebar-info p {

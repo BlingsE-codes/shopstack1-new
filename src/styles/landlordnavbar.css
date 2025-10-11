@@ -1,0 +1,927 @@
+/* Base styles - Mobile First */
+.landlord-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 0.5rem;
+}
+
+.landlord-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.landlord-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.landlord-mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.landlord-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+  min-width: 0;
+  flex: 1;
+}
+
+.landlord-brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  background-color: #3b82f6;
+  color: white;
+  flex-shrink: 0;
+}
+
+.landlord-brand-name {
+  /* display: none; */
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.landlord-desktop-nav {
+  display: none;
+}
+
+.landlord-navbar-center {
+  display: none;
+}
+
+.landlord-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.landlord-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.landlord-profile-menu {
+  position: relative;
+}
+
+.landlord-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.landlord-user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.landlord-user-name {
+  display: none;
+}
+
+.landlord-dropdown-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.landlord-dropdown-chevron.landlord-open {
+  transform: rotate(180deg);
+}
+
+.landlord-profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 16rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-top: 0.5rem;
+  z-index: 1002; /* Increased z-index */
+  overflow: hidden;
+}
+
+.landlord-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+}
+
+.landlord-user-avatar-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.landlord-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.landlord-user-name-large {
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.landlord-user-shop {
+  font-size: 0.8rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.landlord-dropdown-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.landlord-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #4b5563;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-size: 0.9rem;
+}
+
+.landlord-dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+.landlord-logout-btn {
+  color: #ef4444;
+}
+
+/* Mobile menu overlay */
+.landlord-mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landlord-mobile-menu {
+  width: 85%;
+  max-width: 320px;
+  height: 100%;
+  background-color: white;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: landlord-slideIn 0.3s ease;
+}
+
+@keyframes landlord-slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.landlord-mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.landlord-mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.landlord-close-mobile-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.landlord-mobile-menu-items {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  flex: 1;
+}
+
+.landlord-mobile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  color: #4b5563;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  font-size: 0.95rem;
+}
+
+.landlord-mobile-menu-item:hover,
+.landlord-mobile-menu-item.landlord-active {
+  background-color: #f3f4f6;
+  color: #3b82f6;
+}
+
+.landlord-mobile-menu-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 0.5rem 0;
+}
+
+.landlord-mobile-menu-subheader {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Search styles */
+.landlord-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.landlord-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: #9ca3af;
+}
+
+.landlord-search-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  background-color: #f9fafb;
+}
+
+.landlord-mobile-search-container {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.landlord-mobile-search-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.landlord-mobile-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: #4b5563;
+  cursor: pointer;
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Documents dropdown */
+.landlord-nav-dropdown {
+  position: relative;
+}
+
+.landlord-nav-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.landlord-nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 280px; /* Slightly wider for better readability */
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 0.5rem;
+  z-index: 1002; /* Increased z-index to appear above search bar */
+  overflow: hidden;
+}
+
+.landlord-documents-dropdown {
+  padding: 0.5rem 0;
+  max-height: 400px; /* Increased height for more items */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.landlord-documents-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.landlord-documents-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.landlord-documents-dropdown::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.landlord-documents-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.landlord-dropdown-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.landlord-dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.landlord-dropdown-item-title {
+  font-weight: 500;
+  color: #111827;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.landlord-dropdown-item-description {
+  font-size: 0.7rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Navbar search for desktop */
+.landlord-navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+}
+
+/* Very Small Mobile Devices (under 380px) */
+@media screen and (max-width: 380px) {
+  .landlord-navbar {
+    padding: 0.4rem 0.5rem;
+    min-height: 52px;
+    gap: 0.25rem;
+  }
+  
+  .landlord-toggle {
+    gap: 0.25rem;
+  }
+  
+  .landlord-mobile-menu-toggle {
+    padding: 0.25rem;
+  }
+  
+  .landlord-brand-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .landlord-brand-logo svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.15rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.25rem;
+  }
+  
+  .landlord-nav-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .landlord-user-avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  .landlord-user-avatar svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Small Mobile Devices (381px - 480px) */
+@media screen and (min-width: 381px) and (max-width: 480px) {
+  .landlord-navbar {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .landlord-brand-name {
+    display: block;
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet and larger mobile (481px - 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .landlord-navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .landlord-brand-name {
+    display: block;
+    font-size: 0.85rem;
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.5rem;
+  }
+  
+  .landlord-nav-btn {
+    padding: 0.5rem;
+  }
+}
+
+/* iPad and Small Laptops (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .landlord-navbar {
+    padding: 0.75rem 1rem;
+    min-height: 60px;
+  }
+  
+  .landlord-mobile-menu-toggle {
+    display: none; /* Hide hamburger on tablet and above */
+  }
+  
+  .landlord-brand-name {
+    display: block;
+    font-size: 0.9rem;
+  }
+  
+  .landlord-desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    flex: 1;
+  }
+  
+  .landlord-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.375rem;
+    color: #4b5563;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  .landlord-nav-link:hover,
+  .landlord-nav-link.landlord-active {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+  }
+  
+  .landlord-navbar-search {
+    display: flex;
+    min-width: 180px;
+  }
+  
+  .landlord-navbar-search .landlord-search-input {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+  }
+  
+  .landlord-navbar-search .landlord-search-icon {
+    left: 0.5rem;
+  }
+  
+  .landlord-user-name {
+    display: none; /* Hide user name on iPad */
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.5rem;
+  }
+
+  /* Adjust dropdown positioning for iPad */
+  .landlord-nav-dropdown-menu {
+    left: auto;
+    right: 0;
+    width: 260px;
+  }
+}
+
+/* Laptop screens (1024px - 1279px) */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .landlord-navbar {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .landlord-brand-name {
+    display: block;
+    font-size: 1rem;
+  }
+  
+  .landlord-desktop-nav {
+    gap: 0.75rem;
+    margin-left: 1.5rem;
+  }
+  
+  .landlord-nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .landlord-navbar-search {
+    min-width: 200px;
+  }
+  
+  .landlord-user-name {
+    display: none; /* Hide user name on laptop */
+  }
+  
+  .landlord-navbar-right {
+    gap: 0.75rem;
+  }
+
+  /* Ensure dropdowns appear above search bar */
+  .landlord-nav-dropdown-menu {
+    left: auto;
+    right: 0;
+    z-index: 1002;
+  }
+
+  .landlord-profile-dropdown {
+    z-index: 1002;
+  }
+}
+
+/* Desktop screens (1280px and above) */
+@media screen and (min-width: 1280px) {
+  .landlord-navbar {
+    padding: 0.75rem 2rem;
+  }
+  
+  .landlord-desktop-nav {
+    gap: 1rem;
+    margin-left: 2rem;
+  }
+  
+  .landlord-nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .landlord-navbar-search {
+    min-width: 220px;
+  }
+  
+  .landlord-user-name {
+    display: block; /* Show user name on larger desktop screens */
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  
+  .landlord-navbar-right {
+    gap: 1rem;
+  }
+
+  .landlord-nav-dropdown-menu {
+    left: 0;
+    right: auto;
+  }
+}
+
+/* Large desktop screens (1440px and above) */
+@media screen and (min-width: 1440px) {
+  .landlord-navbar {
+    padding: 0.75rem 3rem;
+  }
+  
+  .landlord-desktop-nav {
+    gap: 1.25rem;
+    margin-left: 2.5rem;
+  }
+  
+  .landlord-navbar-search {
+    min-width: 250px;
+  }
+}
+
+/* Dark mode support */
+body.dark-mode .landlord-navbar {
+  background-color: #1f2937;
+  border-bottom-color: #374151;
+  color: #f9fafb;
+}
+
+body.dark-mode .landlord-brand-name {
+  color: #f9fafb;
+}
+
+body.dark-mode .landlord-mobile-menu-toggle,
+body.dark-mode .landlord-nav-btn,
+body.dark-mode .landlord-profile-btn {
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-brand-logo {
+  background-color: #2563eb;
+}
+
+body.dark-mode .landlord-user-avatar {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-profile-dropdown,
+body.dark-mode .landlord-nav-dropdown-menu,
+body.dark-mode .landlord-mobile-menu {
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+body.dark-mode .landlord-dropdown-header {
+  background-color: #4b5563;
+}
+
+body.dark-mode .landlord-dropdown-divider {
+  background-color: #4b5563;
+}
+
+body.dark-mode .landlord-dropdown-item {
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-dropdown-item:hover {
+  background-color: #4b5563;
+}
+
+body.dark-mode .landlord-dropdown-item-icon {
+  background-color: #4b5563;
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-dropdown-item-title {
+  color: #f9fafb;
+}
+
+body.dark-mode .landlord-search-input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+body.dark-mode .landlord-search-input::placeholder {
+  color: #9ca3af;
+}
+
+body.dark-mode .landlord-nav-link {
+  color: #d1d5db;
+}
+
+body.dark-mode .landlord-nav-link:hover,
+body.dark-mode .landlord-nav-link.landlord-active {
+  background-color: #4b5563;
+  color: #3b82f6;
+}
+
+body.dark-mode .landlord-mobile-menu-header {
+  background-color: #4b5563;
+  border-bottom-color: #4b5563;
+}
+
+/* Dark mode scrollbar for documents dropdown */
+.dark-mode .landlord-documents-dropdown::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark-mode .landlord-documents-dropdown::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+.dark-mode .landlord-documents-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .landlord-dropdown-chevron {
+    transition: none;
+  }
+  
+  .landlord-profile-dropdown,
+  .landlord-nav-dropdown-menu,
+  .landlord-mobile-menu {
+    animation: none;
+  }
+}
+
+/* High DPI screen adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .landlord-navbar {
+    border-bottom-width: 0.5px;
+  }
+}
+
+/* Prevent horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure dropdowns are properly positioned and visible */
+.landlord-nav-dropdown {
+  position: relative;
+}
+
+/* Fix for document dropdown being cut off */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .landlord-nav-dropdown-menu {
+    transform: translateX(0);
+  }
+  
+  /* Ensure the dropdown has enough space */
+  .landlord-documents-dropdown {
+    max-height: 350px;
+  }
+}
+
+/* Hide hamburger and show desktop links on large screens */
+@media (min-width: 1024px) {
+  .landlord-mobile-menu-toggle {
+    display: none !important;
+  }
+
+  .landlord-desktop-nav {
+    display: flex !important;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+
+  .landlord-navbar-center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .landlord-user-name {
+    display: inline; /* show username beside avatar */
+  }
+}
+
+/* Navigation link styling */
+.landlord-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.landlord-nav-link:hover {
+  background-color: #f3f4f6;
+  color: #1d4ed8;
+}
+
+.landlord-nav-link.landlord-active {
+  color: #2563eb;
+  font-weight: 600;
+}

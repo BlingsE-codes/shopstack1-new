@@ -1,13 +1,26 @@
 import "../styles/terms.css";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function Terms() {
+   const navigate = useNavigate();
+
+   const handleBackToHome = () => {
+      navigate('/');
+   };
 
    useEffect(() => {
       window.scrollTo(0, 0); // always scroll to top on load
     }, []);
   return (
     <div className="page-container">
+        <div className="back-to-home-container-terms">
+                  <button className="back-to-home-btn-terms" onClick={handleBackToHome}>
+                    <FaArrowLeft /> Back to Home
+                  </button>
+                </div>
       <h1>Terms & Conditions</h1>
       <p>
         Welcome to ShopStackng. By using our app, you agree to the following

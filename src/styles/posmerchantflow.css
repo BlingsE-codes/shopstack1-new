@@ -46,3 +46,54 @@
   color: #666;
   line-height: 1.5;
 }
+
+
+.back-to-home-container-posMerchant {
+  margin-left: 40px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-to-home-btn-posMerchant {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.back-to-home-btn-posMerchant:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-home-btn-posMerchant:active {
+  transform: translateY(0);
+}
+
+/* Responsive design for the back button */
+@media (max-width: 768px) {
+  .back-to-home-container-posMerchant {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-to-home-btn-posMerchant {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+.back-to-home-container-posMerchant {
+  margin-left: 40px;
+  display: flex;
+  justify-content: flex-start;
+}

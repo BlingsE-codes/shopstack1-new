@@ -664,7 +664,7 @@
   justify-content: flex-end;
 }
 
-.btn-primary, .btn-secondary {
+.dash-btn-primary, .dash-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -676,16 +676,16 @@
   transition: all 0.2s ease;
 }
 
-.btn-primary {
+.dash-btn-primary {
   background: #3b82f6;
   color: white;
 }
 
-.btn-primary:hover:not(:disabled) {
+.dash-btn-primary:hover:not(:disabled) {
   background: #2563eb;
 }
 
-.btn-primary:disabled {
+.dash-btn-primary:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }

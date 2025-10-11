@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import "../styles/feedback.css";
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 export default function Feedback() {
   const [form, setForm] = useState({ name: "", email: "", rating: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBackToHome = () => {
+    navigate('/');
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,6 +31,11 @@ export default function Feedback() {
 
   return (
     <div className="feedback-container">
+        <div className="back-to-home-container-about">
+          <button className="back-to-home-btn-about" onClick={handleBackToHome}>
+            <FaArrowLeft /> Back to Home
+          </button>
+        </div>
       <h1>Feedback & Reviews</h1>
       <p className="intro-text">
         We value your opinion! Please share your feedback to help us improve ShopStack.

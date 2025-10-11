@@ -24,6 +24,10 @@ import {
   MapPin,
   Phone,
   CreditCard,
+  Home,
+  TrendingUp,
+  Shield,
+  Zap
 } from "lucide-react";
 
 export default function Shops() {
@@ -85,6 +89,10 @@ export default function Shops() {
     // Navigate based on shop type
     if (data.type === "POS Agent") {
       navigate(`/pospage/${data.id}`);
+
+      } else if (data.type === "House Owner") {
+        navigate(`/landlordoverview/${data.id}`);
+
     } else {
       navigate(`/shops/${data.id}`);
     }
@@ -145,32 +153,117 @@ export default function Shops() {
   if (shops.length === 0) {
     return (
       <div className="shops-empty-state">
-        <Store size={60} className="empty-icon" />
-        <h2>No Shops Yet</h2>
-        <p>Create your first shop to start managing your business</p>
-        <button className="btn-primary" onClick={() => navigate("/create-shop")}>
-          <Plus size={18} /> Create Your First Shop
-        </button>
+        {/* Background Elements */}
+        <div className="empty-state-bg-elements">
+          <div className="floating-shape shape-1"></div>
+          <div className="floating-shape shape-2"></div>
+          <div className="floating-shape shape-3"></div>
+        </div>
+
+        {/* Main Content */}
+        <div className="empty-state-content">
+          {/* Icon with Animation */}
+          <div className="empty-icon-container">
+            <div className="icon-glow"></div>
+            <Store size={80} className="empty-icon" />
+          </div>
+
+          {/* Text Content */}
+          <div className="empty-state-text">
+            <h2>Welcome to Your Business Hub! 🚀</h2>
+            <p className="empty-state-description">
+              Create your first shop and unlock powerful tools to manage inventory, 
+              track sales, and grow your business effortlessly.
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <TrendingUp size={24} />
+              </div>
+              <h4>Sales Tracking</h4>
+              <p>Monitor your business performance in real-time</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <Users size={24} />
+              </div>
+              <h4>Customer Management</h4>
+              <p>Keep track of your customers and their preferences</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <Shield size={24} />
+              </div>
+              <h4>Secure & Reliable</h4>
+              <p>Your data is safe with enterprise-grade security</p>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="empty-state-cta">
+            <button 
+              className="btn-primary create-shop-btn"
+              onClick={() => navigate("/create-shop")}
+            >
+              <Plus size={20} />
+              Create Your First Shop
+              <Zap size={16} className="btn-sparkle" />
+            </button>
+            
+            <p className="cta-subtext">
+              Join thousands of businesses growing with ShopStack
+            </p>
+          </div>
+
+          {/* Quick Tips */}
+          <div className="quick-tips">
+            <div className="tips-header">
+              <Zap size={16} />
+              <span>Get Started in Minutes</span>
+            </div>
+            <div className="tips-grid">
+              <div className="tip-item">
+                <div className="tip-number">1</div>
+                <span>Add your shop details</span>
+              </div>
+              <div className="tip-item">
+                <div className="tip-number">2</div>
+                <span>Set up your inventory</span>
+              </div>
+              <div className="tip-item">
+                <div className="tip-number">3</div>
+                <span>Start managing sales</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
+    
     <div className="shops-container">
-      {/* Header */}
-    <div className="shops-header">
-  <div className="shops-topbar">
-    <h1 className="shops-title">My Shops</h1>
-    <button
-      className="btn-primary add-shop-btn"
-      onClick={() => navigate("/create-shop")}
-    >
-      <Plus size={16} /> Add New Shop
-    </button>
-  </div>
-  <p className="subtitle">Manage all your business locations easily</p>
-</div>
+      {/* Navbar with Shopstack Logo */}
 
+      {/* Header */}
+      <div className="shops-header">
+        <div className="shops-topbar">
+          <h1 className="shops-title">My Shops</h1>
+          <button
+            className="btn-primary add-shop-btn"
+            onClick={() => navigate("/create-shop")}
+          >
+            <Plus size={16} /> Add New Shop
+          </button>
+        </div>
+        <p className="subtitle">Manage all your business locations easily</p>
+      </div>
 
       {/* Grid */}
       <div className="shops-grid">
@@ -246,6 +339,12 @@ export default function Shops() {
         🥦 Grocery
       </span>
     )}
+     {shop.type === "House Owner" && (
+      <span className="retail-badge">
+        🛍️ Home
+      </span>
+    )}
+
 
     {shop.type === "Supermarket" && (
       <span className="supermarket-badge">
@@ -291,9 +390,8 @@ export default function Shops() {
   </div>
 </div>
 
-
                 <div className="shop-details">
-                  <p p className="output-text">
+                  <p  className="output-text">
                     <MapPin size={14} /> {shop.address}
                   </p>
                   {shop.phone && (
@@ -315,7 +413,7 @@ export default function Shops() {
 
                 <div className="shop-actions">
                   <button
-                    className="btn-primary"
+                    className="shops-btn-primary"
                     onClick={() => handleShopEntry(shop)}
                     title={`Enter ${shop.name}`}
                   >

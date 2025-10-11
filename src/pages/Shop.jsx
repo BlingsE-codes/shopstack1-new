@@ -59,7 +59,7 @@ useEffect(() => {
         </div>
 
         <NavLink to={`/shops/${id}`} end className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavClick}>
-          <span className="icon">🏠</span> Overview
+          <span className="icon">🏠</span> Dashboard
         </NavLink>
         <NavLink to={`/shops/${id}/products`} className={({ isActive }) => (isActive ? "active" : "")} onClick={handleNavClick}>
           <span className="icon">📦</span> Products

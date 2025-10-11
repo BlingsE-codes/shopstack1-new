@@ -2,6 +2,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/auth-store";
 import ScrollToTop from "./components/ScrollToTop";
+import Passwordreset from "./pages/PasswordRest";
+import LandlordDashboard from "./components/LandlordDashboard";
+import LandlordTenantManagement from "./components/LandlordTenantManagement";
+import Landlordnavbar from "./components/Landlordnavbar";
+import LandlordOverview from "./components/LandlordOverview";
+import LandlordTenantDetailsPage from "./components/Landlordtenantdetailspage";
+
 
 import HowItWorks from "./pages/HowItWorks";
 import Feedback from "./pages/Feedback";
@@ -9,8 +16,10 @@ import ModernReceipt from "./components/ModernReceipt";
 import PosMerchantFlow from "./components/PosMerchantFlow";
 import PosSidebar from "./components/PosSidebar";
 import Pospage from "./pages/Pospage";
+import Landlordpage from "./pages/Landlordpage";
 import PosBillsPage from "./pages/PosBillsPage";
 import PosReportPage from "./pages/PosReportPage";
+
 
 import ProtectedRoute from "./ProtectedRoute";
 import Shop from "./pages/Shop";
@@ -89,6 +98,7 @@ export default function App() {
               }
             />
 
+            {/* Shop-specific routes */}
             <Route
               path="/shops/:id"
               element={
@@ -103,9 +113,24 @@ export default function App() {
               <Route path="expenses" element={<Expenses />} />
               <Route path="profile" element={<Profile />} />
               <Route path="debtors" element={<Debtors />} />
-              {/* Add POS route under the shop */}
               <Route path="pos" element={<Pospage />} />
+              <Route path="landlordpage" element={<Landlordpage />} />
             </Route>
+
+            {/* POS Routes */}
+            <Route path="/pospage/:shopId" element={<Pospage><PosDashboard/></Pospage>} />
+            <Route path="/transactions/:shopId" element={<Pospage><PosTransactions /></Pospage>} />
+            <Route path="/posairtimepage/:shopId" element={<Pospage><PosAirtimePage /></Pospage>} />
+            <Route path="/posbillspage/:shopId" element={<Pospage><PosBillsPage /></Pospage>} />
+            <Route path="/posreportpage/:shopId" element={<Pospage><PosReportPage /></Pospage>} />
+
+            {/* Landlord Routes */}
+            <Route path="/landlordpage/:shopId" element={<Landlordpage><LandlordDashboard/></Landlordpage>} />
+            <Route path="/landlordtenantmanagement/:shopId" element={<Landlordpage><LandlordTenantManagement /></Landlordpage>} />
+            <Route path="/landlordoverview/:shopId" element={<Landlordpage><LandlordOverview/></Landlordpage>} />
+            <Route path="/landlordtenantdetailspage/:tenantId" element={<Landlordpage><LandlordTenantDetailsPage/></Landlordpage>} />
+            {/* <Route path="/landlordtenantdetailspage/:shopId" element={<LandlordTenantDetailsPage />} /> */}
+
 
             {/* Static Pages */}
             <Route path="/pricing" element={<Pricing />} />
@@ -117,14 +142,7 @@ export default function App() {
             <Route path="/modern-receipt" element={<ModernReceipt />} />
             <Route path="/pos-merchant-flow" element={<PosMerchantFlow />} />
             <Route path="/pos-dashboard" element={<PosDashboard />} />
-
-            {/* Updated Pospage routes with shopId parameter */}
-            <Route path="/pospage/:shopId" element={<Pospage><PosDashboard/></Pospage>} />
-            <Route path="/transactions/:shopId" element={<Pospage><PosTransactions /></Pospage>} />
-            <Route path="/posairtimepage/:shopId" element={<Pospage><PosAirtimePage /></Pospage>} />
-            <Route path="/posbillspage/:shopId" element={<Pospage><PosBillsPage /></Pospage>} />
-            <Route path="/posreportpage/:shopId" element={<Pospage><PosReportPage /></Pospage>} />
-            
+            <Route path="/passwordreset" element={<Passwordreset />} />
             <Route path="/pos-sidebar" element={<PosSidebar />} />
 
             {/* Catch all */}

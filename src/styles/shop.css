@@ -11,6 +11,10 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.sidebar-info h2{
+  text-transform: capitalize; /* Capitalize first letter of each word */
+  font-weight: bold;
+}
 
 /* Header Styles */
 .shop-header {

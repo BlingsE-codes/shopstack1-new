@@ -36,7 +36,7 @@
   justify-content: center;
 }
 
-.btn-primary {
+.network-btn-primary {
   background: #2563eb; /* blue */
   color: #fff;
   border: none;
@@ -51,7 +51,7 @@
   transition: background 0.2s ease;
 }
 
-.btn-primary:hover {
+.network-btn-primary:hover {
   background: #1e40af; /* darker blue */
 }
 

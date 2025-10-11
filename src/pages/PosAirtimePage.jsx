@@ -273,7 +273,7 @@ const handleTopupInventory = async (topupData) => {
             <p>Manage airtime inventory and sales</p>
           </div>
           <button 
-            className="btn-primary"
+            className="airtime-btn-primary"
             onClick={() => setShowAirtimeModal(true)}
           >
             <Phone size={18} />
@@ -323,7 +323,7 @@ const handleTopupInventory = async (topupData) => {
             <div className="inventory-header">
               <h2>Inventory Summary</h2>
               <button 
-                className="btn-primary btn-sm"
+                className="airtime-btn-primary btn-sm"
                 onClick={() => {
                   setSelectedTopupNetwork("MTN");
                   setShowTopupModal(true);
@@ -652,7 +652,7 @@ function AirtimeModal({ onClose, onSubmit, airtimeInventory, defaultNetwork = "M
             </button>
             <button 
               type="submit" 
-              className="btn-primary"
+              className="airtime-btn-primary"
               disabled={parseFormattedNumber(formData.amount) > availableBalance}
             >
               Sell Airtime
@@ -738,7 +738,7 @@ function TopUpModal({ onClose, onSubmit, network }) {
             <button type="button" className="btn-secondary" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="btn-primary">
+            <button type="submit" className="airtime-btn-primary">
               Add Funds
             </button>
           </div>

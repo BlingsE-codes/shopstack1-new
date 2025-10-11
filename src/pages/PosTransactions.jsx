@@ -1106,7 +1106,7 @@ const calculateStats = () => {
             Export
           </button>
           <button 
-            className="btn-primary"
+            className="tran-btn-primary"
             onClick={() => setShowNewTransaction(true)}
           >
             <Plus size={16} />
@@ -1213,7 +1213,7 @@ const calculateStats = () => {
               </div>
             </div>
             <div className="cash-actions">
-              <button className="btn-primary" onClick={handleSaveCash}>
+              <button className="tran-btn-primary" onClick={handleSaveCash}>
                 Save Changes
               </button>
               <button className="btn-secondary" onClick={handleCancelEdit}>
@@ -1389,7 +1389,7 @@ const calculateStats = () => {
               <CreditCard size={40} />
               <p>No transactions found</p>
               <button 
-                className="btn-primary"
+                className="tran-btn-primary"
                 onClick={() => setShowNewTransaction(true)}
               >
                 Record Your First Transaction
@@ -1588,7 +1588,7 @@ const calculateStats = () => {
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary"
+                  className="tran-btn-primary"
                   disabled={!newTransaction.amount}
                 >
                   {isOnline ? 'Record Transaction' : 'Save Offline'}

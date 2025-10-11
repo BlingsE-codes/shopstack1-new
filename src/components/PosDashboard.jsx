@@ -1232,7 +1232,7 @@ function TransactionModal({ type, onClose, onSubmit, airtimeInventory, calculate
             </button>
             <button
               type="submit"
-              className="btn-primary"
+              className="dash-btn-primary"
               disabled={!formData.amount}
             >
               {isOnline ? 'Record Transaction' : 'Save Offline'}

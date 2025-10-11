@@ -38,7 +38,7 @@
 }
 
 /* Buttons */
-.btn-primary {
+.bill-btn-primary {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -53,7 +53,7 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.btn-primary:hover {
+.bill-btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }

@@ -442,7 +442,7 @@ const handleDataExport = async () => {
                 </div>
               </div>
               <div className="modal-actions">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn profile-btn-primary">
                   Update Password
                 </button>
                 <button
@@ -634,7 +634,7 @@ const handleDataExport = async () => {
 
                 {isEditing && (
                   <div className="action-buttons">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn profile-btn-primary">
                       Save Changes
                     </button>
                     <button
@@ -772,7 +772,7 @@ const handleDataExport = async () => {
 
                 {isEditing && (
                   <div className="action-buttons">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn profile-btn-primary">
                       Save Changes
                     </button>
                     <button

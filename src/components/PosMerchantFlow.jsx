@@ -1,8 +1,14 @@
 import React from "react";
 import { FaCashRegister, FaUsers, FaCreditCard, FaWallet, FaChartLine, FaExclamationTriangle, FaStore } from "react-icons/fa";
 import "../styles/posmerchantflow.css";
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function PosMerchantFlow() {
+    const navigate = useNavigate();
+    const handleBackToHome = () => {
+        navigate('/');
+      }
   const steps = [
     {
       icon: <FaStore />,
@@ -43,6 +49,11 @@ export default function PosMerchantFlow() {
 
   return (
     <section className="pos-merchant-flow">
+        <div className="back-to-home-container-posMerchant">
+          <button className="back-to-home-btn-posMerchant" onClick={handleBackToHome}>
+            <FaArrowLeft /> Back to Home
+          </button>
+        </div>
       <h2>How POS Merchants Work in Nigeria</h2>
       <div className="flow-grid">
         {steps.map((step, index) => (

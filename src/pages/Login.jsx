@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import "../styles/login.css";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
-import { FaEye, FaEyeSlash, FaArrowLeft, FaEnvelope, FaLock, FaStore } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaArrowLeft, FaEnvelope, FaLock, FaStore, FaSignInAlt, FaGoogle } from "react-icons/fa";
 
 export default function Login() {
   const { signin, user: authUser } = useAuthStore();
@@ -13,6 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const { shop } = useShopStore();
 
@@ -21,49 +22,66 @@ export default function Login() {
     const savedEmail = localStorage.getItem("savedEmail");
     if (savedEmail) {
       setEmail(savedEmail);
+      setRememberMe(true);
     }
   }, []);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    toast.error(error.message);
+    setLoading(false);
+    return;
+  }
+
+  const user = data?.user;
+  if (!user) {
+    toast.error("User not found");
+    setLoading(false);
+    return;
+  }
+
+  const { data: profileData, error: profileFetchError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("auth_id", user.id);
+
+  if (profileFetchError || !profileData?.length) {
+    toast.error("Failed to load profile");
+    setLoading(false);
+    return;
+  }
+
+  // ✅ Remember email for next login
+  if (rememberMe) localStorage.setItem("savedEmail", email);
+  else localStorage.removeItem("savedEmail");
+
+  signin(profileData[0]);
+  toast.success("Welcome back 👋");
+
+  // ✅ Safe redirect (no landing loop)
+  navigate("/shops", { replace: true });
+  setLoading(false);
+};
+
+
+  const handleGoogleLogin = async () => {
     setLoading(true);
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password, // session will be stored securely by Supabase
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
     });
-
+    
     if (error) {
       toast.error(error.message);
       setLoading(false);
-      return;
     }
-
-    const user = data?.user;
-    if (!user) {
-      toast.error("User not found");
-      setLoading(false);
-      return;
-    }
-
-    const { data: profileData, error: profileFetchError } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("auth_id", user.id);
-
-    if (profileFetchError || !profileData?.length) {
-      toast.error("Failed to load profile");
-      setLoading(false);
-      return;
-    }
-
-    // ✅ Save email for next login
-    localStorage.setItem("savedEmail", email);
-
-    signin(profileData[0]);
-    toast.success("Welcome back 👋");
-    navigate("/");
-    setLoading(false);
   };
 
   if (authUser) {
@@ -72,6 +90,11 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <div className="login-background">
+        <div className="login-background-shape"></div>
+        <div className="login-background-shape"></div>
+      </div>
+      
       <div className="login-card">
         <Link to="/" className="back-button">
           <FaArrowLeft /> Back to Home
@@ -82,13 +105,12 @@ export default function Login() {
             <FaStore className="logo-icon" />
             <span>Shop<b>Stack</b></span>
           </div>
-          <h2>Welcome Back</h2>
+        
           <p>Sign in to your account to continue</p>
         </div>
 
         <form className="login-form" onSubmit={handleLogin}>
           <div className="input-group">
-            <label htmlFor="email">Email Address</label>
             <div className="input-wrapper">
               <FaEnvelope className="input-icon" />
               <input
@@ -103,7 +125,6 @@ export default function Login() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="password">Password</label>
             <div className="input-wrapper">
               <FaLock className="input-icon" />
               <input
@@ -123,14 +144,45 @@ export default function Login() {
             </div>
           </div>
 
+          <div className="login-options">
+            <label className="checkbox-container">
+              <input 
+                type="checkbox" 
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <span className="checkmark"></span>
+              Remember me
+            </label>
+            <Link to="/passwordreset" className="forgot-password">
+              Forgot password?
+            </Link>
+          </div>
+
           <button type="submit" className="login-button" disabled={loading}>
             {loading ? (
               <div className="spinner"></div>
             ) : (
-              "Login to Account"
+              <>
+                <FaSignInAlt className="button-icon" />
+                Login to Account
+              </>
             )}
           </button>
         </form>
+
+        <div className="divider">
+          <span>Or continue with</span>
+        </div>
+
+        <button 
+          className="google-login-button"
+          onClick={handleGoogleLogin}
+          disabled={loading}
+        >
+          <FaGoogle className="google-icon" />
+          Sign in with Google
+        </button>
 
         <div className="login-footer">
           <p>
@@ -138,8 +190,6 @@ export default function Login() {
           </p>
         </div>
       </div>
-
-     
     </div>
   );
 }

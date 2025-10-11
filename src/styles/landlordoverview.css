@@ -1,0 +1,775 @@
+.landlord-overview {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-left h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+  color: #e67a00 !important;
+  margin-bottom: 0.5rem;
+}
+
+.header-left p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.landlord-btn-primary {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.landlord-btn-primary:hover {
+  background-color: #4338ca;
+}
+
+.btn-secondary {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.alert-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.alert-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.alert-card.rent-due {
+  border-left: 4px solid #ef4444;
+}
+
+.alert-card.increment-due {
+  border-left: 4px solid #f59e0b;
+}
+
+.alert-card.general {
+  border-left: 4px solid #4f46e5;
+}
+
+.alert-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.rent-due .alert-icon {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+.increment-due .alert-icon {
+  background-color: #fffbeb;
+  color: #f59e0b;
+}
+
+.general .alert-icon {
+  background-color: #eef2ff;
+  color: #4f46e5;
+}
+
+.alert-content h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+  color: #1f2937;
+}
+
+.alert-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.alert-action {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  margin-right: 1rem;
+}
+
+.stat-icon.tenants {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.stat-icon.properties {
+  background-color: #ddd6fe;
+  color: #7c3aed;
+}
+
+.stat-icon.revenue {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.stat-icon.occupancy {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.stat-info h3 {
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+  color: #1f2937;
+}
+
+.stat-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.tenants-section {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+}
+
+.search-box input {
+  border: none;
+  background: none;
+  margin-left: 0.5rem;
+  outline: none;
+}
+
+.filter-tabs {
+  display: flex;
+  background-color: #f3f4f6;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+}
+
+.filter-tabs button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.filter-tabs button.active {
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tenants-list {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-state h3 {
+  margin: 1rem 0 0.5rem;
+  color: #374151;
+}
+
+.tenant-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tenant-card:last-child {
+  border-bottom: none;
+}
+
+.tenant-info {
+  display: flex;
+  align-items: center;
+}
+
+.tenant-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: #eef2ff;
+  color: #4f46e5;
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.tenant-details h3 {
+  margin: 0 0 0.25rem 0;
+  color: #1f2937;
+}
+
+.tenant-details p {
+  margin: 0 0 0.5rem 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.tenant-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.rent-amount {
+  color: #059669;
+  font-weight: 500;
+}
+
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #6b7280;
+}
+
+.tenant-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.375rem;
+  border: none;
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.activity-section {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.activity-section h2 {
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.activity-icon.payment {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.activity-icon.maintenance {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.activity-icon.document {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+.activity-content p {
+  margin: 0 0 0.25rem 0;
+  color: #374151;
+}
+
+.activity-time {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .landlord-overview {
+    background-color: #111827;
+    color: #e5e7eb;
+  }
+  
+  .header-left h1,
+  .section-header h2,
+  .activity-section h2,
+  .tenant-details h3,
+  .stat-info h3,
+  .alert-content h3 {
+    color: #f3f4f6;
+  }
+  
+  .header-left p,
+  .alert-content p,
+  .stat-info p,
+  .tenant-details p,
+  .activity-time,
+  .due-date {
+    color: #d1d5db;
+  }
+  
+  .alert-card,
+  .stat-card,
+  .tenants-section,
+  .activity-section {
+    background-color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .section-header {
+    border-bottom-color: #374151;
+  }
+  
+  .search-box {
+    background-color: #374151;
+  }
+  
+  .search-box input {
+    color: #e5e7eb;
+  }
+  
+  .filter-tabs {
+    background-color: #374151;
+  }
+  
+  .filter-tabs button.active {
+    background-color: #4f46e5;
+    color: white;
+  }
+  
+  .tenant-card {
+    border-bottom-color: #374151;
+  }
+  
+  .icon-btn {
+    background-color: #374151;
+    color: #d1d5db;
+  }
+  
+  .icon-btn:hover {
+    background-color: #4b5563;
+  }
+  
+  .activity-item {
+    border-bottom-color: #374151;
+  }
+}
+
+/* Add these styles to your existing landlordoverview.css file */
+
+/* Tenant Management Specific Styles */
+.tenants-table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.tenants-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tenants-table th {
+  background: #f8f9fa;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.tenants-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tenants-table tr:hover {
+  background: #f8f9fa;
+}
+
+.status-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.status-badge.paid {
+  background: #e7f4e4;
+  color: #2e7d32;
+}
+
+.status-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.overdue {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kin-info .relationship,
+.guarantor-info .phone {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.tenant-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #6c757d;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section h3 {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #495057;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+/* Filter Group Styles */
+.filter-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-item label {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #495057;
+}
+
+.filter-item select {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+}
+
+/* Empty State in Table */
+.tenants-table .empty-state {
+  text-align: center;
+  padding: 3rem;
+}
+
+.tenants-table .empty-state h3 {
+  margin: 1rem 0 0.5rem;
+  color: #495057;
+}
+
+.tenants-table .empty-state p {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .tenants-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .filter-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .modal-content {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+}

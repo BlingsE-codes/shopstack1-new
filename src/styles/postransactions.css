@@ -66,7 +66,7 @@
 }
 
 /* Button Styles */
-.btn-primary, .btn-secondary, .btn-warning {
+.tran-btn-primary, .tran-btn-secondary, .tran-btn-warning {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -79,12 +79,12 @@
   font-size: 14px;
 }
 
-.btn-primary {
+.tran-btn-primary {
   background-color: #3b82f6;
   color: white;
 }
 
-.btn-primary:hover {
+.tran-btn-primary:hover {
   background-color: #2563eb;
 }
 

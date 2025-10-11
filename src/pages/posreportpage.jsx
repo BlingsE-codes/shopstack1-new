@@ -415,7 +415,7 @@ export default function ReportsPage() {
             </div>
           </div>
 
-          <button className="btn-primary" onClick={fetchReportsData}>
+          <button className="rep-btn-primary" onClick={fetchReportsData}>
             <RefreshCw size={16} />
             Apply Filters
           </button>
@@ -721,7 +721,7 @@ export default function ReportsPage() {
             </div>
             
             <div className="modal-footer">
-              <button className="btn-primary" onClick={() => setShowTransactionModal(false)}>
+              <button className="rep-btn-primary" onClick={() => setShowTransactionModal(false)}>
                 Close
               </button>
             </div>

@@ -27,7 +27,7 @@ export default function NetworkErrorFallback({ retry }) {
       <h2>No Internet Connection</h2>
       <p>Please check your network and try again.</p>
       <div className="actions">
-        <button className="btn-primary" onClick={retry}>
+        <button className="network-btn-primary" onClick={retry}>
           <RefreshCw size={18} /> Retry
         </button>
         <button className="btn-secondary" onClick={() => navigate("/")}>

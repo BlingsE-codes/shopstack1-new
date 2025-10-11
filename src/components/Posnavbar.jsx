@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useShopStore } from "../store/shop-store";
 import { useAuthStore } from "../store/auth-store";
+
 import {
   Search,
   LogOut,
@@ -30,7 +31,10 @@ const Navbar = ({ id }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const { shop, logout, user } = useShopStore();
+  // const { shop, logout, user } = useShopStore();
+  // const { user, logout } = useAuthStore();
+  const { shop, user } = useShopStore();
+  const { logout } = useAuthStore();
   const shopId = shop?.id;
 
   const profileRef = useRef(null);
@@ -125,21 +129,9 @@ const Navbar = ({ id }) => {
   ];
 
   // Fixed logout function
-  const handleLogout = async () => {
-    try {
-      // Close all dropdowns first
-      setIsProfileOpen(false);
-      setIsMobileMenuOpen(false);
-      
-      // Call the logout function from the store
-      await logout(); // Make sure this is an async function in your store
-      
-      // Navigate to login page after successful logout
-      navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-      // Handle logout error (optional: show error message to user)
-    }
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -221,6 +213,11 @@ const Navbar = ({ id }) => {
         <div className="navbar-right">
           <button className="nav-btn" title="Shops" onClick={() => navigate("/Shops")}>
             <HomeIcon size={20} />
+          </button>
+          
+          {/* My Shops button added here */}
+          <button className="nav-btn" title="My Shops" onClick={() => navigate("/shops")}>
+            <Home size={20} />
           </button>
           
           <button className="nav-btn" onClick={toggleDarkMode} title="Toggle Dark Mode">
@@ -319,10 +316,7 @@ const Navbar = ({ id }) => {
                 <span>Help & Support</span>
               </Link>
 
-              <Link to="/shops" className="mobile-menu-item" onClick={handleNavItemClick}>
-                <Home size={20} />
-                <span>Shops</span>
-              </Link>
+              {/* My Shops removed from mobile menu dropdown since it's now in navbar */}
 
               <div className="mobile-menu-divider"></div>
 

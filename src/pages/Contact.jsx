@@ -1,9 +1,17 @@
 import { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import "../styles/contact.css";
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 export default function Contact() {
   const formRef = useRef();
+   const navigate = useNavigate();
+
+   const handleBackToHome = () => {
+     navigate('/');
+   };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -33,6 +41,12 @@ export default function Contact() {
 
   return (
     <div className="page-container">
+        <div className="back-to-home-container-about">
+                  <button className="back-to-home-btn-about" onClick={handleBackToHome}>
+                    <FaArrowLeft /> Back to Home
+                  </button>
+
+                </div>
       <h1>Contact Us</h1>
       <p>
         Have questions or need support? We’re always here to help you make the

@@ -511,6 +511,40 @@ export default function Dashboard() {
       <div className="dashboard-page">
         {/* Modern Header Implementation */}
      
+
+        <div className="summary-cards">
+          <div className="card sales">
+            <h4>Total Sales</h4>
+            <p>₦{chartValues.reduce((a, b) => a + b, 0).toLocaleString()}</p>
+          </div>
+
+          <div className="card expenses">
+            <h4>Expenses</h4>
+            <p>₦{parseFloat(total).toLocaleString()}</p>
+          </div>
+
+          <div className="card profits">
+            <h4>Daily Profit</h4>
+            <p>₦{parseFloat(realProfitStats.daily).toLocaleString()}</p>
+          </div>
+
+          <div className="card profits">
+            <h4>Weekly Profit</h4>
+            <p>₦{parseFloat(realProfitStats.weekly).toLocaleString()}</p>
+          </div>
+
+          <div className="card profits">
+            <h4>Monthly Profit</h4>
+            <p>₦{parseFloat(realProfitStats.monthly).toLocaleString()}</p>
+          </div>
+
+          <div className="card profits">
+            <h4>Yearly Profit</h4>
+            <p>₦{parseFloat(realProfitStats.yearly).toLocaleString()}</p>
+          </div>
+        </div>
+
+        
         <div className="charts-row">
           {showSalesChart && (
             <div className="chart-card">
@@ -563,38 +597,6 @@ export default function Dashboard() {
               </div>
             </div>
           )}
-        </div>
-
-        <div className="summary-cards">
-          <div className="card sales">
-            <h4>Total Sales</h4>
-            <p>₦{chartValues.reduce((a, b) => a + b, 0).toLocaleString()}</p>
-          </div>
-
-          <div className="card expenses">
-            <h4>Expenses</h4>
-            <p>₦{parseFloat(total).toLocaleString()}</p>
-          </div>
-
-          <div className="card profits">
-            <h4>Daily Profit</h4>
-            <p>₦{parseFloat(realProfitStats.daily).toLocaleString()}</p>
-          </div>
-
-          <div className="card profits">
-            <h4>Weekly Profit</h4>
-            <p>₦{parseFloat(realProfitStats.weekly).toLocaleString()}</p>
-          </div>
-
-          <div className="card profits">
-            <h4>Monthly Profit</h4>
-            <p>₦{parseFloat(realProfitStats.monthly).toLocaleString()}</p>
-          </div>
-
-          <div className="card profits">
-            <h4>Yearly Profit</h4>
-            <p>₦{parseFloat(realProfitStats.yearly).toLocaleString()}</p>
-          </div>
         </div>
 
         {lowStock.length > 0 && (

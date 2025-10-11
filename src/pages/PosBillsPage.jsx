@@ -211,7 +211,7 @@ export default function BillsPage() {
             <p>Process utility bills and services payments</p>
           </div>
           <button 
-            className="btn-primary"
+            className="bill-btn-primary"
             onClick={() => setShowBillModal(true)}
           >
             <Receipt size={18} />
@@ -702,7 +702,7 @@ function BillPaymentModal({ onClose, onSubmit, defaultBiller = "electricity" }) 
             </button>
             <button 
               type="submit" 
-              className="btn-primary"
+              className="bill-btn-primary"
               disabled={!formData.amount || !formData.customer_id}
             >
               Process Payment

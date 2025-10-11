@@ -1,14 +1,29 @@
 import React from "react";
 import { useEffect } from "react";
 import "../styles/about.css";
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function About() {
+
+   const navigate = useNavigate();
 
    useEffect(() => {
       window.scrollTo(0, 0); // always scroll to top on load
     }, []);
+     
+
+
+      const handleBackToHome = () => {
+    navigate('/');
+  };
   return (
     <div className="about-container">
+       <div className="back-to-home-container-about">
+                  <button className="back-to-home-btn-about" onClick={handleBackToHome}>
+                    <FaArrowLeft /> Back to Home
+                  </button>
+                </div>
       <h1 className="about-title">About ShopStack™</h1>
 
       {/* Who We Are */}

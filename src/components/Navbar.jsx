@@ -4,31 +4,15 @@ import { supabase } from "../services/supabaseClient";
 import "../styles/navbar.css";
 import { useAuthStore } from "../store/auth-store";
 import { useShopStore } from "../store/shop-store";
-import { User, Power } from "lucide-react";
+import { User, Power, Home, Menu } from "lucide-react";
 
 export default function Navbar() {
   const { user, logout } = useAuthStore();
   const [profile, setProfile] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { shop } = useShopStore();
-
-
-  const HomeIcon = ({ color = "#007bff", size = 24 }) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
-    </svg>
-  );
 
   const getInitials = (name) => {
     if (!name) return "";
@@ -52,32 +36,56 @@ export default function Navbar() {
     fetchUserProfile();
   }, [user]);
 
- const handleLogout = () => {
-   logout();
-   navigate("/login");
- };
-return (
-    <div className="navbar">
-      <div className="navbart">
-      <div className="navbar-right">
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <div className="landlord-navbar">
+      {/* Logo Section */}
+      <nav className="shops-navbar">
+        <div className="shop-shopstack-logo">
+          <a href="/" className="logo-link">
+            <span className="logo-shop">Shop</span>
+            <span className="logo-stack">stack</span>
+          </a>
+        </div>
+      </nav>
+
+      {/* Navigation Buttons */}
+      <div className="landlord-navbar-right">
         {/* Home */}
-        <Link to="/" className="navbar-icon" title="Shops">
-          <HomeIcon color="#e67a00" size={26} />
+        <Link 
+          to="/landing" 
+          className="landlord-nav-btn" 
+          title="Shops"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <Home size={22} color="#e67a00" />
         </Link>
 
         {/* Profile */}
-        <Link to={`/shops/${id}/profile`} className="navbar-icon" title="Profile">
-          <User size={22} stroke="#007bff" />
-          <div className="initials-avatar">
+        <Link 
+          to={`/shops/${id}/profile`} 
+          className="landlord-nav-btn" 
+          title="Profile"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <div className="landlord-user-avatar-small">
             {getInitials(profile?.full_name || user?.email)}
           </div>
         </Link>
 
         {/* Logout */}
-        <button className="navbar-icon logout-btn" onClick={handleLogout} title="Logout">
-          <Power size={22} stroke="#17a2b8" />
+        <button 
+          className="landlord-nav-btn landlord-logout-btn" 
+          onClick={handleLogout} 
+          title="Logout"
+        >
+          <Power size={22} color="#17a2b8" />
         </button>
-      </div>
       </div>
     </div>
   );

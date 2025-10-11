@@ -1,0 +1,377 @@
+/* Tenant Profile Styles */
+.tenant-profile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+.profile-header {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.tenant-basic-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tenant-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #666;
+}
+
+.tenant-details h1 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.tenant-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-badge.paid {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.overdue {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.apartment-type, .due-indicator {
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #e9ecef;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+}
+
+.due-indicator.overdue {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.due-indicator.warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.due-indicator.normal {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Tab Styles */
+.profile-tabs {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background: #007bff;
+  color: white;
+}
+
+.tab-button:hover:not(.active) {
+  background: #f8f9fa;
+}
+
+/* Tab Content */
+.tab-content {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Overview Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.info-card h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+}
+
+.info-item label {
+  font-weight: 600;
+  color: #666;
+  min-width: 120px;
+}
+
+.info-item span {
+  color: #333;
+}
+
+.rent-amount {
+  font-weight: 700;
+  color: #28a745 !important;
+}
+
+.status-text.paid { color: #28a745; }
+.status-text.pending { color: #ffc107; }
+.status-text.overdue { color: #dc3545; }
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+/* Lists */
+.payments-list, .maintenance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-item, .maintenance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.payment-item:hover, .maintenance-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.payment-info, .request-info {
+  flex: 1;
+}
+
+.payment-amount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #28a745;
+}
+
+.request-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.request-description {
+  color: #666;
+  margin: 5px 0;
+}
+
+.payment-meta, .request-meta {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.request-date {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.payment-actions, .request-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.empty-state h4 {
+  margin: 15px 0 10px 0;
+  color: #333;
+}
+
+/* Loading and Error States */
+.loading-container, .error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  flex-direction: column;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: #dc3545;
+  margin-bottom: 20px;
+}
+
+.error-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* Text Utilities */
+.text-danger { color: #dc3545; }
+.text-warning { color: #ffc107; }
+.text-success { color: #28a745; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tenant-profile {
+    padding: 10px;
+  }
+  
+  .profile-header {
+    padding: 20px;
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .tenant-basic-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .tenant-meta {
+    justify-content: center;
+  }
+  
+  .profile-tabs {
+    flex-direction: column;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
