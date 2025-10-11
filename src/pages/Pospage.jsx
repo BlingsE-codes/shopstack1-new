@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import PosSidebar from "../components/posSidebar.jsx";
-import PosDashboard from "../components/PosDashboard";
+// import PosSidebar from "../components/posSidebar.jsx";
+// import PosDashboard from "../components/PosDashboard";
 import Posnavbar from "../components/Posnavbar.jsx";
-import "../styles/Posdashboard.css";
-import "../styles/possidebar.css";
+// import "../styles/Posdashboard.css";
+// import "../styles/possidebar.css";
 import "../styles/pospage.css";
 import "../styles/posnavbar.css";
 import { useShopStore } from "../store/shop-store.jsx";
