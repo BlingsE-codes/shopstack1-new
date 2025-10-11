@@ -19,7 +19,7 @@ import Pospage from "./pages/Pospage";
 import Landlordpage from "./pages/Landlordpage";
 import PosBillsPage from "./pages/PosBillsPage";
 // import PosReportPage from "./pages/Posreportpage";
-import PosReportPage from "./pages/PosReportPage";
+import PosReportPage from "./pages/PosReportpage";
 
 
 import ProtectedRoute from "./ProtectedRoute";
