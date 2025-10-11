@@ -9,7 +9,6 @@ import Landlordnavbar from "./components/Landlordnavbar";
 import LandlordOverview from "./components/LandlordOverview";
 import LandlordTenantDetailsPage from "./components/Landlordtenantdetailspage";
 
-
 import HowItWorks from "./pages/HowItWorks";
 import Feedback from "./pages/Feedback";
 import ModernReceipt from "./components/ModernReceipt";
@@ -19,8 +18,7 @@ import Pospage from "./pages/Pospage";
 import Landlordpage from "./pages/Landlordpage";
 import PosBillsPage from "./pages/PosBillsPage";
 // import PosReportPage from "./pages/Posreportpage";
-import PosReportPage from "./pages/PosReportpage";
-
+import PosReportPage from "./pages/PosReportPage";
 
 import ProtectedRoute from "./ProtectedRoute";
 import Shop from "./pages/Shop";
@@ -55,7 +53,9 @@ export default function App() {
   return (
     <div className="app-base">
       <ScrollToTop />
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
         <div style={{ flex: 1 }}>
           <Routes>
             {/* Public Routes */}
@@ -119,19 +119,81 @@ export default function App() {
             </Route>
 
             {/* POS Routes */}
-            <Route path="/pospage/:shopId" element={<Pospage><PosDashboard/></Pospage>} />
-            <Route path="/transactions/:shopId" element={<Pospage><PosTransactions /></Pospage>} />
-            <Route path="/posairtimepage/:shopId" element={<Pospage><PosAirtimePage /></Pospage>} />
-            <Route path="/posbillspage/:shopId" element={<Pospage><PosBillsPage /></Pospage>} />
-            <Route path="/posreportpage/:shopId" element={<Pospage><PosReportPage /></Pospage>} />
+            <Route
+              path="/pospage/:shopId"
+              element={
+                <Pospage>
+                  <PosDashboard />
+                </Pospage>
+              }
+            />
+            <Route
+              path="/transactions/:shopId"
+              element={
+                <Pospage>
+                  <PosTransactions />
+                </Pospage>
+              }
+            />
+            <Route
+              path="/posairtimepage/:shopId"
+              element={
+                <Pospage>
+                  <PosAirtimePage />
+                </Pospage>
+              }
+            />
+            <Route
+              path="/posbillspage/:shopId"
+              element={
+                <Pospage>
+                  <PosBillsPage />
+                </Pospage>
+              }
+            />
+            <Route
+              path="/posreportpage/:shopId"
+              element={
+                <Pospage>
+                  <PosReportPage />
+                </Pospage>
+              }
+            />
 
             {/* Landlord Routes */}
-            <Route path="/landlordpage/:shopId" element={<Landlordpage><LandlordDashboard/></Landlordpage>} />
-            <Route path="/landlordtenantmanagement/:shopId" element={<Landlordpage><LandlordTenantManagement /></Landlordpage>} />
-            <Route path="/landlordoverview/:shopId" element={<Landlordpage><LandlordOverview/></Landlordpage>} />
-            <Route path="/landlordtenantdetailspage/:tenantId" element={<Landlordpage><LandlordTenantDetailsPage/></Landlordpage>} />
+            <Route
+              path="/landlordpage/:shopId"
+              element={
+                <Landlordpage>
+                  <LandlordDashboard />
+                </Landlordpage>
+              }
+            />
+            <Route
+              path="/landlordtenantmanagement/:shopId"
+              element={
+                <Landlordpage>
+                  <LandlordTenantManagement />
+                </Landlordpage>
+              }
+            />
+            <Route
+              path="/landlordoverview/:shopId"
+              element={
+                <Landlordpage>
+                  <LandlordOverview />
+                </Landlordpage>
+              }
+            />
+            <Route
+              path="/landlordtenantdetailspage/:tenantId"
+              element={
+                <Landlordpage>
+                  <LandlordTenantDetailsPage />
+                </Landlordpage>
+              }
+            />
             {/* <Route path="/landlordtenantdetailspage/:shopId" element={<LandlordTenantDetailsPage />} /> */}
-
 
             {/* Static Pages */}
             <Route path="/pricing" element={<Pricing />} />
