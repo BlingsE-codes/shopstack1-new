@@ -417,21 +417,21 @@ export default function Shops() {
                     onClick={() => handleShopEntry(shop)}
                     title={`Enter ${shop.name}`}
                   >
-                    <LogIn size={14} /> Enter
+                    <LogIn size={25} /> View Shop
                   </button>
                   <button
-                    className="btn-secondary"
+                    className="shops-btn-secondary"
                     onClick={() => startEdit(shop)}
                     title="Edit shop details"
                   >
-                    <Edit3 size={14} /> Edit
+                    <Edit3 size={14} /> Edit Shop
                   </button>
                   <button
-                    className="btn-danger"
+                    className="shops-btn-danger"
                     onClick={() => handleDelete(shop.id)}
                     title="Delete shop"
                   >
-                    <Trash2 size={14} /> Delete
+                    <Trash2 size={14} /> Delete Shop
                   </button>
                 </div>
               </>

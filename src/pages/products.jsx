@@ -425,6 +425,7 @@ export default function Products() {
   };
 
   return (
+    <div className="shopstack-wrapper">
     <div className="products-page">
       {/* Quick Add Form */}
       <div className="quick-add-form" ref={formRef}>
@@ -834,6 +835,7 @@ export default function Products() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

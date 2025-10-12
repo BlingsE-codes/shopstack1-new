@@ -45,11 +45,12 @@ useEffect(() => {
     }
   };
   return (
-    <div className="layout">
-      {/* Sidebar */}
-      <div className={`sidebar ${menuOpen ? "open" : "collapsed"}`}>
-        <div className="sidebar-header">
-          <div className="sidebar-info">
+    <div className="shop-sidebar-wrapper">
+      <div className="layout">
+        {/* Sidebar */}
+        <div className={`sidebar ${menuOpen ? "open" : "collapsed"}`}>
+          <div className="sidebar-header">
+            <div className="sidebar-info">
             {shop.logo_url && (
               <img src={shop.logo_url} alt="Shop Logo" className="shop-logo" />
             )}
@@ -93,6 +94,7 @@ useEffect(() => {
         </button>
         <Outlet />
       </div>
+    </div>
     </div>
   );
 }
