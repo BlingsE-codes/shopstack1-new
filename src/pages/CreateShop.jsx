@@ -8,14 +8,14 @@ import "../styles/createshop.css";
 const shopTypes = [
   "Retail Store",
   "Grocery Store",
-  "POS Agent", 
+  "POS Agent",
   "Supermarket",
   "Warehouse",
   "Wholesaler",
   "E-commerce",
   "Service Provider",
   "Logistics",
-  "House Owner",
+  "House or Property Owner",
   "Other",
 ];
 
@@ -63,15 +63,23 @@ export default function CreateShop() {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h2>Create New Shop</h2>
-        
+        <h2>Create New Shop or Property</h2>
+
         {/* General Instructions */}
         <div className="instruction-box">
           <h4>📋 Setup Instructions:</h4>
           <ul>
-            <li>Fill in all fields to create your business profile</li>
-            <li>Choose the option that best matches your business type</li>
-            <li>You can create multiple shops for different locations</li>
+            <li>
+              Fill in all fields to create your business profile (or Property
+              Profile)
+            </li>
+            <li>
+              Choose the option that best matches your business (Property) type
+            </li>
+            <li>
+              You can create multiple shops or properties for different
+              locations
+            </li>
           </ul>
         </div>
 
@@ -107,18 +115,23 @@ export default function CreateShop() {
               </option>
             ))}
           </select>
-          
+
           {/* Dynamic Instructions based on selection */}
-          {shopType === "House Owner" && (
+          {shopType === "House or Property Owner" && (
             <div className="type-instruction">
-              <strong>🏠 For House Owners:</strong>
-              <p>Perfect for managing household inventory, tracking personal expenses, 
-              and monitoring family consumption. You'll be able to:</p>
+              <strong>🏠 For House or Property Owners:</strong>
+              <p>
+                {" "}
+                Perfect for managing residential properties, estates, and
+                rentals. You'll be able to:
+              </p>
               <ul>
-                <li>Track household items and groceries</li>
-                <li>Monitor family spending patterns</li>
-                <li>Manage personal inventory</li>
-                <li>Set budget alerts for household items</li>
+                <li>Track rent payments and due dates</li>
+                <li>Print and document lease agreements and receipts</li>
+                <li>Manage tenant information and lease agreements</li>
+                <li>Record maintenance requests and expenses</li>
+                <li>Generate financial reports for your properties</li>
+                <li>Keep all property-related data organized in one place</li>
               </ul>
             </div>
           )}
@@ -126,21 +139,29 @@ export default function CreateShop() {
           {shopType === "POS Agent" && (
             <div className="type-instruction">
               <strong>💸 For POS Agents:</strong>
-              <p>Optimized for cash-based transactions and liquidity management.</p>
+              <p>
+                Optimized for cash-based transactions and liquidity management.
+              </p>
             </div>
           )}
 
           {shopType === "Retail Store" && (
             <div className="type-instruction">
               <strong>🛍️ For Retail Stores:</strong>
-              <p>Ideal for small to medium retail businesses with physical storefronts.</p>
+              <p>
+                Ideal for small to medium retail businesses with physical
+                storefronts.
+              </p>
             </div>
           )}
 
           {shopType === "E-commerce" && (
             <div className="type-instruction">
               <strong>🛒 For E-commerce:</strong>
-              <p>Designed for online businesses with digital inventory management.</p>
+              <p>
+                Designed for online businesses with digital inventory
+                management.
+              </p>
             </div>
           )}
 
@@ -149,22 +170,41 @@ export default function CreateShop() {
             <div className="type-instruction">
               <strong>💡 Not sure which to choose?</strong>
               <ul>
-                <li><strong>Retail Store:</strong> Physical store selling directly to consumers</li>
-                <li><strong>POS Agent:</strong> Mobile money or cash transaction services</li>
-                <li><strong>House Owner:</strong> Personal household management</li>
-                <li><strong>Wholesaler:</strong> Bulk selling to retailers</li>
-                <li><strong>Service Provider:</strong> Service-based businesses</li>
-                <li><strong>Other:</strong> Doesn't fit the categories? Choose this</li>
+                <li>
+                  <strong>Retail Store:</strong> Physical store selling directly
+                  to consumers
+                </li>
+                <li>
+                  <strong>POS Agent:</strong> Mobile money or cash transaction
+                  services
+                </li>
+                <li>
+                  <strong>House Owner:</strong> Management of residential
+                  properties
+                </li>
+                <li>
+                  <strong>Wholesaler:</strong> Bulk selling to retailers
+                </li>
+                <li>
+                  <strong>Service Provider:</strong> Service-based businesses
+                </li>
+                <li>
+                  <strong>Other:</strong> Doesn't fit the categories? Choose
+                  this
+                </li>
               </ul>
             </div>
           )}
         </div>
 
-        <button type="submit">Create Shop</button>
+        <button type="submit">Create Shop (or Property)</button>
 
         {/* Additional helpful tips */}
         <div className="help-tips">
-          <p><strong>Pro Tip:</strong> You can always edit these details later from your shop settings.</p>
+          <p>
+            <strong>Pro Tip:</strong> You can always edit these details later
+            from your shop settings.
+          </p>
         </div>
       </form>
     </div>

@@ -90,7 +90,7 @@ export default function Shops() {
     if (data.type === "POS Agent") {
       navigate(`/pospage/${data.id}`);
 
-      } else if (data.type === "House Owner") {
+      } else if (data.type === "House or Property Owner") {
         navigate(`/landlordoverview/${data.id}`);
 
     } else {
@@ -339,7 +339,7 @@ export default function Shops() {
         🥦 Grocery
       </span>
     )}
-     {shop.type === "House Owner" && (
+     {shop.type === "House or Property Owner" && (
       <span className="retail-badge">
         🛍️ Home
       </span>
