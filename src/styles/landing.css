@@ -355,7 +355,7 @@ color: #27c93f ;
 /* Sections Common Styles */
 .landing-section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: auto;
   
  
 }
@@ -537,7 +537,7 @@ html {
 /* Footer */
 .footer {
   padding: 4rem 0 2rem;
-  background: var(--dark);
+  background: rgb(236, 234, 234);
   color: white;
 }
 
@@ -550,7 +550,7 @@ html {
 
 .footer-section h3,
 .footer-section h4 {
-  color: rgb(243, 239, 239);
+  color: rgb(192, 98, 98);
   margin-bottom: 1rem;
 }
 section {
@@ -580,7 +580,11 @@ section {
 }
 
 .footer-section a:hover {
-  color: white;
+  color: rgb(201, 195, 195);
+}
+.footer-section span{
+  color: #007bff !important;
+  font-weight: 600;
 }
 
 .footer-bottom {

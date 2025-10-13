@@ -8,6 +8,13 @@ html, body {
 .layout {
   display: flex;
   height: 100vh;
+
+}
+
+.shop-sidebar-wrapper a{
+  text-decoration: none;
+  color: inherit;
+  margin-left: 20px;
 }
 
 /* === SIDEBAR STYLES - NO SCROLL === */

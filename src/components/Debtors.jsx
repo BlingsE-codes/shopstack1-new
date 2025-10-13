@@ -127,11 +127,12 @@ export default function Debtors() {
   };
 
   return (
-    <div className="debtors-page">
-      <div className="debtors-info">
-   
-        <div className="stock-summary">
-          <div className="summary-card">
+    <div className="shopstack-wrapper">
+      <div className="debtors-page">
+        <div className="debtors-info">
+
+          <div className="stock-summary">
+            <div className="summary-card">
             <strong>Today’s Debtors:</strong> ₦{todaysTotal.toLocaleString()}
           </div>
           <div className="summary-card">
@@ -228,6 +229,7 @@ export default function Debtors() {
           </button>
         </div>
       )}
+    </div>
     </div>
   );
 }

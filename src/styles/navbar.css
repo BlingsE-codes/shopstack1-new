@@ -19,7 +19,7 @@
 
 /* ShopStack Logo Styling */
 .shop-shopstack-logo {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   cursor: default;
@@ -90,8 +90,8 @@
 @media screen and (min-width: 767px) {
  
   .shop-shopstack-logo {
-    font-size: 1.6rem;
-    margin-left: 2.5rem;
+    font-size: 1.8rem;
+    margin-left: 2rem;
   }
 }
 
@@ -103,8 +103,8 @@
   }
   
   .shop-shopstack-logo {
-    font-size: 1.3rem;
-    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    margin-left: 2.5rem;
   }
   
   .landlord-navbar-right {
@@ -135,7 +135,8 @@
   }
   
   .shop-shopstack-logo {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+  
   }
   
   .landlord-navbar-right {

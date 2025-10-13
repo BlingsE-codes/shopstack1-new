@@ -146,7 +146,7 @@ const Navbar = ({ id }) => {
           {/* Logo/Brand */}
           <Link to={`/pospage/${shopId}`} className="navbar-brand">
             <div className="brand-logo">
-              <LayoutDashboard size={24} />
+              <LayoutDashboard size={20} />
             </div>
             <span className="brand-name">POS System</span>
           </Link>
@@ -211,16 +211,16 @@ const Navbar = ({ id }) => {
         </div>
 
         <div className="navbar-right">
-          <button className="nav-btn" title="Shops" onClick={() => navigate("/Shops")}>
+          {/* <button className="nav-btn" title="Shops" onClick={() => navigate("/Shops")}>
             <HomeIcon size={20} />
-          </button>
+          </button> */}
           
           {/* My Shops button added here */}
           <button className="nav-btn" title="My Shops" onClick={() => navigate("/shops")}>
             <Home size={20} />
           </button>
           
-          <button className="nav-btn" onClick={toggleDarkMode} title="Toggle Dark Mode">
+          <button className="dark-nav-btn" onClick={toggleDarkMode} title="Toggle Dark Mode">
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           

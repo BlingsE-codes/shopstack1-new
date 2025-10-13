@@ -736,25 +736,26 @@ const Landing = () => {
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
+              <p>Created by: <span>Eziefula Charles</span></p>
               <p>&copy; 2023 ShopStack. All rights reserved.</p>
             </div>
             <div className="footer-section">
               <h4>Product</h4>
-              <a href="features">Features</a>
-              <a href="pricing">Pricing</a>
-              <a href="testimonials">Testimonials</a>
+              <a href="#features">Features</a>
+              <a href="/pricing">Pricing</a>
+              <a href="#testimonials">Testimonials</a>
             </div>
             <div className="footer-section">
               <h4>Resources</h4>
-              <a href="#">Documentation</a>
-              <a href="#">Blog</a>
-              <a href="#">Support</a>
+              <a href="/howitworks">How it Works</a>
+              <a href="/feedback">Feedback and Reviews</a>
+              <a href="/shops">Shops</a>
             </div>
             <div className="footer-section">
               <h4>Company</h4>
-              <a href="#">About Us</a>
-              <a href="#">Contact</a>
-              <a href="#">Careers</a>
+              <a href="/about">About Us</a>
+              <a href="/contact">Contact</a>
+              <a href="/terms">Terms</a>
             </div>
           </div>
 

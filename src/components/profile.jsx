@@ -366,6 +366,7 @@ const handleDataExport = async () => {
   // );
 
   return (
+    <div className="shopstack-wrapper">
     <div className="profile-container">
       <ToastContainer
         position="top-right"
@@ -846,6 +847,7 @@ const handleDataExport = async () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

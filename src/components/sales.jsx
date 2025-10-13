@@ -845,11 +845,12 @@ Thank you for your purchase!`;
   };
 
   return (
-    <div className="sales-page">
-      {/* Header Section */}
-      <div className="sales-header">
-        <h1>Sales Management</h1>
-        <div className="header-actions">
+    <div className="shopstack-wrapper">
+      <div className="sales-page">
+        {/* Header Section */}
+        <div className="sales-header">
+          <h1>Sales Management</h1>
+          <div className="header-actions">
           <div className="search-box">
             <i className="search-icon">🔍</i>
             <input
@@ -1237,6 +1238,7 @@ Thank you for your purchase!`;
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

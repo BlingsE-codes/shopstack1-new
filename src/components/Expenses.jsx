@@ -228,11 +228,12 @@ export default function Expenses() {
   };
 
   return (
-    <div className="expenses-page">
-      {/* Header Section */}
-      <div className="expenses-header">
-        <h1>Expense Management</h1>
-        <div className="header-actions">
+    <div className="shopstack-wrapper">
+      <div className="expenses-page">
+        {/* Header Section */}
+        <div className="expenses-header">
+          <h1>Expense Management</h1>
+          <div className="header-actions">
           <div className="search-box">
             <i className="search-icon">🔍</i>
             <input
@@ -415,6 +416,7 @@ export default function Expenses() {
           </>
         )}
       </div>
+    </div>
     </div>
   );
 }
