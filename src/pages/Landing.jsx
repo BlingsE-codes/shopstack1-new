@@ -737,7 +737,8 @@ const Landing = () => {
           <div className="footer-content">
             <div className="footer-section">
               <p>Created by: <span>Eziefula Charles</span></p>
-              <p>&copy; 2023 ShopStack. All rights reserved.</p>
+           <p>&copy; {new Date().getFullYear()}. All rights reserved.</p>
+
             </div>
             <div className="footer-section">
               <h4>Product</h4>

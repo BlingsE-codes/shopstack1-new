@@ -1076,7 +1076,7 @@ const handleEnhancedPrint = async () => {
           padding: 25px;
           max-width: 600px;
           margin: 30px auto;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+         
         }
 
         .print-header {
@@ -1279,42 +1279,237 @@ const handleEnhancedPrint = async () => {
         }
       `;
 
-    printWindow.document.write(`
-        <html>
-          <head>
-            <title>Print ${documentTitle}</title>
-            <style>${baseStyles}</style>
-          </head>
-          <body>
-            <div class="print-container">
-              <div class="print-header">
-                <h1>${documentTitle}</h1>
-                <h2>${
-                  shop?.name.toUpperCase()
-                    ? shop.name.replace(/\b\w/g, (char) => char.toUpperCase())
-                    : "Property"
-                }</h2>
-                <small>Document generated on ${new Date().toLocaleString()}</small>
-              </div>
 
-              <div class="document-body">
-                ${documentContent}
-              </div>
-              <div class="footer">
-                Powered by ShopStack
-              </div>
-            </div>
+printWindow.document.write(`
+  <html>
+    <head>
+      <title>Print ${documentTitle}</title>
+      <style>
+        ${baseStyles}
+        
+        /* Force white background for the entire document */
+        * {
+          background: white !important;
+          background-color: white !important;
+        }
+        
+        body {
+          background: white !important;
+          background-color: white !important;
+          margin: 0;
+          padding: 20px;
+        }
+        
+        /* Ensure print container has white background */
+        .print-container {
+          background: white !important;
+          background-color: white !important;
+          color: black !important;
+        }
+        
+        /* Ensure all child elements have white background */
+        .print-container * {
+          background: white !important;
+          background-color: white !important;
+        }
+        
+        .no-print {
+          text-align: center; 
+          margin-top: 30px; 
+          padding: 20px;
+          background: white !important;
+        }
+        
+        button {
+          padding: 10px 20px; 
+          margin: 5px; 
+          color: white; 
+          border: none; 
+          border-radius: 4px; 
+          cursor: pointer;
+          font-weight: bold;
+        }
+        
+        /* Specific button colors */
+        button:nth-child(1) { /* Print button */
+          background: #e67a00 !important;
+          background-color: #e67a00 !important;
+        }
+        
+        button:nth-child(2) { /* Save as PDF button */
+          background: #2563eb !important;
+          background-color: #2563eb !important;
+        }
+        
+        button:nth-child(3) { /* Save as Image button */
+          background: #64748b !important;
+          background-color: #64748b !important;
+        }
+        
+        button:nth-child(4) { /* Share button */
+          background: #e67a00 !important;
+          background-color: #e67a00 !important;
+        }
+        
+        button:nth-child(5) { /* Close button */
+          background: #64748b !important;
+          background-color: #64748b !important;
+        }
+        
+        button:hover {
+          opacity: 0.9;
+          transform: translateY(-1px);
+        }
+      </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    </head>
+    <body style="background: white !important; background-color: white !important;">
+      <div class="print-container" style="background: white !important; background-color: white !important;">
+        <div class="print-header" style="background: white !important;">
+          <h1 style="background: white !important;">${documentTitle}</h1>
+          <h2 style="background: white !important;">${
+            shop?.name.toUpperCase()
+              ? shop.name.replace(/\b\w/g, (char) => char.toUpperCase())
+              : "Property"
+          }</h2>
+          <small style="background: white !important;">Document generated on ${new Date().toLocaleString()}</small>
+        </div>
 
-            <div class="no-print" style="text-align: center; margin-top: 30px; padding: 20px;">
-              <button onclick="window.print()" style="padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">🖨️ Print</button>
-              <button onclick="window.close()" style="padding: 10px 20px; margin: 5px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">❌ Close</button>
-            </div>
-          </body>
-        </html>
-      `);
-    printWindow.document.close();
+        <div class="document-body" style="background: white !important;">
+          ${documentContent}
+        </div>
+        <div class="footer" style="background: white !important;">
+          Powered by ShopStack
+        </div>
+      </div>
 
-    toast.success("Document printed and saved successfully!");
+      <div class="no-print" style="background: white !important;">
+        <button onclick="window.print()">🖨️ Print</button>
+        <button onclick="window.saveAsPDF()">📄 Save as PDF</button>
+      
+        <button onclick="window.shareDocument()">📤 Share</button>
+        <button onclick="window.close()">❌ Close</button>
+      </div>
+
+      <script>
+        const { jsPDF } = window.jspdf;
+
+        // Configure html2canvas to use white background
+        const html2canvasOptions = {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#ffffff', // Force white background for captures
+          onclone: function(clonedDoc) {
+            // Force white background on all elements in the cloned document
+            const allElements = clonedDoc.querySelectorAll('*');
+            allElements.forEach(el => {
+              el.style.background = '#ffffff';
+              el.style.backgroundColor = '#ffffff';
+            });
+            clonedDoc.body.style.background = '#ffffff';
+            clonedDoc.body.style.backgroundColor = '#ffffff';
+          }
+        };
+
+        window.saveAsPDF = function() {
+          const element = document.querySelector('.print-container');
+          
+          html2canvas(element, html2canvasOptions).then(canvas => {
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 210;
+            const pageHeight = 295;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+            
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            
+            while (heightLeft >= 0) {
+              position = heightLeft - imgHeight;
+              pdf.addPage();
+              pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+            }
+            
+            pdf.save('${documentTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.pdf');
+          });
+        };
+
+        window.saveAsImage = function() {
+          const element = document.querySelector('.print-container');
+          
+          html2canvas(element, html2canvasOptions).then(canvas => {
+            const link = document.createElement('a');
+            link.download = '${documentTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+          });
+        };
+
+        window.shareDocument = function() {
+          const element = document.querySelector('.print-container');
+          
+          html2canvas(element, {
+            scale: 1,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff', // Force white background for sharing
+            onclone: function(clonedDoc) {
+              const allElements = clonedDoc.querySelectorAll('*');
+              allElements.forEach(el => {
+                el.style.background = '#ffffff';
+                el.style.backgroundColor = '#ffffff';
+              });
+              clonedDoc.body.style.background = '#ffffff';
+              clonedDoc.body.style.backgroundColor = '#ffffff';
+            }
+          }).then(canvas => {
+            canvas.toBlob(function(blob) {
+              const file = new File([blob], '${documentTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png', { 
+                type: 'image/png' 
+              });
+              
+              if (navigator.share) {
+                navigator.share({
+                  title: '${documentTitle}',
+                  text: 'Check out this document from ${shop?.name || "Property"}',
+                  files: [file]
+                }).catch(error => {
+                  console.log('Sharing cancelled or failed:', error);
+                });
+              } else {
+                const imageData = canvas.toDataURL('image/png');
+                const text = 'Check out this document: ${documentTitle} from ${shop?.name || "Property"}';
+                const encodedText = encodeURIComponent(text);
+                
+                const whatsappUrl = 'https://wa.me/?text=' + encodedText;
+                const emailUrl = 'mailto:?subject=' + encodeURIComponent('${documentTitle}') + 
+                                '&body=' + encodedText;
+                
+                if (confirm('Share via: OK for WhatsApp, Cancel for Email')) {
+                  window.open(whatsappUrl, '_blank');
+                } else {
+                  window.location.href = emailUrl;
+                }
+              }
+            });
+          });
+        };
+      </script>
+    </body>
+  </html>
+`);
+printWindow.document.close();
+
+toast.success("Document printed and saved successfully!");
+
+
+
+
 
   } catch (error) {
     console.error("Error during print operation:", error);

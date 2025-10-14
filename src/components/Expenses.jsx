@@ -235,7 +235,7 @@ export default function Expenses() {
           <h1>Expense Management</h1>
           <div className="header-actions">
           <div className="search-box">
-            <i className="search-icon">🔍</i>
+            {/* <i className="search-icon">🔍</i> */}
             <input
               type="text"
               placeholder="Search expenses..."

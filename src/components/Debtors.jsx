@@ -176,13 +176,17 @@ export default function Debtors() {
           }}
           required
         />
-        <input
-          type="date"
-          value={formData.due_date}
-          onChange={(e) =>
-            setFormData({ ...formData, due_date: e.target.value })
-          }
-        />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+  <label htmlFor="due-date" style={{ fontSize: '14px', fontWeight: '500' }}>
+    Due Date {!formData.due_date && <span style={{ color: '#666', fontStyle: 'italic' }}>- Please select a date</span>}
+  </label>
+  <input
+    id="due-date"
+    type="date"
+    value={formData.due_date}
+    onChange={(e) => setFormData({ ...formData, due_date: e.target.value })}
+  />
+</div>
         <button type="submit" disabled={submitting}>
           {submitting ? "Adding..." : "Add Debtor"}
         </button>
