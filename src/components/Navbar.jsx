@@ -63,7 +63,7 @@ export default function Navbar() {
           title="Shops"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          <Home size={22} color="#e67a00" />
+          <Home size={23} color="#e67a00" />
         </Link>
 
         {/* Profile */}

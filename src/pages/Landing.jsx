@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabaseClient";
-import { User, Power, Home, LogOut } from "lucide-react";
+import { User, Power, Home, LogOut, Store } from "lucide-react";
 import "../styles/landing.css";
 import { Menu, X } from "lucide-react";
 import { useAuthStore } from "../store/auth-store";
@@ -498,7 +498,7 @@ const Landing = () => {
                 className="landlord-nav-btn home-icon-nav"
                 title="Shops"
               >
-                <Home size={22} color="#e67a00" />
+                <Store size={23} color="#e67a00" />
                 <span className="home-text">Shops</span>
               </Link>
 
@@ -552,7 +552,7 @@ const Landing = () => {
               className="landing-mobile-home-icon"
               title="Shops"
             >
-              <Home color="#e67a00" />
+              <Store size={29}  color="#e67a00" />
             </Link>
 
             <button
