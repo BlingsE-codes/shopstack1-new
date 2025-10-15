@@ -197,7 +197,7 @@ background-color: #be6907;
 
 .nav-links-landing a {
   text-decoration: none;
-  color: rgb(58, 54, 54);
+  color: rgb(22, 20, 20);
   font-weight: 100;
   font-size: 14px;
   transition: var(--transition);
@@ -655,7 +655,12 @@ section {
   .nav-links-landing.active {
     display: flex;
   }
-  
+  .nav-links-landing a{
+    color: #000;
+  }
+  .nav-links-landing a:hover {
+    color: #007bff;
+  }
   .mobile-toggle {
     display: block;
   }
