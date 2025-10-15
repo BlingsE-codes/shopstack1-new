@@ -60,10 +60,10 @@ export default function Navbar() {
         <Link 
           to="/landing" 
           className="landlord-nav-btn" 
-          title="Shops"
+          title="Home"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          <Home size={23} color="#e67a00" />
+          <Home size={24} color="#e67a00" />
         </Link>
 
         {/* Profile */}

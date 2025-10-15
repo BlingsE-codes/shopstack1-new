@@ -29,6 +29,7 @@ import {
   FileWarning,
   Users,
   Home,
+  Store,
   Receipt,
   FileText,
   Download,
@@ -326,7 +327,7 @@ const LandlordNavbar = () => {
             title="All Shops"
             onClick={() => navigate("/shops")}
           >
-            <Home size={20} />
+            <Store size={23} color="#e67a00" />
           </button>
 
           <button

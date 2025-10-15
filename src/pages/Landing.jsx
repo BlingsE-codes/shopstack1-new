@@ -569,14 +569,26 @@ const Landing = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
-          <div className="hero-content">
-            <h1>The All-in-One Platform for Retail & Property Management.</h1>
-            <p>
-              ShopStack is the complete business management solution that
-              combines point-of-sale, inventory management, PoS agent networks,
-              and property management. Streamline your retail operations, expand
-              with agent networks, and manage properties all in one platform.
-            </p>
+          <div className="hero-content" style={{textAlign: 'left'}}>
+           <h1>The All-in-One Platform for Retail & Property Management.</h1>
+  
+  <div className="feature-point">
+    <span className="icon">🧾</span> {/* Replace with proper icon */}
+    <span>Point-of-Sale & Inventory</span>
+  </div>
+  <div className="feature-point">
+    <span className="icon">🌐</span>
+    <span>PoS Agent Networks</span>
+  </div>
+  <div className="feature-point">
+    <span className="icon">🏢</span>
+    <span>Property Management</span>
+  </div>
+
+  <p style={{marginTop: '1.5rem'}}>
+    Streamline your retail operations, expand your reach, and manage properties all in one unified platform.
+  </p>
+ 
             <div className="hero-buttons">
               <button
                 onClick={() => navigate("/signup")}

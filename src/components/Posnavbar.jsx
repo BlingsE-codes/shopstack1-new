@@ -217,7 +217,7 @@ const Navbar = ({ id }) => {
           
           {/* My Shops button added here */}
           <button className="nav-btn" title="My Shops" onClick={() => navigate("/shops")}>
-            <Home size={20} />
+            <Home size={22} />
           </button>
           
           <button className="dark-nav-btn" onClick={toggleDarkMode} title="Toggle Dark Mode">

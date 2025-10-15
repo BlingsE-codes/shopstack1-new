@@ -62,11 +62,21 @@ body {
  padding: 1rem;
 }
 
+
+
 .container {
-  width: 100%;
+  /* width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px; */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 0vh; /* or desired height */
+  padding: 1rem;
+  text-align: center; /* For centered layouts */
+  /* OR */
+  text-align: left;
 }
 
 /* Typography */
@@ -525,6 +535,17 @@ html {
   border-radius: var(--border-radius);
 }
 
+.feature-point {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
 .cta h2 {
   color: white;
 }
@@ -806,14 +827,14 @@ section {
 
 @media (max-width: 768px) {
   .shopstack-logo {
-    font-size: 2rem; /* smaller on tablets & phones */
+    font-size: 1.4rem; /* smaller on tablets & phones */
    
   }
 }
 
 @media (max-width: 480px) {
   .shopstack-logo {
-    font-size: 1.5rem; /* even smaller on small phones */
+    font-size: 1.4rem; /* even smaller on small phones */
     margin-right: 1rem;
 }
 }

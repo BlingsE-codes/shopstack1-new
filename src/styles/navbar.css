@@ -129,13 +129,13 @@
 }
 
 /* Small mobile devices */
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
   .landlord-navbar {
     padding: 0.4rem 0.5rem;
   }
   
   .shop-shopstack-logo {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   
   }
   
@@ -153,10 +153,10 @@
     font-size: 0.7rem;
   }
   
-  .landlord-nav-btn svg {
+  /* .landlord-nav-btn svg {
     width: 16px;
     height: 16px;
-  }
+  } */
 }
 
 /* Tablet styles */
